@@ -9,4 +9,3 @@ spl_autoload_register(function($file_name){
         require 'core/'.$file_name.'.php';
     }
 });
-?>

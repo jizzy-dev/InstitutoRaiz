@@ -22,7 +22,7 @@ Class Core{
                     cadastrar       1 metodo/funcao
                     10'             2 parametros
             */
-            $controller = $array_url[0];
+            $controller = $array_url[0].'Controller';
             //funcao que tira a posicao '[0]' da array e usa o proximo como '[0]'
             array_shift($array_url);
             //verifica na posicao '[0]'se existe informação e se não esta vazia
@@ -37,6 +37,21 @@ Class Core{
             if(count($array_url)> 0){
                 $parametro = $array_url; 
             }
+        }else{
+            $controller = 'homeController';
+            $metodo = 'index';
         }
+
+        $caminho = 'app/controllers/'.$controller.'php';
+
+        //verifica se existe o caminho e se há metodo
+        if(!file_exists( $caminho) && !method_exists($controller, $metodo)){
+            $controller = 'homeController';
+            $metodo = 'index';
+        }
+
+        $c = new $controller;
+        
+        call_user_func_array(array($c, $metodo),$parametro);
     }
 }
