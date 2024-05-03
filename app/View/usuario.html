@@ -1,0 +1,30 @@
+<style>
+    td,th{
+        border: 1px solid black;
+    }
+    table{
+        background-color: aliceblue;
+    }
+</style>
+<table cellspacing="0">
+    <tr>
+        <th colspan="7">Usuario</th>
+        
+    </tr>
+    <tr>
+        <td>ID</td>
+        <td>Nome</td>
+        <td>Email</td>
+        <td>Senha</td>
+        <td>Data_Nasc</td>
+    </tr>
+    {% for usuario in usuarios%}
+    <tr>
+        <td>{{usuario.ID_USER}}</td>
+        <td>{{usuario.nome}}</td>
+        <td>{{usuario.email}}</td>
+        <td>{{usuario.senha}}</td>
+        <td>{{usuario.data_nasc}}</td>
+    </tr>
+    {% endfor %}
+</table>
