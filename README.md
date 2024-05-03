@@ -1,3 +1,0 @@
-# InstitutoRaiz
-+
-+Projeto de TCC
