@@ -12,15 +12,15 @@ require_once 'app/Model/Usuario.php';
 
 require_once 'vendor/autoload.php';
 
-$template = file_get_contents('app/Template/template.php');
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
-ob_start();
+$loader = new FilesystemLoader('app/Template');
+$twig = new Environment($loader);
+
 $core = new Core();
-$core-> run($_GET);
+ob_start();
+$core->run($_GET);
+$saida = ob_get_clean();
 
-$saida = ob_get_contents();
-ob_end_clean();
-
-$tplPronto = str_replace('{{area_dinamica}}',$saida,$template);
-
-echo $tplPronto;
+echo $twig->render('template.html', ['area_dinamica' => $saida]);

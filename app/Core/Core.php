@@ -4,9 +4,13 @@ class Core
 {
     public function run($urlGet)
     {
+
         $metodo = 'index';
         if (isset($_GET['pag'])) {
-            $controller = ucfirst($urlGet['pag'] . 'Controller');
+            $controller = ucfirst($urlGet['pag'] . 'Controller'); //
+            if (isset($urlGet['metodo'])) {
+                $metodo = $urlGet['metodo'];
+            }
         } else {
             $controller = 'HomeController';
         }
@@ -15,6 +19,12 @@ class Core
             $controller = 'ErroController';
         }
 
-        call_user_func_array(array(new $controller, $metodo),array());
+        (isset($urlGet['id']) && $urlGet['id'] != null) ? 
+        $id = $urlGet['id'] :
+        $id = null;
+
+        
+        
+        call_user_func_array(array(new $controller, $metodo), array($id));
     }
 }

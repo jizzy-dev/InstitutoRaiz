@@ -6,9 +6,10 @@
         background-color: aliceblue;
     }
 </style>
+
 <table cellspacing="0">
     <tr>
-        <th colspan="7">Usuario</th>
+        <th colspan="">Usuario</th>
         
     </tr>
     <tr>
@@ -17,14 +18,32 @@
         <td>Email</td>
         <td>Senha</td>
         <td>Data_Nasc</td>
+        <td>Logradouro</td>
+        <td>Bairro</td>
+        <td>Número Endereço</td>
+        <td>Complemento</td>
+        <td>CEP</td>
+        <td>CPF</td>
+        <td>RG</td>
+        <td>Contato</td>
+        <td>Resposanvel</td>
+        <td>Padrinho</td>
     </tr>
-    {% for usuario in usuarios%}
     <tr>
-        <td>{{usuario.ID_USER}}</td>
-        <td>{{usuario.nome}}</td>
-        <td>{{usuario.email}}</td>
-        <td>{{usuario.senha}}</td>
-        <td>{{usuario.data_nasc}}</td>
+        <td>{{usuarios.ID_USER}}</td></tr>
+        <td>{{usuarios.nome}}</td>
+        <td>{{usuarios.email}}</td>
+        <td>{{usuarios.senha}}</td>
+        <td>{{usuarios.data_nasc}}</td>
+        <td>{{usuarios.logradouro}}</td>
+        <td>{{usuarios.bairro}}</td>
+        <td>{{usuarios.numero_endereco}}</td>
+        <td>{{usuarios.complemento}}</td>
+        <td>{{usuarios.cep}}</td>
+        <td>{{usuarios.cpf}}</td>
+        <td>{{usuarios.rg}}</td>
+        <td>{{usuarios.contato}}</td>
+        <td>{{usuarios.isResponsavel}}</td>
+        <td>{{usuarios.isPadrinho}}</td>
     </tr>
-    {% endfor %}
 </table>
