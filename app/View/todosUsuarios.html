@@ -1,0 +1,51 @@
+<style>
+    td,th{
+        border: 1px solid black;
+    }
+    table{
+        background-color: aliceblue;
+    }
+</style>
+
+<table cellspacing="0">
+    <tr>
+        <th colspan="">Usuario</th>
+        
+    </tr>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Senha</th>
+        <th>Data_Nasc</th>
+        <th>Logradouro</th>
+        <th>Bairro</th>
+        <th>Número Endereço</th>
+        <th>Complemento</th>
+        <th>CEP</th>
+        <th>CPF</th>
+        <th>RG</th>
+        <th>Contato</th>
+        <th>Resposanvel</th>
+        <th>Padrinho</th>
+    </tr>
+    {%for usuario in usuarios%}
+    <tr>
+        <td>{{usuario.ID_USER}}</td>
+        <td>{{usuario.nome}}</td>
+        <td>{{usuario.email}}</td>
+        <td>{{usuario.senha}}</td>
+        <td>{{usuario.data_nasc}}</td>
+        <td>{{usuario.logradouro}}</td>
+        <td>{{usuario.bairro}}</td>
+        <td>{{usuario.numero_endereco}}</td>
+        <td>{{usuario.complemento}}</td>
+        <td>{{usuario.cep}}</td>
+        <td>{{usuario.cpf}}</td>
+        <td>{{usuario.rg}}</td>
+        <td>{{usuario.contato}}</td>
+        <td>{{usuario.isResponsavel}}</td>
+        <td>{{usuario.isPadrinho}}</td>
+    </tr>
+    {%endfor%}
+</table>

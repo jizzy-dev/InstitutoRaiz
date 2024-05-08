@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titulo </title>
+    <link rel="stylesheet" href="public/assets/css/styles.css">
+    {% if styles is defined and styles is iterable %}
+        {% for style in styles %}
+            {{ style | raw }}
+        {% endfor %}
+    {% endif %}
+</head>
+<body>
+    <!-- <style>body{background-color: lightblue;}#corpo{background-color: lightcoral;}</style> -->
+    <div id="corpo">
+    {{area_dinamica|raw}}
+    <a href=""></a>
+    </div>
+</body>
+</html>

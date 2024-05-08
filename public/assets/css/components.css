@@ -1,0 +1,9 @@
+input[type='text']{
+    border: 10px solid blue;
+}
+th{
+    color: aqua;
+}
+body{
+    background-color: aqua;
+}
