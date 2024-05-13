@@ -4,18 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Titulo </title>
-    <link rel="stylesheet" href="public/assets/css/styles.css">
-    {% if styles is defined and styles is iterable %}
-        {% for style in styles %}
-            {{ style | raw }}
-        {% endfor %}
-    {% endif %}
+    <link rel="stylesheet" href="http://localhost/InstitutoRaiz/public/assets/css/styles.css">
+    <link rel="stylesheet" href="http://localhost/InstitutoRaiz/public/assets/css/components.css">
 </head>
 <body>
-    <!-- <style>body{background-color: lightblue;}#corpo{background-color: lightcoral;}</style> -->
     <div id="corpo">
     {{area_dinamica|raw}}
-    <a href=""></a>
     </div>
+    <script src="public/assets/js/filtro.js"></script>
 </body>
 </html>

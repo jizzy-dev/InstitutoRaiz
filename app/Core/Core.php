@@ -19,12 +19,11 @@ class Core
             $controller = 'ErroController';
         }
 
-        (isset($urlGet['id']) && $urlGet['id'] != null) ? 
-        $id = $urlGet['id'] :
-        $id = null;
 
+        $id = isset($urlGet['id']) && $urlGet['id'] !== null ? $urlGet['id'] : null;
+        $nome = isset($urlGet['nome']) && $urlGet['nome'] !== null ? $urlGet['nome'] : null;
         
-        
-        call_user_func_array(array(new $controller, $metodo), array($id));
+
+        call_user_func_array(array(new $controller, $metodo), array($id,$nome));
     }
 }

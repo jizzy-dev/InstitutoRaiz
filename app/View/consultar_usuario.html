@@ -1,0 +1,68 @@
+<form action="?pag=usuario&metodo=consultar" method="POST">
+    
+    <table>
+        <tr>
+            <td>Filtro:</td>
+            <td><input type="text" name="filtro" id="filtro"></td>
+            <td><input type="submit" onclick="buscar()" value="Buscar"></td>
+        </tr>
+    </table>
+    <table cellspacing="0">
+        <thead>
+            <tr>
+                <th colspan="{{max_columns}}">Usuario</th>
+            
+            </tr>
+            <tr>
+                <td>ID</td>
+                <td>Nome</td>
+                <td>Email</td>
+                <td>Senha</td>
+                <td>Data_Nasc</td>
+                <td>Logradouro</td>
+                <td>Bairro</td>
+                <td>Número Endereço</td>
+                <td>Complemento</td>
+                <td>CEP</td>
+                <td>CPF</td>
+                <td>RG</td>
+                <td>Contato</td>
+                <td>Resposanvel</td>
+                <td>Padrinho</td>
+            </tr>
+        </thead>
+        <tbody>
+        {%if usuarios%}
+            {%for usuario in usuarios%}
+            <tr>
+                <td>{{usuario.ID_USER}}</td>
+                <td>{{usuario.nome}}</td>
+                <td>{{usuario.email}}</td>
+                <td>{{usuario.senha}}</td>
+                <td>{{usuario.data_nasc}}</td>
+                <td>{{usuario.logradouro}}</td>
+                <td>{{usuario.bairro}}</td>
+                <td>{{usuario.numero_endereco}}</td>
+                <td>{{usuario.complemento}}</td>
+                <td>{{usuario.cep}}</td>
+                <td>{{usuario.cpf}}</td>
+                <td>{{usuario.rg}}</td>
+                <td>{{usuario.contato}}</td>
+                <td>{{usuario.isResponsavel}}</td>
+                <td>{{usuario.isPadrinho}}</td>
+                <td>
+                    <form action="?pag=usuario&metodo=excluir" method="POST">
+                        <input type="hidden" name="id_usuario" value="{{usuario.ID_USER}}">
+                        <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este usuário?')">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+            {%endfor%}
+        {%else%}
+        <tr>
+            <td colspan="15" align="center">{{ erro }}</td>
+        </tr>
+        {%endif%}
+        </tbody>
+    </table>
+</form>

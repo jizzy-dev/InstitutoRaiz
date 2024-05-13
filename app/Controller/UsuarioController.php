@@ -1,63 +1,21 @@
 <?php
-
 class UsuarioController
 {
     public function index($params)
     {
         try {
-
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $nomeUsuario = $_POST['nome_responsavel'];
-                $emailUsuario = $_POST['email_responsavel'];
-                $cpfUsuario = $_POST['cpf_responsavel'];
-                $contatoUsuario = $_POST['rg_responsavel'];
-                $contatoUsuario = $_POST['contato_responsavel'];
-                $cep = $_POST['cep'];
-                $logradouro = $_POST['logradouro'];
-                $bairro = $_POST['bairro'];
-                $numeroEndereco = $_POST['numero_endereco'];
-                $complemento = $_POST['complemento'];
-                $cidade = $_POST['cidade'];
-                $estado = $_POST['estado'];
-            }
-
             $user =  Usuario::selecionarPorId($params);
-
-
-            $loader = new \Twig\Loader\FilesystemLoader('app/View');
-            $twig = new \Twig\Environment($loader);
-            $twig->addFunction(new \Twig\TwigFunction('count_keys', function ($obj) {
-                return count(get_object_vars($obj));
-            }));
-            $template = $twig->load('usuario.html');
 
             $parametros = array();
             $parametros['usuarios'] = $user;
 
-            $conteudo = $template->render($parametros);
-
-            echo $conteudo;
+            echo TemplateRenderer::render('usuario.html', $parametros);
 
             echo '<pre>';
             var_dump($user);
         } catch (Exception $e) {
             echo $e->getMessage();
         }
-    }
-    public function showAllUsuarios()
-    {
-        $user = Usuario::selecionaTodos();
-
-        $loader = new \Twig\Loader\FilesystemLoader('app/View');
-        $twig = new \Twig\Environment($loader);
-        $template = $twig->load('todosUsuarios.html');
-
-        $parametros = array();
-        $parametros['usuarios'] = $user;
-
-        $conteudo = $template->render($parametros);
-        
-        echo $conteudo;
     }
     public function cadastrar()
     {
@@ -88,22 +46,64 @@ class UsuarioController
             try {
                 Usuario::cadastrar($dados);
                 // Redirecionar o usuário para uma página de confirmação
-                echo "<script>alert('cadastrado com sucesso!')</script>";
-                //header('Location: cadastro_sucesso.html');
-                // exit;
+                echo TemplateRenderer::render('cadastro_sucesso.html');
             } catch (Exception $e) {
                 // Se ocorrer um erro, exibir uma mensagem de erro
                 echo 'Erro ao cadastrar usuário: ' . $e->getMessage();
             }
         } else {
             // Se não for uma requisição POST, redirecionar para a página de cadastro
-            $loader = new \Twig\Loader\FilesystemLoader('app/View');
-            $twig = new \Twig\Environment($loader);
-            $template = $twig->load('cadastrar.html');
+            echo TemplateRenderer::render('cadastrar.html');
+        }
+    }
+    public function consultar($nome)
+    {
+        try {
+            $nomeUsuario =  isset($_POST['filtro']) ?
+                $_POST['filtro'] : $_POST['filtro'] = null;
 
-            $conteudo = $template->render();
+            if ($nome !== null) {
+                $nomeUsuario = $nome;
+            }
 
-            echo $conteudo;
+            $user =  Usuario::filtrar($nomeUsuario);
+
+            if ($user === null) {
+                // Renderizar a página com a mensagem de erro
+                echo TemplateRenderer::render('consultar_usuario.html', ['erro' => 'Nenhum usuário encontrado', 'usuarios' => []]);
+            } else {
+                // Renderizar a página com os resultados da consulta
+                $parametros = ['usuarios' => $user, 'erro' => ''];
+                echo TemplateRenderer::render('consultar_usuario.html', $parametros);
+            }
+        } catch (Exception $e) {
+            // Mostrar mensagem de erro genérica
+            echo TemplateRenderer::render('consultar_usuario.html', ['erro' => $e->getMessage(), 'usuarios' => []]);
+        }
+    }
+    public function showAllUsuarios()
+    {
+
+        try {
+            $user = Usuario::selecionaTodos();
+
+            // Calcula o número máximo de colunas
+            $max_columns = 0;
+            foreach ($user as $usuario) {
+                $columns = count(get_object_vars($usuario));
+                if ($columns > $max_columns) {
+                    $max_columns = $columns;
+                }
+            }
+
+            $parametros = array(
+                'usuarios' => $user,
+                'max_columns' => $max_columns
+            );
+
+            echo TemplateRenderer::render('todosUsuarios.html', $parametros);
+        } catch (Exception $e) {
+            echo $e->getMessage();
         }
     }
 }

@@ -74,4 +74,34 @@ class Usuario
             throw new Exception("Erro ao cadastrar usuário.");
         }
     }
+
+    public static function deletar($idUser){
+        $con = Connection::getConn();
+
+        $sql = "DELETE * FROM usuario WHERE ID_USER = :id";
+        $sql = $con->prepare($sql);
+        $sql->bindValue(':id', $idUser, PDO::PARAM_INT);
+        $sql->execute();
+    }
+
+    public static function filtrar($nomeUser)
+    {
+        $con = Connection::getConn();
+
+        $sql = "SELECT * FROM usuario WHERE nome LIKE :nome LIMIT 5";
+        $sql = $con->prepare($sql);
+
+        $nomeFiltrado = '%' . $nomeUser . '%';
+
+        $sql->bindValue(':nome', $nomeFiltrado, PDO::PARAM_STR);
+        $sql->execute();
+
+        $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!$resultado) {
+            throw new Exception("Não foi encontrado nenhum registro no banco de dados.");
+        }
+        
+        return $resultado;
+    }
 }

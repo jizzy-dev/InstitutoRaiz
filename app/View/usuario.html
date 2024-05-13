@@ -1,15 +1,6 @@
-<style>
-    td,th{
-        border: 1px solid black;
-    }
-    table{
-        background-color: aliceblue;
-    }
-</style>
-
 <table cellspacing="0">
     <tr>
-        <th colspan="">Usuario</th>
+        <th colspan="{{count_keys(usuarios)}}">Usuario</th>
         
     </tr>
     <tr>
@@ -30,7 +21,7 @@
         <td>Padrinho</td>
     </tr>
     <tr>
-        <td>{{usuarios.ID_USER}}</td></tr>
+        <td>{{usuarios.ID_USER}}</td>
         <td>{{usuarios.nome}}</td>
         <td>{{usuarios.email}}</td>
         <td>{{usuarios.senha}}</td>

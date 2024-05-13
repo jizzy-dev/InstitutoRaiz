@@ -1,9 +1,10 @@
-input[type='text']{
-    border: 10px solid blue;
+input[type="text"] {
+  border: 1px solid blue;
 }
-th{
-    color: aqua;
+td,
+th {
+  border: 1px solid black;
 }
-body{
-    background-color: aqua;
+table {
+  background-color: aliceblue;
 }
