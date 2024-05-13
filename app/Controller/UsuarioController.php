@@ -1,13 +1,12 @@
 <?php
 class UsuarioController
 {
-    public function index($params)
+    public function index($id)
     {
         try {
-            $user =  Usuario::selecionarPorId($params);
+            $user =  Usuario::selecionarPorId($id);
 
-            $parametros = array();
-            $parametros['usuarios'] = $user;
+            $parametros = ['usuarios' => $user];
 
             echo TemplateRenderer::render('usuario.html', $parametros);
 
@@ -17,7 +16,7 @@ class UsuarioController
             echo $e->getMessage();
         }
     }
-    public function cadastrar()
+    public function Cadastrar()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $dados = [
@@ -56,7 +55,7 @@ class UsuarioController
             echo TemplateRenderer::render('cadastrar.html');
         }
     }
-    public function consultar($nome)
+    public function Consultar($nome)
     {
         try {
             $nomeUsuario =  isset($_POST['filtro']) ?
@@ -81,29 +80,19 @@ class UsuarioController
             echo TemplateRenderer::render('consultar_usuario.html', ['erro' => $e->getMessage(), 'usuarios' => []]);
         }
     }
-    public function showAllUsuarios()
+
+    public function Excluir($id)
     {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id_usuario'];
 
-        try {
-            $user = Usuario::selecionaTodos();
-
-            // Calcula o número máximo de colunas
-            $max_columns = 0;
-            foreach ($user as $usuario) {
-                $columns = count(get_object_vars($usuario));
-                if ($columns > $max_columns) {
-                    $max_columns = $columns;
-                }
+            try {
+                Usuario::deletarPorId($id);
+                header('Location: ?pag=usuario&metodo=consultar');
+                exit;
+            } catch (Exception $e) {
+                echo "<script>alert('Erro ao excluir usuário: " . $e->getMessage()."')</script>";
             }
-
-            $parametros = array(
-                'usuarios' => $user,
-                'max_columns' => $max_columns
-            );
-
-            echo TemplateRenderer::render('todosUsuarios.html', $parametros);
-        } catch (Exception $e) {
-            echo $e->getMessage();
         }
     }
 }

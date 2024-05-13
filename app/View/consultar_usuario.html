@@ -52,7 +52,7 @@
                 <td>{{usuario.isPadrinho}}</td>
                 <td>
                     <form action="?pag=usuario&metodo=excluir" method="POST">
-                        <input type="hidden" name="id_usuario" value="{{usuario.ID_USER}}">
+                        <input type="hidden" name="id_usuario" value="{{ usuario.ID_USER }}">
                         <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este usuário?')">Excluir</button>
                     </form>
                 </td>

@@ -75,10 +75,10 @@ class Usuario
         }
     }
 
-    public static function deletar($idUser){
+    public static function deletarPorId($idUser){
         $con = Connection::getConn();
 
-        $sql = "DELETE * FROM usuario WHERE ID_USER = :id";
+        $sql = "DELETE FROM usuario WHERE ID_USER = :id";
         $sql = $con->prepare($sql);
         $sql->bindValue(':id', $idUser, PDO::PARAM_INT);
         $sql->execute();
