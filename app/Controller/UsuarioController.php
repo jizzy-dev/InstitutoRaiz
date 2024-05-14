@@ -80,7 +80,6 @@ class UsuarioController
             echo TemplateRenderer::render('consultar_usuario.html', ['erro' => $e->getMessage(), 'usuarios' => []]);
         }
     }
-
     public function Excluir($id)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -91,7 +90,61 @@ class UsuarioController
                 header('Location: ?pag=usuario&metodo=consultar');
                 exit;
             } catch (Exception $e) {
-                echo "<script>alert('Erro ao excluir usuário: " . $e->getMessage()."')</script>";
+                echo "<script>alert('Erro ao excluir usuário: " . $e->getMessage() . "')</script>";
+            }
+        }
+    }
+    public function Editar()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Se for uma requisição POST, atualizar o usuário
+            $dados = [
+                'id' => $_POST['id_usuario'],
+                'nome' => $_POST['nome_responsavel'],
+                'cpf' => $_POST['cpf_responsavel'],
+                'rg' => $_POST['rg_responsavel'],
+                'contato' => $_POST['contato_responsavel'],
+                'email' => $_POST['email_responsavel'],
+                'senha' => $_POST['senha_responsavel'],
+                'data_nasc' => $_POST['data_nasc_responsavel'],
+                'cep' => $_POST['cep'],
+                'logradouro' => $_POST['logradouro'],
+                'bairro' => $_POST['bairro'],
+                'numero_endereco' => $_POST['numero_endereco'],
+                'complemento' => $_POST['complemento'],
+                'cidade' => $_POST['cidade'],
+                'estado' => $_POST['estado'],
+                'isResponsavel' => isset($_POST['isResponsavel']) ? 1 : 0,
+                'isPadrinho' => isset($_POST['isPadrinho']) ? 1 : 0,
+                'isAdm' => 0,
+                'isMod' => 0,
+                'ID_IMAGEM' => 1
+            ];
+            try {
+                Usuario::atualizarPorId($dados);
+                // Redirecionar para a página de consulta após a atualização
+                header('Location: ?pag=usuario&metodo=consultar');
+                exit;
+            } catch (Exception $e) {
+                echo "<script>alert('Erro ao editar usuário: " . $e->getMessage() . "')</script>";
+            }
+        } else {
+            // Se não for uma requisição POST, verificar se o ID do usuário está presente na URL
+            if (isset($_GET['id'])) {
+                try {
+                    // Obter o ID do usuário da URL
+                    $id = $_GET['id']; // Supondo que o ID do usuário seja passado na URL
+                    // Selecionar o usuário pelo ID
+                    $user = Usuario::selecionarPorId($id);
+                    // Renderizar a view de edição e passar os dados do usuário
+                    echo TemplateRenderer::render('editar_usuario.html', ['usuario' => $user]);
+                } catch (Exception $e) {
+                    echo "<script>alert('Erro ao editar usuário: " . $e->getMessage() . "')</script>";
+                }
+            } else {
+                // Se o ID do usuário não estiver presente na URL, redirecionar para a página de consulta
+                header('Location: ?pag=usuario&metodo=consultar');
+                exit;
             }
         }
     }

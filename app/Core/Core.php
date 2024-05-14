@@ -4,7 +4,7 @@ class Core
 {
     public function run($urlGet)
     {
-
+        
         $metodo = 'index';
         if (isset($_GET['pag'])) {
             $controller = ucfirst($urlGet['pag'] . 'Controller'); //
