@@ -1,0 +1,77 @@
+<form action="?pag=usuario&metodo=editar" method="POST">
+    <input type="hidden" name="id_usuario" value="{{ usuario.ID_USER }}">
+    <table cellspacing="0">
+        <thead>
+            <tr>
+                <th colspan="2">Editar Usuario</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th colspan="2">Informações do Usuario</th>
+            </tr>
+            <tr>
+                <td>Nome</td>
+                <td><input type="text" name="nome_responsavel" value="{{ usuario.nome }}"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="email" name="email_responsavel" value="{{ usuario.email }}"></td>
+            </tr>
+            <tr>
+                <td>Senha</td>
+                <td><input type="password" name="senha_responsavel"></td>
+            </tr>
+            <tr>
+                <td>Data de Nascimento</td>
+                <td><input type="date" name="data_nasc_responsavel" value="{{ usuario.data_nasc }}"></td>
+            </tr>
+            <tr>
+                <td>CPF</td>
+                <td><input type="text" name="cpf_responsavel" value="{{ usuario.cpf }}"></td>
+            </tr>
+            <tr>
+                <td>RG</td>
+                <td><input type="text" name="rg_responsavel" value="{{ usuario.rg }}"></td>
+            </tr>
+            <tr>
+                <td>Contato</td>
+                <td><input type="text" name="contato_responsavel" value="{{ usuario.contato }}"></td>
+            </tr>
+            <tr>
+                <th colspan="2">Dados de Endereço</th>
+            </tr>
+            <tr>
+                <td>CEP</td>
+                <td><input type="text" name="cep" value="{{ usuario.cep }}"></td>
+            </tr>
+            <tr>
+                <td>Logradouro</td>
+                <td><input type="text" name="logradouro" value="{{ usuario.logradouro }}"></td>
+            </tr>
+            <tr>
+                <td>Bairro</td>
+                <td><input type="text" name="bairro" value="{{ usuario.bairro }}"></td>
+            </tr>
+            <tr>
+                <td>Número</td>
+                <td><input type="text" name="numero_endereco" value="{{ usuario.numero_endereco }}"></td>
+            </tr>
+            <tr>
+                <td>Complemento</td>
+                <td><input type="text" name="complemento" value="{{ usuario.complemento }}"></td>
+            </tr>
+            <tr>
+                <td>Cidade</td>
+                <td><input type="text" name="cidade" value="{{ usuario.cidade }}"></td>
+            </tr>
+            <tr>
+                <td>Estado (UF)</td>
+                <td><input type="text" name="estado" value="{{ usuario.estado }}"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Atualizar"></td>
+            </tr>
+        </tbody>
+    </table>
+</form>

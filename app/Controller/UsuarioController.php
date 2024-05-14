@@ -1,42 +1,14 @@
 <?php
-
 class UsuarioController
 {
-    public function index($params)
+    public function index($id)
     {
         try {
+            $user =  Usuario::selecionarPorId($id);
 
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $nomeUsuario = $_POST['nome_responsavel'];
-                $emailUsuario = $_POST['email_responsavel'];
-                $cpfUsuario = $_POST['cpf_responsavel'];
-                $contatoUsuario = $_POST['rg_responsavel'];
-                $contatoUsuario = $_POST['contato_responsavel'];
-                $cep = $_POST['cep'];
-                $logradouro = $_POST['logradouro'];
-                $bairro = $_POST['bairro'];
-                $numeroEndereco = $_POST['numero_endereco'];
-                $complemento = $_POST['complemento'];
-                $cidade = $_POST['cidade'];
-                $estado = $_POST['estado'];
-            }
+            $parametros = ['usuarios' => $user];
 
-            $user =  Usuario::selecionarPorId($params);
-
-
-            $loader = new \Twig\Loader\FilesystemLoader('app/View');
-            $twig = new \Twig\Environment($loader);
-            $twig->addFunction(new \Twig\TwigFunction('count_keys', function ($obj) {
-                return count(get_object_vars($obj));
-            }));
-            $template = $twig->load('usuario.html');
-
-            $parametros = array();
-            $parametros['usuarios'] = $user;
-
-            $conteudo = $template->render($parametros);
-
-            echo $conteudo;
+            echo TemplateRenderer::render('usuario.html', $parametros);
 
             echo '<pre>';
             var_dump($user);
@@ -44,22 +16,7 @@ class UsuarioController
             echo $e->getMessage();
         }
     }
-    public function showAllUsuarios()
-    {
-        $user = Usuario::selecionaTodos();
-
-        $loader = new \Twig\Loader\FilesystemLoader('app/View');
-        $twig = new \Twig\Environment($loader);
-        $template = $twig->load('todosUsuarios.html');
-
-        $parametros = array();
-        $parametros['usuarios'] = $user;
-
-        $conteudo = $template->render($parametros);
-        
-        echo $conteudo;
-    }
-    public function cadastrar()
+    public function Cadastrar()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $dados = [
@@ -88,22 +45,107 @@ class UsuarioController
             try {
                 Usuario::cadastrar($dados);
                 // Redirecionar o usuário para uma página de confirmação
-                echo "<script>alert('cadastrado com sucesso!')</script>";
-                //header('Location: cadastro_sucesso.html');
-                // exit;
+                echo TemplateRenderer::render('cadastro_sucesso.html');
             } catch (Exception $e) {
                 // Se ocorrer um erro, exibir uma mensagem de erro
                 echo 'Erro ao cadastrar usuário: ' . $e->getMessage();
             }
         } else {
             // Se não for uma requisição POST, redirecionar para a página de cadastro
-            $loader = new \Twig\Loader\FilesystemLoader('app/View');
-            $twig = new \Twig\Environment($loader);
-            $template = $twig->load('cadastrar.html');
+            echo TemplateRenderer::render('cadastrar.html');
+        }
+    }
+    public function Consultar($nome)
+    {
+        try {
+            $nomeUsuario =  isset($_POST['filtro']) ?
+                $_POST['filtro'] : $_POST['filtro'] = null;
 
-            $conteudo = $template->render();
+            if ($nome !== null) {
+                $nomeUsuario = $nome;
+            }
 
-            echo $conteudo;
+            $user =  Usuario::filtrar($nomeUsuario);
+
+            if ($user === null) {
+                // Renderizar a página com a mensagem de erro
+                echo TemplateRenderer::render('consultar_usuario.html', ['erro' => 'Nenhum usuário encontrado', 'usuarios' => []]);
+            } else {
+                // Renderizar a página com os resultados da consulta
+                $parametros = ['usuarios' => $user, 'erro' => ''];
+                echo TemplateRenderer::render('consultar_usuario.html', $parametros);
+            }
+        } catch (Exception $e) {
+            // Mostrar mensagem de erro genérica
+            echo TemplateRenderer::render('consultar_usuario.html', ['erro' => $e->getMessage(), 'usuarios' => []]);
+        }
+    }
+    public function Excluir($id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id_usuario'];
+
+            try {
+                Usuario::deletarPorId($id);
+                header('Location: ?pag=usuario&metodo=consultar');
+                exit;
+            } catch (Exception $e) {
+                echo "<script>alert('Erro ao excluir usuário: " . $e->getMessage() . "')</script>";
+            }
+        }
+    }
+    public function Editar()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Se for uma requisição POST, atualizar o usuário
+            $dados = [
+                'id' => $_POST['id_usuario'],
+                'nome' => $_POST['nome_responsavel'],
+                'cpf' => $_POST['cpf_responsavel'],
+                'rg' => $_POST['rg_responsavel'],
+                'contato' => $_POST['contato_responsavel'],
+                'email' => $_POST['email_responsavel'],
+                'senha' => $_POST['senha_responsavel'],
+                'data_nasc' => $_POST['data_nasc_responsavel'],
+                'cep' => $_POST['cep'],
+                'logradouro' => $_POST['logradouro'],
+                'bairro' => $_POST['bairro'],
+                'numero_endereco' => $_POST['numero_endereco'],
+                'complemento' => $_POST['complemento'],
+                'cidade' => $_POST['cidade'],
+                'estado' => $_POST['estado'],
+                'isResponsavel' => isset($_POST['isResponsavel']) ? 1 : 0,
+                'isPadrinho' => isset($_POST['isPadrinho']) ? 1 : 0,
+                'isAdm' => 0,
+                'isMod' => 0,
+                'ID_IMAGEM' => 1
+            ];
+            try {
+                Usuario::atualizarPorId($dados);
+                // Redirecionar para a página de consulta após a atualização
+                header('Location: ?pag=usuario&metodo=consultar');
+                exit;
+            } catch (Exception $e) {
+                echo "<script>alert('Erro ao editar usuário: " . $e->getMessage() . "')</script>";
+            }
+        } else {
+            // Se não for uma requisição POST, verificar se o ID do usuário está presente na URL
+            if (isset($_GET['id'])) {
+                try {
+                    // Obter o ID do usuário da URL
+                    $id = $_GET['id']; // Supondo que o ID do usuário seja passado na URL
+                    // Selecionar o usuário pelo ID
+                    $user = Usuario::selecionarPorId($id);
+                    // Renderizar a view de edição e passar os dados do usuário
+                    echo TemplateRenderer::render('editar_usuario.html', ['usuario' => $user]);
+                } catch (Exception $e) {
+                    echo "<script>alert('Erro ao editar usuário: " . $e->getMessage() . "')</script>";
+                }
+            } else {
+                // Se o ID do usuário não estiver presente na URL, redirecionar para a página de consulta
+                header('Location: ?pag=usuario&metodo=consultar');
+                exit;
+            }
         }
     }
 }
