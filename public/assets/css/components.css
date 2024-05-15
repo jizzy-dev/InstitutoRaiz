@@ -1,10 +1,47 @@
-input[type="text"] {
-  border: 1px solid blue;
+.textbox {
+  background-color: #f5f5f5;
+  border: none;
+  box-shadow: #8c8c8c 1px 1px 0px 2px;
+  border-radius: var(--radius-0);
+  width: 200px;
+  height: 30px;
+  padding: 2px 10px 2px 10px;
 }
-td,
+.textbox:hover {
+  background-color: #e4e4e4;
+}
+.textbox:is(:focus, :focus-visible) {
+  outline: none;
+  /* border: 2px solid #757575 ; */
+  box-shadow: #338bf8 1px 1px 0px 2px;
+}
+.button {
+  background-color: #1f2926;
+  color: #fff;
+  border: none;
+  border-radius: var(--radius--3);
+  padding: 5px 15px 5px 15px;
+}
+/* td,
 th {
   border: 1px solid black;
-}
+} */
 table {
-  background-color: aliceblue;
+  background-color: #ffffff;
+  border-collapse: collapse;
+}
+tbody tr {
+  border-bottom: 0.2em solid #1f2926;
+}
+.row-column-titles > td:not(:first-child, :nth-child(2)) {
+  background-color: #1c1c1c;
+  border: none;
+  color: #fff;
+}
+.row-column-titles > td:not(:first-child, :last-child) {
+  border-right: 0.2em solid #fff;
+  text-align: center;
+}
+td:not(.td-button){
+  padding-inline: 1em;
 }

@@ -1,7 +1,9 @@
 <?php
 
-class ErroController{
-    public function index(){
-        echo 'Esta Página não existe ! ';
+class ErroController
+{
+    public function index($erro)
+    {
+        echo TemplateRenderer::render('erro.html', ['erro' => $erro]);
     }
 }
