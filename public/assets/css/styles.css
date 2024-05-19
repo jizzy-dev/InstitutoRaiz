@@ -7,6 +7,7 @@
 
 body {
   background-color: #ffffff;
+  width: 100%;
 }
 .flex {
   display: flex;
@@ -16,6 +17,9 @@ body {
 }
 .flex-row {
   flex-direction: row;
+}
+.grid{
+  display: grid;
 }
 .center {
   justify-content: center;
