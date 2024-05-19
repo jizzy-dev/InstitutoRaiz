@@ -1,26 +1,23 @@
 <?php
 class UsuarioController
 {
-    public function index($id)
+    public function index($id = null)
     {
-        global $parametros;
         try {
             $user =  Usuario::selecionarPorId($id);
 
-            $parametros = ['usuarios' => $user,'titulo'=>'Usuario'];
+            $parametros = ['usuarios' => $user];
 
             echo TemplateRenderer::render('usuario.html', $parametros);
 
             echo '<pre>';
-            var_dump($parametros);
+            var_dump($user);
         } catch (Exception $e) {
-            echo TemplateRenderer::render('usuario.html', ['erro' => $e->getMessage(), 'usuarios' => [], 'titulo' => 'Erro']);
+            echo $e->getMessage();
         }
     }
     public function Cadastrar()
     {
-        global $parametros;
-        $parametros = ['titulo' =>'Matrícula'];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $dados = [
                 'nome' => $_POST['nome_responsavel'],
@@ -51,16 +48,15 @@ class UsuarioController
                 echo TemplateRenderer::render('cadastro_sucesso.html');
             } catch (Exception $e) {
                 // Se ocorrer um erro, exibir uma mensagem de erro
-                echo 'Erro ao cadastrar usuário: ' . $e->getMessage();
+                $this->handleError('Erro ao cadastrar usuário: ' .$e->getMessage());
             }
         } else {
             // Se não for uma requisição POST, redirecionar para a página de cadastro
-            echo TemplateRenderer::render('cadastrar.html',$parametros);
+            echo TemplateRenderer::render('cadastrar.html');
         }
     }
-    public function Consultar($nome)
+    public function Consultar($nome = null)
     {
-        global $parametros;
         try {
             $nomeUsuario =  isset($_POST['filtro']) ?
                 $_POST['filtro'] : $_POST['filtro'] = null;
@@ -76,7 +72,7 @@ class UsuarioController
                 echo TemplateRenderer::render('consultar_usuario.html', ['erro' => 'Nenhum usuário encontrado', 'usuarios' => []]);
             } else {
                 // Renderizar a página com os resultados da consulta
-                $parametros = ['usuarios' => $user,'titulo'=>'Consultar', 'erro' => ''];
+                $parametros = ['usuarios' => $user, 'erro' => ''];
                 echo TemplateRenderer::render('consultar_usuario.html', $parametros);
             }
         } catch (Exception $e) {
@@ -84,7 +80,7 @@ class UsuarioController
             echo TemplateRenderer::render('consultar_usuario.html', ['erro' => $e->getMessage(), 'usuarios' => []]);
         }
     }
-    public function Excluir($id)
+    public function Excluir($id = null)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $_POST['id_usuario'];
@@ -98,7 +94,7 @@ class UsuarioController
             }
         }
     }
-    public function Editar()
+    public function Editar($id = null)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Se for uma requisição POST, atualizar o usuário
@@ -134,7 +130,7 @@ class UsuarioController
             }
         } else {
             // Se não for uma requisição POST, verificar se o ID do usuário está presente na URL
-            if (isset($_GET['id'])) {
+            if ($id !== null) {
                 try {
                     // Obter o ID do usuário da URL
                     $id = $_GET['id']; // Supondo que o ID do usuário seja passado na URL
@@ -151,5 +147,9 @@ class UsuarioController
                 exit;
             }
         }
+    }
+    private function handleError($errorMessage) {
+        $erroController = new ErroController();
+        $erroController->index($errorMessage);
     }
 }

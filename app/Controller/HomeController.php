@@ -3,8 +3,7 @@ class HomeController
 {
     public function index()
     {
-        global $parametros;
-        $parametros = ['titulo'=> 'Home'];
-        echo TemplateRenderer::render('home.html', $parametros);
+        $titulo = 'Página Home';
+        echo TemplateRenderer::render('home.html', ['titulo'=> $titulo]);
     }
 }
