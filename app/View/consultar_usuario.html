@@ -1,18 +1,17 @@
 <form action="?pag=usuario&metodo=consultar" method="POST">
 
-            <div class="controles flex space-between">
-                Filtro:
-                <input type="text" name="filtro" id="filtro" class="textbox" placeholder="Nome">
-                <input type="submit" onclick="buscar()" value="Buscar" class="button weight-bold">
-            </div>
+    <div class="controles flex space-between">
+        Filtro:
+        <input type="text" name="filtro" id="filtro" class="textbox" placeholder="Nome">
+        <input type="submit" onclick="buscar()" value="Buscar" class="button weight-bold">
+    </div>
     <table cellspacing="0" class="flex flex-column">
         <thead>
             <tr>
                 <th colspan="{{max_columns}}">Usuario</th>
             </tr>
             <tr class="row-column-titles">
-                <td></td>
-                <td></td>
+               
                 <td>ID</td>
                 <td>Nome</td>
                 <td>Email</td>
@@ -28,25 +27,15 @@
                 <td>Contato</td>
                 <td>Resposanvel</td>
                 <td>Padrinho</td>
+                 <td></td>
+                <td></td>
             </tr>
         </thead>
         <tbody>
             {%if usuarios%}
             {%for usuario in usuarios%}
             <tr>
-                <td class="td-button">
-                    <form action="?pag=usuario&metodo=excluir" method="POST">
-                        <input type="hidden" name="id_usuario" value="{{ usuario.ID_USER }}">
-                        <button type="submit"
-                            onclick="return confirm('Tem certeza que deseja excluir este usuário?')" class="button">Excluir</button>
-                    </form>
-                </td>
-                <td class="td-button">
-                    <form id="formEditarUsuario_{{ usuario.ID_USER }}" method="POST">
-                        <input type="hidden" name="id_usuario" value="{{ usuario.ID_USER }}">
-                        <button type="button" onclick="editarUsuario('{{ usuario.ID_USER }}')" class="button">Editar</button>
-                    </form>
-                </td>
+
                 <td>{{usuario.ID_USER}}</td>
                 <td>{{usuario.nome}}</td>
                 <td>{{usuario.email}}</td>
@@ -62,6 +51,20 @@
                 <td>{{usuario.contato}}</td>
                 <td>{{usuario.isResponsavel}}</td>
                 <td>{{usuario.isPadrinho}}</td>
+                <td class="td-button">
+                    <form action="?pag=usuario&metodo=excluir" method="POST">
+                        <input type="hidden" name="id_usuario" value="{{ usuario.ID_USER }}">
+                        <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este usuário?')"
+                            class="button">Excluir</button>
+                    </form>
+                </td>
+                <td class="td-button">
+                    <form id="formEditarUsuario_{{ usuario.ID_USER }}" method="POST">
+                        <input type="hidden" name="id_usuario" value="{{ usuario.ID_USER }}">
+                        <button type="button" onclick="editarUsuario('{{ usuario.ID_USER }}')"
+                            class="button">Editar</button>
+                    </form>
+                </td>
             </tr>
             {%endfor%}
             {%else%}
