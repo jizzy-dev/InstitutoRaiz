@@ -1,3 +1,106 @@
+<<<<<<< Updated upstream
 body{
     background-color: #ffb0b0;
+=======
+* {
+  font-size: var(--font-clamp--1);
+  font-family: "Futura Md BT", normal, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #ffffff;
+}
+.flex {
+  display: flex;
+}
+.flex-column {
+  flex-direction: column;
+}
+.flex-row {
+  flex-direction: row;
+}
+.center {
+  justify-content: center;
+  align-items: center;
+}
+.justify-center{
+  justify-content: center;
+}
+.align-center{
+  align-items: center;
+}
+.space-between {
+  justify-content: space-between;
+}
+.space-around {
+  justify-content: space-around;
+}
+.space-evenly {
+  justify-content: space-evenly;
+}
+.text-center{
+  text-align: center;
+}
+.text-left{
+  text-align: left;
+}
+.text-right{
+  text-align: right;
+}
+.border-box{
+  box-sizing: border-box;
+}
+.weight-lighter {
+  font-weight: lighter;
+}
+.weight-normal {
+  font-weight: normal;
+}
+.weight-bold {
+  font-weight: bold;
+}
+.weight-semi-bold {
+  font-weight: 400;
+}
+.weight-bolder {
+  font-weight: bolder;
+}
+.overflow-hidden{
+  overflow: hidden;
+}
+h1 {
+  font-size: var(--font-clamp-5);
+}
+h2 {
+  font-size: var(--font-clamp-4);
+}
+h3 {
+  font-size: var(--font-clamp-3);
+}
+h4 {
+  font-size: var(--font-clamp-2);
+}
+h5 {
+  font-size: var(--font-clamp-1);
+}
+h6 {
+  font-size: var(--font-clamp-0);
+}
+p {
+  font-size: var(--font-clamp-1);
+}
+small {
+  font-size: var(--font-clamp-1);
+}
+.uppercase{
+  text-transform: uppercase;
+}
+.italic{
+font-style: italic;
+}
+.montserrat{
+  font-family: Montserrat;
+>>>>>>> Stashed changes
 }

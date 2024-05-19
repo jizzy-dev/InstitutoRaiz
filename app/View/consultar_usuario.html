@@ -1,5 +1,6 @@
 <form action="?pag=usuario&metodo=consultar" method="POST">
 
+<<<<<<< Updated upstream
     <table>
         <tr>
             <td>Filtro:</td>
@@ -8,14 +9,27 @@
         </tr>
     </table>
     <table cellspacing="0">
+=======
+    <div class="controles flex space-between">
+        Filtro:
+        <input type="text" name="filtro" id="filtro" class="textbox" placeholder="Nome">
+        <input type="submit" onclick="buscar()" value="Buscar" class="button weight-bold">
+    </div>
+    <table cellspacing="0" class="flex flex-column">
+>>>>>>> Stashed changes
         <thead>
             <tr>
                 <th colspan="{{max_columns}}">Usuario</th>
 
             </tr>
+<<<<<<< Updated upstream
             <tr>
                 <td></td>
                 <td></td>
+=======
+            <tr class="row-column-titles">
+               
+>>>>>>> Stashed changes
                 <td>ID</td>
                 <td>Nome</td>
                 <td>Email</td>
@@ -31,12 +45,15 @@
                 <td>Contato</td>
                 <td>Resposanvel</td>
                 <td>Padrinho</td>
+                 <td></td>
+                <td></td>
             </tr>
         </thead>
         <tbody>
             {%if usuarios%}
             {%for usuario in usuarios%}
             <tr>
+<<<<<<< Updated upstream
                 <td>
                     <form action="?pag=usuario&metodo=excluir" method="POST">
                         <input type="hidden" name="id_usuario" value="{{ usuario.ID_USER }}">
@@ -50,6 +67,9 @@
                         <button type="button" onclick="editarUsuario('{{ usuario.ID_USER }}')">Editar</button>
                     </form>
                 </td>
+=======
+
+>>>>>>> Stashed changes
                 <td>{{usuario.ID_USER}}</td>
                 <td>{{usuario.nome}}</td>
                 <td>{{usuario.email}}</td>
@@ -65,6 +85,20 @@
                 <td>{{usuario.contato}}</td>
                 <td>{{usuario.isResponsavel}}</td>
                 <td>{{usuario.isPadrinho}}</td>
+                <td class="td-button">
+                    <form action="?pag=usuario&metodo=excluir" method="POST">
+                        <input type="hidden" name="id_usuario" value="{{ usuario.ID_USER }}">
+                        <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este usuário?')"
+                            class="button">Excluir</button>
+                    </form>
+                </td>
+                <td class="td-button">
+                    <form id="formEditarUsuario_{{ usuario.ID_USER }}" method="POST">
+                        <input type="hidden" name="id_usuario" value="{{ usuario.ID_USER }}">
+                        <button type="button" onclick="editarUsuario('{{ usuario.ID_USER }}')"
+                            class="button">Editar</button>
+                    </form>
+                </td>
             </tr>
             {%endfor%}
             {%else%}
