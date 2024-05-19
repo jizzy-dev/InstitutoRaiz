@@ -25,13 +25,18 @@ class Core
         $nome = isset($urlGet['nome']) ? $urlGet['nome'] : null;
 
         try {
+            ob_start();
             call_user_func_array([new $controller, $metodo], [$id, $nome]);
+            $saida = ob_get_clean();
+
+            return $saida;
         } catch (Exception $e) {
-            // Em caso de exceção, redirecionar para o ErroController
             $controller = 'ErroController';
             $metodo = 'index';
             $mensagemErro = $e->getMessage();
+            ob_start();
             call_user_func_array([new $controller, $metodo], [$mensagemErro]);
+            return ob_get_clean();
         }
     }
 }
