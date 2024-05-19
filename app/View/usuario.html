@@ -19,7 +19,8 @@
         <td>Contato</td>
         <td>Resposanvel</td>
         <td>Padrinho</td>
-    </tr>
+    </tr>   
+    {%if usuarios%}
     <tr>
         <td>{{usuarios.ID_USER}}</td>
         <td>{{usuarios.nome}}</td>
@@ -37,4 +38,9 @@
         <td>{{usuarios.isResponsavel}}</td>
         <td>{{usuarios.isPadrinho}}</td>
     </tr>
+    {%else%}
+    <tr>
+        <td colspan="15" align="center">{{ erro }}</td>
+    </tr>
+    {%endif%}
 </table>
