@@ -48,6 +48,10 @@
   /* header size */
   --header-height: 202px;
 
+  /* footer size */
+
+  --footer-height:calc(10em + 5em);
+
   /* color pallet */
   --cor-1: #e86a1e;
   --cor-2: #ecb228;

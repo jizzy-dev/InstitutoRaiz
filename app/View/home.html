@@ -2,8 +2,8 @@
     <div class="header-content flex">
         <div class="logo">
             <a href="#">
-                <img src="/InstitutoRaiz/public/assets/images/jpeg/logo.jpg.png" alt="Logo do Instituto Raiz do Futuro"
-                    class="header-logo">
+                <img src="/InstitutoRaiz/public/assets/images/png/logo.png" alt="Logo do Instituto Raiz do Futuro"
+                    class="header-logo logo">
             </a>
         </div>
         <nav class="header-nav flex space-between align-center">
@@ -68,7 +68,7 @@
                 </p>
             </div>
             <div class="sc1-interactive">
-                <a href=""
+                <a href="?pag=usuario&metodo=cadastrar"
                     class="button homepage-buttons btn-matricula italic weight-semi-bold flex center">Matrícule-se</a>
             </div>
         </div>
@@ -76,23 +76,45 @@
             <img src="/InstitutoRaiz/public/assets/images/png/Banner.png" alt="" class="sc1-banner">
         </div>
     </section>
-    <section class="sections flex flex-column center" id="sc2">
-        <h2 class="sc2-title uppercase montserrat">Quem somos</h2>
-        <div class="sc2-content flex flex-row space-around align-center">
-            <div class="sc2-text-content">
-                <p class="sc2-text-content-p montserrat weight-bold">
-                    Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna.
-                    Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae
-                    mattis tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit magna
-                    interdum eu. Curabitur pellentesque nibh nibh, at maximus ante fermentum sit amet. Pellentesque
-                    commodo lacus at sodales sodales. Quisque sagittis orci ut diam condimentum, vel euismod erat
-                    placerat. In iaculis arcu eros, eget tempus orci facilisis id. Praesent lorem orci, mattis non
-                    efficitur id, ultricies vel nibh. Sed volutpat lacus vitae gravida viverra. Fusce vel tempor elit.
-                    Proin tempus,.
-                </p>
-            </div>
-            <div class="sc2-image-content">
-                <img src="/InstitutoRaiz/public/assets/images/png/image-carrousel_1.png" alt="">
+    <section class="sections flex center" id="sc2">
+        <div class="sc2-content-layout flex flex-column space-around align-center">
+            <h2 class="sc2-title uppercase montserrat">Quem somos</h2>
+            <div class="sc2-content flex">
+                <div class="sc2-text-content">
+                    <p class="sc2-text-content-p montserrat weight-bold">
+                        Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit
+                        urna.
+                        Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas
+                        vitae
+                        mattis tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit magna
+                        interdum eu. Curabitur pellentesque nibh nibh, at maximus ante fermentum sit amet. Pellentesque
+                        commodo lacus at sodales sodales. Quisque sagittis orci ut diam condimentum, vel euismod erat
+                        placerat. In iaculis arcu eros, eget tempus orci facilisis id. Praesent lorem orci, mattis non
+                        efficitur id, ultricies vel nibh. Sed volutpat lacus vitae gravida viverra. Fusce vel tempor
+                        elit.
+                        Proin tempus,.
+                    </p>
+                </div>
+                <div class="sc2-image-content">
+                    <div class="sc2-image-carousel">
+                        <div class="sc2-carousel-items flex">
+                            <div class="sc2-carousel-item active">
+                                <img src="/InstitutoRaiz/public/assets/images/png/image-carrousel_1.png" alt="">
+                            </div>
+                            <div class="sc2-carousel-item">
+                                <img src="/InstitutoRaiz/public/assets/images/png/image-carrousel_2.png" alt="">
+                            </div>
+                            <div class="sc2-carousel-item">
+                                <img src="/InstitutoRaiz/public/assets/images/png/image-carrousel_3.png" alt="">
+                            </div>
+                        </div>
+                        <div class="sc2-progress-bar flex space-between">
+                            <div class="progress-item" id="progress0"></div>
+                            <div class="progress-item" id="progress1"></div>
+                            <div class="progress-item" id="progress2"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -137,24 +159,46 @@
         </div>
     </section>
 </main>
-<footer>
+<footer class="flex flex-column">
     <div class="footer-content flex space-evenly">
-        <h3 class="uppercase flex flex-column"><span class="sp1 weight-normal">Instituto</span> <span class="sp2 weight-normal">Raízes do</span><span
-                class="sp3 weight-bold">Futuro</span></h3>
-        <div class="footer-sobre  flex flex-column">
+        <div class="footer-trademark flex flex-column space-between align-center">
+            <h3 class="uppercase flex flex-column"><span class="sp1 weight-normal">Instituto</span> <span
+                class="sp2 weight-normal">Raízes do</span><span class="sp3 weight-bold">Futuro</span></h3>
+                <img src="/InstitutoRaiz/public/assets/images/png/logo.png" alt="" class="footer-logo logo">
+        </div>
+        <hr>
+        <div class="footer-sobre  flex flex-column justify-center">
             <h4 class="uppercase">Sobre</h4>
             <ul class="footer-links">
-                <li><a href="" class="footer-link"><img src="/InstitutoRaiz/public/assets/images/vectors/icons/pin-vector.svg" alt="">Rua Taltaldetal, Parque Paulista, Franco da Rocha, SP</a></li>
-                <li><a href="" class="footer-link"><img src="/InstitutoRaiz/public/assets/images/vectors/icons/telephone-vector.svg" alt="">(xx) xxxxx-xxxx</a></li>
-                <li><a href="" class="footer-link"><img src="/InstitutoRaiz/public/assets/images/vectors/icons/email-vector.svg" alt="">example@email.com.br</a></li>
+                <li><a href="" class="footer-link"><img
+                            src="/InstitutoRaiz/public/assets/images/vectors/icons/pin-vector.svg" alt="">Rua
+                        Taltaldetal, Parque Paulista, Franco da Rocha, SP</a></li>
+                <li><a href="" class="footer-link"><img
+                            src="/InstitutoRaiz/public/assets/images/vectors/icons/telephone-vector.svg" alt="">(xx)
+                        xxxxx-xxxx</a></li>
+                <li><a href="" class="footer-link"><img
+                            src="/InstitutoRaiz/public/assets/images/vectors/icons/email-vector.svg"
+                            alt="">example@email.com.br</a></li>
             </ul>
         </div>
-        <div class="footer-redes flex flex-column">
+        <div class="footer-redes flex flex-column justify-center">
             <h4 class="uppercase">Redes</h4>
             <ul class="footer-links">
-                <li><a href="" class="footer-link"><img src="/InstitutoRaiz/public/assets/images/vectors/icons/instagram-vector.svg" alt="">@institutoraizesdofuturo</a></li>
+                <li><a href="" class="footer-link"><img
+                            src="/InstitutoRaiz/public/assets/images/vectors/icons/instagram-vector.svg"
+                            alt="">@institutoraizesdofuturo</a></li>
                 <li><a href="" class="footer-link"><img src="" alt="">(xx) xxxxx-xxxx</a></li>
                 <li><a href="" class="footer-link"><img src="" alt="">example@email.com.br</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-info flex flex-column align-center">
+        <p class="footer-text">© 2024 Instituto Raíz do Futuro. Todos os direitos reservados.</p>
+        <div class="footer-right">
+            <ul class="footer-links flex flex-row space-between">
+                <li><a href="" class="footer-link">Política de Privacidade</a></li>
+                <li><a href="" class="footer-link">Termos de Uso</a></li>
+                <li><a href="" class="footer-link">Contato</a></li>
             </ul>
         </div>
     </div>
