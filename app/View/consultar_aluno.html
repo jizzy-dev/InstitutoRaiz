@@ -19,37 +19,33 @@
                         </td>
                         <td>Nome <div class="resize-handle"></div>
                         </td>
-                        <td>Email <div class="resize-handle"></div>
-                        </td>
-                        <td>Senha <div class="resize-handle"></div>
-                        </td>
-                        <td>Data_Nasc <div class="resize-handle"></div>
-                        </td>
-                        <td>Logradouro <div class="resize-handle"></div>
-                        </td>
-                        <td>Bairro <div class="resize-handle"></div>
-                        </td>
-                        <td>Número Endereço <div class="resize-handle"></div>
-                        </td>
-                        <td>Complemento <div class="resize-handle"></div>
-                        </td>
-                        <td>CEP <div class="resize-handle"></div>
-                        </td>
                         <td>CPF <div class="resize-handle"></div>
                         </td>
                         <td>RG <div class="resize-handle"></div>
                         </td>
-                        <td>Contato <div class="resize-handle"></div>
+                        <td>Data_Nasc <div class="resize-handle"></div>
                         </td>
-                        <td>Resposanvel <div class="resize-handle"></div>
+                        <td>Certidão <div class="resize-handle"></div>
                         </td>
-                        <td>Padrinho <div class="resize-handle"></div>
+                        <td>Carteira Vacina <div class="resize-handle"></div>
+                        </td>
+                        <td>Situacão Matrícula <div class="resize-handle"></div>
+                        </td>
+                        <td>Data Matrícula <div class="resize-handle"></div>
+                        </td>
+                        <td>Data Inicio <div class="resize-handle"></div>
+                        </td>
+                        <td>ID_USER_TURMA <div class="resize-handle"></div>
+                        </td>
+                        <td>ID_USER_RESPONSAVEL <div class="resize-handle"></div>
+                        </td>
+                        <td>ID_USER_PADRINHO <div class="resize-handle"></div>
                         </td>
                     </tr>
                 </thead>
                 <tbody>
-                    {%if usuarios%}
-                    {%for usuario in usuarios%}
+                    {%if alunos%}
+                    {%for aluno in alunos%}
                     <tr>
                         <td class="td-button">
                             <form action="?pag=usuario&metodo=index" method="POST">
@@ -76,21 +72,19 @@
                             </form>
                         </td>
 
-                        <td>{{usuario.ID_USER}}</td>
-                        <td>{{usuario.nome}}</td>
-                        <td>{{usuario.email}}</td>
-                        <td>{{usuario.senha}}</td>
-                        <td>{{usuario.data_nasc}}</td>
-                        <td>{{usuario.logradouro}}</td>
-                        <td>{{usuario.bairro}}</td>
-                        <td>{{usuario.numero_endereco}}</td>
-                        <td>{{usuario.complemento}}</td>
-                        <td>{{usuario.cep}}</td>
-                        <td>{{usuario.cpf}}</td>
-                        <td>{{usuario.rg}}</td>
-                        <td>{{usuario.contato}}</td>
-                        <td>{{usuario.isResponsavel}}</td>
-                        <td>{{usuario.isPadrinho}}</td>
+                        <td>{{aluno.ID_USER}}</td>
+                        <td>{{aluno.nome}}</td>
+                        <td>{{aluno.cpf}}</td>
+                        <td>{{aluno.rg}}</td>
+                        <td>{{aluno.data_nasc}}</td>
+                        <td>{{aluno.certidao}}</td>
+                        <td>{{aluno.carteira_vacina}}</td>
+                        <td>{{aluno.situacao_matricula}}</td>
+                        <td>{{aluno.data_matricula}}</td>
+                        <td>{{aluno.data_inicio}}</td>
+                        <td>{{aluno.ID_USER_TURMA}}</td>
+                        <td>{{aluno.ID_USER_RESPONSAVEL}}</td>
+                        <td>{{aluno.ID_USER_PADRINHO}}</td>
                     </tr>
                     {%endfor%}
                     {%else%}

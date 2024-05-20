@@ -46,7 +46,7 @@ class UsuarioController
 
             // Chamar o método cadastrar do modelo Usuario
             try {
-                Usuario::cadastrar($dados);
+                Usuario::Create($dados);
                 // Redirecionar o usuário para uma página de confirmação
                 echo TemplateRenderer::render('cadastro_sucesso.html');
             } catch (Exception $e) {
