@@ -1,0 +1,48 @@
+main.main-cad {
+  font-size: var(--font-clamp-2);
+  padding: calc(var(--header-height) + 4em) 0 4em 0;
+}
+
+.tb-matricula {
+  width: 600px;
+  box-shadow: var(--box-shadow-1);
+  }
+.tb-matricula td {
+  box-sizing: border-box;
+  font-size: var(--font-clamp-1);
+  padding: 0.5em 1em;
+  width: 100%;
+}
+.tb-matricula tr:not(.tr-submit, .tr-titulo,.tr-titulo-section) {
+  border-inline: 1px solid #1f2926;
+  display: flex;
+  flex-direction: column;
+}
+/* border radius */
+.tb-matricula .tr-titulo th,.tb-matricula {
+  border-top-left-radius: var(--radius-1);
+  border-top-right-radius: var(--radius-1);
+}
+
+/*  */
+.tb-matricula th {
+  font-size: calc(var(--font-clamp-2) - 0.5rem);
+}
+.td-submit {
+  width: 100%;
+  padding: var(--rem-1-half) 0 !important;
+}
+
+/* inputs */
+
+/* buttons */
+.btn-form-matricula {
+  font-size: var(--font-clamp-1);
+  padding: var(--rem-1) var(--rem-2);
+}
+
+/* text */
+.cad-textbox {
+  width: calc(100% - 4px - 1em);
+  font-size: var(--font-clamp-1);
+}

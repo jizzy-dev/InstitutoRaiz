@@ -11,8 +11,8 @@ class UsuarioController
 
             echo TemplateRenderer::render('usuario.html', $parametros);
 
-            echo '<pre>';
-            var_dump($parametros);
+            // echo '<pre>';
+            // var_dump($parametros);
         } catch (Exception $e) {
             echo TemplateRenderer::render('usuario.html', ['erro' => $e->getMessage(), 'usuarios' => [], 'titulo' => 'Erro']);
         }

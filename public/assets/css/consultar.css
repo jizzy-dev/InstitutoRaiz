@@ -1,0 +1,15 @@
+main.main-consultar{
+    font-size: var(--font-clamp-2);
+}
+.tb-consulta{
+   width: 100%;
+}
+.tb-consulta tr{
+    display: flex;
+    justify-content: start;
+    width: 100%;
+}
+.tb-consulta td,th{
+    min-width: 150px;
+    flex: 1;
+}
