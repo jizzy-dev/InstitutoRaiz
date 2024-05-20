@@ -1,5 +1,8 @@
+/* inputs */
+
+/* textbox */
 .textbox {
-  background-color: #f5f5f5;
+  background-color: #fafafa;
   border: none;
   box-shadow: #8c8c8c 1px 1px 0px 2px;
   border-radius: var(--radius-0);
@@ -8,18 +11,21 @@
   padding: 2px 10px 2px 10px;
 }
 .textbox:hover {
-  background-color: #e4e4e4;
+  background-color: #f0f0f0;
 }
 .textbox:is(:focus, :focus-visible) {
   outline: none;
   /* border: 2px solid #757575 ; */
   box-shadow: #338bf8 1px 1px 0px 2px;
 }
+/* .textbox:required:focus{
+  box-shadow: rgb(248, 51, 64) 1px 1px 0px 2px;
+} */
 /* anchors */
-:is(a,svg):is(:link,:hover,:active){
-  transition: .3s;
+:is(a, svg):is(:link, :hover, :active) {
+  transition: 0.3s;
 }
-:is(a,svg):hover{
+:is(a, svg):hover {
   text-shadow: var(--text-shadow-1);
 }
 
@@ -42,7 +48,7 @@
   background-color: var(--btn-default-pressed);
 }
 /* homepage-buttons */
-.homepage-buttons{
+.homepage-buttons {
   border-radius: var(--radius-0);
   text-transform: uppercase;
   height: var(--rem-3);
@@ -51,83 +57,143 @@
   box-shadow: var(--box-shadow-1);
 }
 /* btn-entrar */
-.btn-entrar{
+.btn-entrar {
   background-color: var(--btn-entrar-enabled);
 }
-.btn-entrar:hover{
+.btn-entrar:hover {
   background-color: var(--btn-entrar-hover);
 }
-.btn-entrar:active{
+.btn-entrar:active {
   background-color: var(--btn-entrar-pressed);
 }
 
 /* btn-matricula */
-.btn-matricula{
+.btn-matricula {
   background-color: var(--btn-matricula-enabled);
   aspect-ratio: 1/3;
   width: 12.313em;
   height: var(--rem-4);
 }
-.btn-matricula:hover{
+.btn-matricula:hover {
   background-color: var(--btn-matricula-hover);
 }
-.btn-matricula:active{
+.btn-matricula:active {
   background-color: var(--btn-matricula-pressed);
+}
+/* btn-form-matricula */
+.btn-form-matricula {
+  background-color: var(--btn-form-matricula-enabled);
+  aspect-ratio: 1/3;
+  width: 12.313em;
+  height: var(--rem-4);
+  border-radius: var(--radius-0);
+}
+.btn-form-matricula:hover {
+  background-color: var(--btn-form-matricula-hover);
+}
+.btn-form-matricula:active {
+  background-color: var(--btn-form-matricula-pressed);
 }
 
 /* btn-sobre */
-.btn-sobre{
+.btn-sobre {
   background-color: var(--btn-sobre-enabled);
   color: var(--cor-13);
   aspect-ratio: 1/3;
   width: 8em;
   height: var(--rem-4);
 }
-.btn-sobre:hover{
+.btn-sobre:hover {
   background-color: var(--btn-sobre-hover);
   color: var(--cor-12);
 }
-.btn-sobre:active{
+.btn-sobre:active {
   background-color: var(--btn-sobre-pressed);
   color: var(--cor-12);
 }
 
 /* btn-apadrinhar */
-.btn-apadrinhar{
+.btn-apadrinhar {
   background-color: var(--btn-apadrinhar-enabled);
   color: var(--cor-12);
   aspect-ratio: 1/3;
   width: 10em;
   height: var(--rem-4);
 }
-.btn-apadrinhar:hover{
+.btn-apadrinhar:hover {
   background-color: var(--btn-apadrinhar-hover);
 }
-.btn-apadrinhar:active{
+.btn-apadrinhar:active {
   background-color: var(--btn-apadrinhar-pressed);
 }
 
-/* td,
-th {
-  border: 1px solid black;
-} */
-table {
+/* tabelas */
+.tables {
   background-color: #ffffff;
   border-collapse: collapse;
-  max-width: 70vw;
+  max-width: 80vw;
+  overflow-x: auto;
+  table-layout: fixed;
 }
-tbody tr {
+.table-wrapper {
+  width: 100%;
+  /* max-width: 500px; */
+  overflow-x: auto;
+}
+.tables td,
+th,
+input,
+button,
+label {
+  font-size: var(--font-clamp-2);
+}
+
+.tables th,td {
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-inline: var(--em--3);
+  width: auto;
+}
+.tables tbody tr:not(.tr-submit) {
   border-bottom: 0.2em solid #1f2926;
 }
 .row-column-titles > td:not(:last-child, :nth-last-child(2)) {
   background-color: #1c1c1c;
   border: none;
   color: #fff;
+  white-space: wrap;
 }
-.row-column-titles > td:not(:last-child, :last-child) {
-  border-right: 0.2em solid #fff;
+/* .row-column-titles > td:not(:last-child, :last-child) {
+  border-right: var(--em--4) solid #fff;
   text-align: center;
+  padding-inline: var(--em--3);
+} */
+.td-button{
+  min-width: 100px !important;
 }
-td:not(.td-button) {
-  width: max-content;
+.tables th {
+  background-color: #1c1c1c;
+  color: var(--cor-12);
+  padding: 1em 0;
+}
+.resize-handle {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: var(--em--3);
+  cursor: col-resize;
+  background-color: #fff;
+}
+
+.resize-handle:hover {
+  background-color: #ccc;
+}
+
+.icon{
+  aspect-ratio: 1/1;
+  max-width: 32px;
 }

@@ -36,6 +36,22 @@
   --rem-4-half: 4.625rem;
   --rem-5: 5rem;
 
+  /* em */
+  --em--4: 0.1em;
+  --em--3: 0.2em;
+  --em--2: 0.3em;
+  --em--1: 0.4em;
+  --em-half: 0.625em;
+  --em-1: 1em;
+  --em-1-half: 1.625em;
+  --em-2: 2em;
+  --em-2-half: 2.625em;
+  --em-3: 3em;
+  --em-3-half: 3.625em;
+  --em-4: 4em;
+  --em-4-half: 4.625em;
+  --em-5: 5em;
+
   /* radius */
   --radius--4: var(--rem--4);
   --radius--3: var(--rem--3);
@@ -71,6 +87,7 @@
   --cor-16: #E5A749; 
   --cor-17: #d3b06e; 
   --cor-18: #1e1e1e; 
+  --cor-19: #1c1c1c; 
 
   /* shadows */
   --box-shadow-1: 0px 0px 15px -2px rgba(0, 0, 0, 0.25);
@@ -101,6 +118,11 @@
   --btn-matricula-enabled: var(--cor-8);
   --btn-matricula-hover: var(--cor-17);
   --btn-matricula-pressed: var(--cor-15);
+ 
+  /* btn-form-matricula states */
+  --btn-form-matricula-enabled: var(--cor-14);
+  --btn-form-matricula-hover: var(--cor-15);
+  --btn-form-matricula-pressed: var(--cor-8);
 
   /* btn-sobre states */
   --btn-sobre-enabled: var(--cor-12);
