@@ -133,7 +133,6 @@
   border-collapse: collapse;
   max-width: 80vw;
   overflow-x: auto;
-  table-layout: fixed;
 }
 .table-wrapper {
   width: 100%;
@@ -150,7 +149,6 @@ label {
 
 .tables th,td {
   position: relative;
-  text-align: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

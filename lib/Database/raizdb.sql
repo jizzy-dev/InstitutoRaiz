@@ -1,4 +1,3 @@
-
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `raizdb` DEFAULT CHARACTER SET utf8mb4 ;
 USE `raizdb` ;
@@ -13,7 +12,6 @@ CREATE TABLE IF NOT EXISTS `raizdb`.`turma` (
   PRIMARY KEY (`ID_TURMA`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
-
 
 -- -----------------------------------------------------
 -- Table `raizdb`.`imagem`
@@ -49,8 +47,8 @@ CREATE TABLE IF NOT EXISTS `raizdb`.`usuario` (
   `isAdm` TINYINT NULL,
   `isMod` TINYINT NULL,
   `ID_IMAGEM` INT NOT NULL,
-  PRIMARY KEY (`ID_USER`, `ID_IMAGEM`),
-  INDEX `fk_Usuario_Imagem_idx` (`ID_IMAGEM` ASC) VISIBLE,
+  PRIMARY KEY (`ID_USER`),
+  INDEX `fk_Usuario_Imagem_idx` (`ID_IMAGEM` ASC),
   CONSTRAINT `fk_Usuario_Imagem`
     FOREIGN KEY (`ID_IMAGEM`)
     REFERENCES `raizdb`.`imagem` (`ID_IMAGEM`))
@@ -74,10 +72,10 @@ CREATE TABLE IF NOT EXISTS `raizdb`.`aluno` (
   `ID_TURMA` INT NOT NULL,
   `ID_USER_RESPONSAVEL` INT NOT NULL,
   `ID_USER_PADRINHO` INT NOT NULL,
-  PRIMARY KEY (`ID_ALUNO`, `ID_TURMA`, `ID_USER_RESPONSAVEL`, `ID_USER_PADRINHO`),
-  INDEX `fk_Aluno_Turma_idx` (`ID_TURMA` ASC) VISIBLE,
-  INDEX `fk_Aluno_Usuario1_idx` (`ID_USER_RESPONSAVEL` ASC) VISIBLE,
-  INDEX `fk_Aluno_Usuario2_idx` (`ID_USER_PADRINHO` ASC) VISIBLE,
+  PRIMARY KEY (`ID_ALUNO`),
+  INDEX `fk_Aluno_Turma_idx` (`ID_TURMA` ASC),
+  INDEX `fk_Aluno_Usuario1_idx` (`ID_USER_RESPONSAVEL` ASC),
+  INDEX `fk_Aluno_Usuario2_idx` (`ID_USER_PADRINHO` ASC),
   CONSTRAINT `fk_Aluno_Turma`
     FOREIGN KEY (`ID_TURMA`)
     REFERENCES `raizdb`.`turma` (`ID_TURMA`),
@@ -90,21 +88,24 @@ CREATE TABLE IF NOT EXISTS `raizdb`.`aluno` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
-
 -- -----------------------------------------------------
 -- Table `raizdb`.`frequencia`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `raizdb`.`frequencia` (
-  `ID_FREQUENCIA` INT NOT NULL,
+  `ID_FREQUENCIA` INT NOT NULL AUTO_INCREMENT,
   `data_aula` DATE NOT NULL,
   `falta` TINYINT NOT NULL,
   `ID_ALUNO` INT NOT NULL,
   `ID_TURMA` INT NOT NULL,
-  PRIMARY KEY (`ID_FREQUENCIA`, `ID_ALUNO`, `ID_TURMA`),
-  INDEX `fk_Frequencia_Aluno1_idx` (`ID_ALUNO` ASC, `ID_TURMA` ASC) VISIBLE,
+  PRIMARY KEY (`ID_FREQUENCIA`),
+  INDEX `fk_Frequencia_Aluno1_idx` (`ID_ALUNO` ASC),
+  INDEX `fk_Frequencia_Turma1_idx` (`ID_TURMA` ASC),
   CONSTRAINT `fk_Frequencia_Aluno1`
-    FOREIGN KEY (`ID_ALUNO` , `ID_TURMA`)
-    REFERENCES `raizdb`.`aluno` (`ID_ALUNO` , `ID_TURMA`))
+    FOREIGN KEY (`ID_ALUNO`)
+    REFERENCES `raizdb`.`aluno` (`ID_ALUNO`),
+  CONSTRAINT `fk_Frequencia_Turma1`
+    FOREIGN KEY (`ID_TURMA`)
+    REFERENCES `raizdb`.`turma` (`ID_TURMA`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
@@ -113,7 +114,6 @@ DEFAULT CHARACTER SET = utf8mb4;
 -- -----------------------------------------------------
 INSERT INTO `imagem` (`ID_IMAGEM`, `imgCaminho`) VALUES
 (1, 'caminho/teste/imagem.png');
-
 
 -- -----------------------------------------------------
 -- Insert `raizdb`.`usuario`

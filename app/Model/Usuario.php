@@ -17,7 +17,7 @@ class Usuario
         }
 
         if (!$resultado) {
-            throw new Exception("Não foi encontrado nenhum registro no banco de dados.");
+            throw new Exception("Nenhum Registro Encontrado.");
         }
 
         return $resultado;
@@ -34,12 +34,12 @@ class Usuario
         $resultado = $sql->fetchObject('Usuario');
 
         if (!$resultado) {
-            throw new Exception("Não foi encontrado nenhum registro no banco de dados.");
+            throw new Exception("Nenhum Registro Encontrado.");
         }
 
         return $resultado;
     }
-    public static function cadastrar($dados)
+    public static function Create($dados)
     {
         $con = Connection::getConn();
 
@@ -76,7 +76,7 @@ class Usuario
         if ($sql->execute()) {
             return true;
         } else {
-            throw new Exception("Erro ao cadastrar usuário.");
+            throw new Exception("Erro ao cadastrar um usuário.");
         }
     }
     public static function deletarPorId($idUser)
@@ -147,7 +147,7 @@ class Usuario
         $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 
         if (!$resultado) {
-            throw new Exception("Não foi encontrado nenhum registro no banco de dados.");
+            throw new Exception("Nenhum Registro Encontrado..");
         }
 
         return $resultado;
