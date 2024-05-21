@@ -116,8 +116,23 @@ INSERT INTO `imagem` (`ID_IMAGEM`, `imgCaminho`) VALUES
 (1, 'caminho/teste/imagem.png');
 
 -- -----------------------------------------------------
+-- Insert `raizdb`.`turma`
+-- -----------------------------------------------------
+INSERT INTO `turma` (`ID_TURMA`, `nome_turma`, `periodo`) VALUES
+(1, 'Turma A', 'manha'),
+(2, 'Turma B', 'tarde');
+
+-- -----------------------------------------------------
 -- Insert `raizdb`.`usuario`
 -- -----------------------------------------------------
 INSERT INTO `usuario` (`ID_USER`, `nome`, `cpf`, `rg`, `contato`, `email`, `senha`, `data_nasc`, `cep`, `logradouro`, `bairro`, `numero_endereco`, `complemento`, `cidade`, `estado`, `isResponsavel`, `isPadrinho`, `isAdm`, `isMod`, `ID_IMAGEM`) VALUES
 (1, 'Ana', '12345678901', '98765412', '11999887777', 'teste@email.com', '', '2024-05-03', '077190', 'Rua Brad Pitt', 'Hollywood', '100', '', 'Franco da Rocha', 'São Paulo', 0, 0, 0, 0, 1),
 (6, 'João', '23123123', '123123', '321321321', 'email@email.com', '', '2024-05-11', '2131312', 'adasd', 'adsa', '213', 'ads', 'asd', 'asd', 0, 0, 0, 0, 1);
+
+-- -----------------------------------------------------
+-- Insert `raizdb`.`aluno`
+-- -----------------------------------------------------
+INSERT INTO `aluno` (`ID_ALUNO`, `nome`, `cpf`, `rg`, `data_nasc`, `certidao`, `carteira_vacina`, `situacao_matricula`, `data_matricula`, `data_inicio`, `ID_TURMA`, `ID_USER_RESPONSAVEL`, `ID_USER_PADRINHO`) VALUES
+(1, 'João', '2132131', '12213133', '2024-05-20', '12321313211231', '132213123211', 'pendente', '2024-05-20', '2024-05-20', 2, 1, 1),
+(2, 'Karol', '3333', '222222', '2024-05-19', '55555', '666666', 'aprovado', '2024-05-08', '2024-05-02', 1, 1, 1),
+(3, 'Jeziel', '31231', '23131', '2024-05-21', '21313', '123123', 'pendente', '2024-05-21', '2024-05-21', 1, 1, 1);

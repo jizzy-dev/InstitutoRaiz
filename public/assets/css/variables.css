@@ -119,10 +119,10 @@
   --btn-matricula-hover: var(--cor-17);
   --btn-matricula-pressed: var(--cor-15);
  
-  /* btn-form-matricula states */
-  --btn-form-matricula-enabled: var(--cor-14);
-  --btn-form-matricula-hover: var(--cor-15);
-  --btn-form-matricula-pressed: var(--cor-8);
+  /* btn-form-submit states */
+  --btn-form-submit-enabled: var(--cor-14);
+  --btn-form-submit-hover: var(--cor-15);
+  --btn-form-submit-pressed: var(--cor-8);
 
   /* btn-sobre states */
   --btn-sobre-enabled: var(--cor-12);

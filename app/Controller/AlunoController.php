@@ -27,14 +27,14 @@ class AlunoController
                 'cpf' => $_POST['cpf_aluno'],
                 'rg' => $_POST['rg_aluno'],
                 'data_nasc' => $_POST['data_nasc_aluno'],
-                'certidao' => $_POST['certidao'],
-                'carteira_vacina' => $_POST['carteira_vacina'],
-                'situacao_matricula' => $_POST['situacao_matricula'],
-                'data_matricula' => $_POST['data_matricula'],
-                'data_inicio' => $_POST['data_inicio'],
-                'ID_TURMA' => $_POST['ID_TURMA'],
-                'ID_USER_RESPONSAVEL' => $_POST['ID_USER_RESPONSAVEL'],
-                'ID_USER_PADRINHO' => $_POST['ID_USER_PADRINHO']
+                'certidao' => $_POST['certidao_aluno'],
+                'carteira_vacina' => $_POST['carteira_vacina_aluno'],
+                'situacao_matricula' => isset($_POST['situacao_matricula']) ? $_POST['situacao_matricula'] : 'pendente',
+                'data_matricula' => isset($_POST['data_matricula']) ? $_POST['data_matricula'] : date('Y-m-d h:i:s'),
+                'data_inicio' => isset($_POST['data_inicio']) ? $_POST['data_inicio'] : date('Y-m-d h:i:s'),
+                'ID_TURMA' => isset($_POST['ID_TURMA']) ? $_POST['ID_TURMA'] : 1,
+                'ID_USER_RESPONSAVEL' => isset($_POST['ID_USER_RESPONSAVEL']) ? $_POST['ID_USER_RESPONSAVEL'] : 1,
+                'ID_USER_PADRINHO' => isset($_POST['ID_USER_PADRINHO']) ? $_POST['ID_USER_PADRINHO'] : 1
             ];
 
             try {
@@ -66,7 +66,7 @@ class AlunoController
     public function Excluir($id = null)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $id = $_POST['ID_ALUNO'];
+            $id = $_POST['id_aluno'];
             try {
                 Aluno::deletarPorId($id);
                 header('Location: ?pag=aluno&metodo=consultar');
@@ -83,24 +83,25 @@ class AlunoController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $dados = [
-                'id' => $_POST['ID_ALUNO'],
+                'id' => $_POST['id_aluno'],
                 'nome' => $_POST['nome_aluno'],
                 'cpf' => $_POST['cpf_aluno'],
                 'rg' => $_POST['rg_aluno'],
                 'data_nasc' => $_POST['data_nasc_aluno'],
-                'certidao' => $_POST['certidao'],
-                'carteira_vacina' => $_POST['carteira_vacina'],
-                'situacao_matricula' => $_POST['situacao_matricula'],
-                'data_matricula' => $_POST['data_matricula'],
-                'data_inicio' => $_POST['data_inicio'],
-                'ID_TURMA' => $_POST['ID_TURMA'],
-                'ID_USER_RESPONSAVEL' => $_POST['ID_USER_RESPONSAVEL'],
-                'ID_USER_PADRINHO' => $_POST['ID_USER_PADRINHO']
+                'certidao' => $_POST['certidao_aluno'],
+                'carteira_vacina' => $_POST['carteira_vacina_aluno'],
+                'situacao_matricula' => isset($_POST['situacao_matricula']) ? $_POST['situacao_matricula'] : 'pendente',
+                'data_matricula' => isset($_POST['data_matricula']) ? $_POST['data_matricula'] : date('Y-m-d h:i:s'),
+                'data_inicio' => isset($_POST['data_inicio']) ? $_POST['data_inicio'] : date('Y-m-d h:i:s'),
+                'ID_TURMA' => isset($_POST['ID_TURMA']) ? $_POST['ID_TURMA'] : 1,
+                'ID_USER_RESPONSAVEL' => isset($_POST['ID_USER_RESPONSAVEL']) ? $_POST['ID_USER_RESPONSAVEL'] : 1,
+                'ID_USER_PADRINHO' => isset($_POST['ID_USER_PADRINHO']) ? $_POST['ID_USER_PADRINHO'] : 1
             ];
 
             try {
                 Aluno::atualizarPorId($dados);
-                echo TemplateRenderer::render('editar_sucesso.html');
+                header('Location: ?pag=aluno&metodo=consultar');
+                exit;
             } catch (Exception $e) {
                 $this->handleError('Erro ao atualizar aluno: ' . $e->getMessage());
             }

@@ -28,7 +28,7 @@ class UsuarioController
                 'rg' => $_POST['rg_responsavel'],
                 'contato' => $_POST['contato_responsavel'],
                 'email' => $_POST['email_responsavel'],
-                'senha' => $_POST['senha_responsavel'], // Lembre-se de implementar a lógica de segurança para as senhas
+                'senha' => $_POST['senha_responsavel'], 
                 'data_nasc' => $_POST['data_nasc_responsavel'],
                 'cep' => $_POST['cep'],
                 'logradouro' => $_POST['logradouro'],
@@ -41,7 +41,7 @@ class UsuarioController
                 'isPadrinho' => isset($_POST['isPadrinho']) ? 1 : 0, // Marcar como padrinho se o campo estiver presente
                 'isAdm' => 0, // Por padrão, não é um administrador
                 'isMod' => 0, // Por padrão, não é um moderador
-                'ID_IMAGEM' => 1 // Defina o ID da imagem conforme necessário
+                'ID_IMAGEM' => 1 
             ];
 
             // Chamar o método cadastrar do modelo Usuario
@@ -100,6 +100,7 @@ class UsuarioController
     }
     public function Editar($id = null)
     {
+        global $parametros;
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Se for uma requisição POST, atualizar o usuário
             $dados = [
@@ -140,8 +141,9 @@ class UsuarioController
                     $id = $_GET['id']; // Supondo que o ID do usuário seja passado na URL
                     // Selecionar o usuário pelo ID
                     $user = Usuario::selecionarPorId($id);
+                    $parametros = ['usuario' => $user,'titulo' => 'Editar Usuário'];
                     // Renderizar a view de edição e passar os dados do usuário
-                    echo TemplateRenderer::render('editar_usuario.html', ['usuario' => $user]);
+                    echo TemplateRenderer::render('editar_usuario.html', $parametros);
                 } catch (Exception $e) {
                     echo "<script>alert('Erro ao editar usuário: " . $e->getMessage() . "')</script>";
                 }
