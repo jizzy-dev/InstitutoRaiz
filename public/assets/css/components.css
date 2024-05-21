@@ -80,19 +80,21 @@
 .btn-matricula:active {
   background-color: var(--btn-matricula-pressed);
 }
-/* btn-form-matricula */
-.btn-form-matricula {
-  background-color: var(--btn-form-matricula-enabled);
+/* btn-form-submit */
+.btn-form-submit {
+  background-color: var(--btn-form-submit-enabled);
   aspect-ratio: 1/3;
+  font-size: var(--font-clamp-1);
+  padding: var(--rem-1) var(--rem-2);
   width: 12.313em;
   height: var(--rem-4);
   border-radius: var(--radius-0);
 }
-.btn-form-matricula:hover {
-  background-color: var(--btn-form-matricula-hover);
+.btn-form-submit:hover {
+  background-color: var(--btn-form-submit-hover);
 }
-.btn-form-matricula:active {
-  background-color: var(--btn-form-matricula-pressed);
+.btn-form-submit:active {
+  background-color: var(--btn-form-submit-pressed);
 }
 
 /* btn-sobre */
@@ -155,10 +157,13 @@ label {
   padding-inline: var(--em--3);
   width: auto;
 }
-.tables tbody tr:not(.tr-submit) {
+.tables tbody tr:not(.tr-submit, .data-table tr) {
   border-bottom: 0.2em solid #1f2926;
 }
-.row-column-titles > td:not(:last-child, :nth-last-child(2)) {
+.data-table tbody td {
+  border-bottom: 0.2rem solid #1f2926;
+}
+.row-column-titles > td {
   background-color: #1c1c1c;
   border: none;
   color: #fff;

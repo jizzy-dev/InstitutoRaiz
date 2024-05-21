@@ -121,7 +121,7 @@ class Aluno
     {
         $con = Connection::getConn();
 
-        $sql = "SELECT * FROM aluno WHERE nome LIKE :nome LIMIT 5";
+        $sql = "SELECT * FROM aluno WHERE nome LIKE :nome LIMIT 25";
         $sql = $con->prepare($sql);
 
         $nomeFiltrado = '%' . $nomeAluno . '%';

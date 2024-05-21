@@ -13,6 +13,10 @@ body {
   background-color: #ffffff;
   width: 100%;
 }
+main:not(.main-home){
+  font-size: var(--font-clamp-2);
+  padding: calc(var(--header-height) + 4em) 0 4em 0;
+}
 .flex {
   display: flex;
 }

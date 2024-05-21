@@ -1,77 +1,83 @@
-<form action="?pag=usuario&metodo=editar" method="POST">
-    <input type="hidden" name="id_usuario" value="{{ usuario.ID_USER }}">
-    <table cellspacing="0">
-        <thead>
-            <tr>
-                <th colspan="2">Editar Usuario</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th colspan="2">Informações do Usuario</th>
-            </tr>
-            <tr>
-                <td>Nome</td>
-                <td><input type="text" name="nome_responsavel" value="{{ usuario.nome }}"></td>
-            </tr>
-            <tr>
-                <td>Email</td>
-                <td><input type="email" name="email_responsavel" value="{{ usuario.email }}"></td>
-            </tr>
-            <tr>
-                <td>Senha</td>
-                <td><input type="password" name="senha_responsavel"></td>
-            </tr>
-            <tr>
-                <td>Data de Nascimento</td>
-                <td><input type="date" name="data_nasc_responsavel" value="{{ usuario.data_nasc }}"></td>
-            </tr>
-            <tr>
-                <td>CPF</td>
-                <td><input type="text" name="cpf_responsavel" value="{{ usuario.cpf }}"></td>
-            </tr>
-            <tr>
-                <td>RG</td>
-                <td><input type="text" name="rg_responsavel" value="{{ usuario.rg }}"></td>
-            </tr>
-            <tr>
-                <td>Contato</td>
-                <td><input type="text" name="contato_responsavel" value="{{ usuario.contato }}"></td>
-            </tr>
-            <tr>
-                <th colspan="2">Dados de Endereço</th>
-            </tr>
-            <tr>
-                <td>CEP</td>
-                <td><input type="text" name="cep" value="{{ usuario.cep }}"></td>
-            </tr>
-            <tr>
-                <td>Logradouro</td>
-                <td><input type="text" name="logradouro" value="{{ usuario.logradouro }}"></td>
-            </tr>
-            <tr>
-                <td>Bairro</td>
-                <td><input type="text" name="bairro" value="{{ usuario.bairro }}"></td>
-            </tr>
-            <tr>
-                <td>Número</td>
-                <td><input type="text" name="numero_endereco" value="{{ usuario.numero_endereco }}"></td>
-            </tr>
-            <tr>
-                <td>Complemento</td>
-                <td><input type="text" name="complemento" value="{{ usuario.complemento }}"></td>
-            </tr>
-            <tr>
-                <td>Cidade</td>
-                <td><input type="text" name="cidade" value="{{ usuario.cidade }}"></td>
-            </tr>
-            <tr>
-                <td>Estado (UF)</td>
-                <td><input type="text" name="estado" value="{{ usuario.estado }}"></td>
-            </tr>
-            <tr>
-                <td colspan="2"><input type="submit" value="Atualizar"></td>
-            </tr>
-        </tbody>
-    </table>
-</form>
+<main class="main-editar-usuario">
+    <form action="?pag=usuario&metodo=editar" method="POST" class="form-cad flex flex-column center">
+        <input type="hidden" name="id_usuario" value="{{ usuario.ID_USER }}">
+        <table cellspacing="0" class="tables tb-matricula">
+            <thead>
+                <tr class="tr-titulo">
+                    <th colspan="2" class="tb-matricula-th">Editar Usuario</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="tr-titulo-section">
+                    <th colspan="2" class="tb-matricula-th">Informações do Usuario</th>
+                </tr>
+                <tr>
+                    <td>Nome</td>
+                    <td><input type="text" name="nome_responsavel" value="{{ usuario.nome }}" class="textbox cad-textbox"></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="email" name="email_responsavel" value="{{ usuario.email }}" class="textbox cad-textbox"></td>
+                </tr>
+                <tr>
+                    <td>Senha</td>
+                    <td><input type="password" name="senha_responsavel" class="textbox cad-textbox"></td>
+                </tr>
+                <tr>
+                    <td>Data de Nascimento</td>
+                    <td><input type="date" name="data_nasc_responsavel" value="{{ usuario.data_nasc }}" class="textbox cad-textbox">
+                    </td>
+                </tr>
+                <tr>
+                    <td>CPF</td>
+                    <td><input type="text" name="cpf_responsavel" value="{{ usuario.cpf }}" class="textbox cad-textbox"></td>
+                </tr>
+                <tr>
+                    <td>RG</td>
+                    <td><input type="text" name="rg_responsavel" value="{{ usuario.rg }}" class="textbox cad-textbox"></td>
+                </tr>
+                <tr>
+                    <td>Contato</td>
+                    <td><input type="text" name="contato_responsavel" value="{{ usuario.contato }}" class="textbox cad-textbox"></td>
+                </tr>
+                <tr class="tr-titulo-section">
+                    <th colspan="2" class="tb-matricula-th">Dados de Endereço</th>
+                </tr>
+                <tr>
+                    <td>CEP</td>
+                    <td><input type="text" name="cep" value="{{ usuario.cep }}" class="textbox cad-textbox"></td>
+                </tr>
+                <tr>
+                    <td>Logradouro</td>
+                    <td><input type="text" name="logradouro" value="{{ usuario.logradouro }}" class="textbox cad-textbox"></td>
+                </tr>
+                <tr>
+                    <td>Bairro</td>
+                    <td><input type="text" name="bairro" value="{{ usuario.bairro }}" class="textbox cad-textbox"></td>
+                </tr>
+                <tr>
+                    <td>Número</td>
+                    <td><input type="text" name="numero_endereco" value="{{ usuario.numero_endereco }}" class="textbox cad-textbox">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Complemento</td>
+                    <td><input type="text" name="complemento" value="{{ usuario.complemento }}" class="textbox cad-textbox"></td>
+                </tr>
+                <tr>
+                    <td>Cidade</td>
+                    <td><input type="text" name="cidade" value="{{ usuario.cidade }}" class="textbox cad-textbox"></td>
+                </tr>
+                <tr>
+                    <td>Estado (UF)</td>
+                    <td><input type="text" name="estado" value="{{ usuario.estado }}" class="textbox cad-textbox"></td>
+                </tr>
+                <tr class="tr-submit">
+                    <th colspan="2"  class="tb-matricula-th td-submit"><input type="submit" value="Atualizar"
+                            class="button btn-form-submit"></th>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</main>
+{% include 'footer.html' %}

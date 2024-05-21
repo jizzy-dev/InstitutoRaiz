@@ -6,7 +6,7 @@ class Usuario
     {
         $con = Connection::getConn();
 
-        $sql = "SELECT * FROM usuario LIMIT 5";
+        $sql = "SELECT * FROM usuario LIMIT 25";
         $sql = $con->prepare($sql);
         $sql->execute();
 
@@ -136,7 +136,7 @@ class Usuario
     {
         $con = Connection::getConn();
 
-        $sql = "SELECT * FROM usuario WHERE nome LIKE :nome LIMIT 5";
+        $sql = "SELECT * FROM usuario WHERE nome LIKE :nome LIMIT 25";
         $sql = $con->prepare($sql);
 
         $nomeFiltrado = '%' . $nomeUser . '%';
