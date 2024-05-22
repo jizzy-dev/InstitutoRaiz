@@ -8,7 +8,9 @@ class AlunoController
         try {
             $aluno = Aluno::selecionarPorId($id);
 
-            $parametros = ['alunos' => $aluno, 'titulo' => 'Aluno'];
+            $responsavel = Usuario::selecionarPorId($aluno->ID_USER_RESPONSAVEL);
+
+            $parametros = ['alunos' => $aluno, 'responsavel' => $responsavel, 'titulo' => 'Aluno'];
 
             echo TemplateRenderer::render('aluno.html', $parametros);
         } catch (Exception $e) {

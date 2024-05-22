@@ -9,6 +9,7 @@ require_once 'app/Controller/HomeController.php';
 require_once 'app/Controller/SistemaController.php';
 require_once 'app/Controller/UsuarioController.php';
 require_once 'app/Controller/AlunoController.php';
+require_once 'app/Controller/MatriculaController.php';
 require_once 'app/Controller/ErroController.php';
 // modelos
 require_once 'app/Model/Usuario.php';

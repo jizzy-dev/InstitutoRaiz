@@ -10,6 +10,7 @@
                     {% else %}
                     <td class="td-button"></td>
                     <td class="td-button"></td>
+                    <td class="td-button"></td>
                     <td>ID <div class="resize-handle"></div>
                     </td>
                     <td>Nome <div class="resize-handle"></div>
@@ -43,6 +44,10 @@
                 {%if alunos%}
                 <tr>
                     <td class="td-button">
+                        <button type="button" class="button"
+                            onclick="toggleResponsavel('{{ alunos.ID_USER_RESPONSAVEL }}')">Ver</button>
+                    </td>
+                    <td class="td-button">
                         <form id="formEditarAluno_{{ alunos.ID_ALUNO }}" method="POST">
                             <input type="hidden" name="id_alunos" value="{{ alunos.ID_ALUNO }}">
                             <button type="button" onclick="editarAluno('{{ alunos.ID_ALUNO }}')"
@@ -52,8 +57,7 @@
                     <td class="td-button">
                         <form action="?pag=aluno&metodo=excluir" method="POST">
                             <input type="hidden" name="id_alunos" value="{{ alunos.ID_ALUNO }}">
-                            <button type="submit"
-                                onclick="return confirm('Tem certeza que deseja excluir este aluno?')"
+                            <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este aluno?')"
                                 class="button">Excluir</button>
                         </form>
                     </td>
@@ -71,7 +75,37 @@
                     <td>{{alunos.ID_USER_RESPONSAVEL}}</td>
                     <td>{{alunos.ID_USER_PADRINHO}}</td>
                 </tr>
-                {%else%}
+                {% if responsavel %}
+                <tr id="responsavel_{{ alunos.ID_USER_RESPONSAVEL }}" style="display: none;">
+                    <td class="td-button text-right">
+                        <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M14 11L18 15M18 15L14 19M18 15H7C5.89543 15 5 14.107 5 13.0025C5.00001 10.0901 5.00002 4.92333 5.00002 4"
+                                stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </td>
+                    <td colspan="2" class="td-button">
+                        <a href="?pag=usuario&id={{responsavel.ID_USER}}" class="no-style-link">Responsável</a>
+                    </td>
+                    <td class="td-button"></td>
+                    <td>
+                        <a href="?pag=usuario&id={{responsavel.ID_USER}}" class="no-style-link">
+                            {{ responsavel.ID_USER }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="?pag=usuario&id={{responsavel.ID_USER}}" class="no-style-link">
+                            {{ responsavel.nome }}
+                        </a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="15" align="center">{{ erro }}</td>
+                </tr>
+                {% endif %}
+                {% else %}
                 <tr>
                     <td colspan="15" align="center">{{ erro }}</td>
                 </tr>

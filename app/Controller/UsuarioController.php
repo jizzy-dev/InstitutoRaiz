@@ -20,7 +20,7 @@ class UsuarioController
     public function Cadastrar()
     {
         global $parametros;
-        $parametros = ['titulo' =>'Matrícula'];
+        $parametros = ['titulo' =>'Cadastro de Usuário'];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $dados = [
                 'nome' => $_POST['nome_responsavel'],
@@ -55,7 +55,7 @@ class UsuarioController
             }
         } else {
             // Se não for uma requisição POST, redirecionar para a página de cadastro
-            echo TemplateRenderer::render('cadastrar.html',$parametros);
+            echo TemplateRenderer::render('cadastrar_usuario.html',$parametros);
         }
     }
     public function Consultar($nome = null)
