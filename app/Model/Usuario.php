@@ -74,7 +74,7 @@ class Usuario
         $sql->bindValue(':ID_IMAGEM', $dados['ID_IMAGEM']);
 
         if ($sql->execute()) {
-            return true;
+            return $con->lastInsertId();
         } else {
             throw new Exception("Erro ao cadastrar um usuário.");
         }
