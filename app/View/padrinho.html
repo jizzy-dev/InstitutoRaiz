@@ -1,0 +1,93 @@
+<main class="main-consultar flex flex-column center">
+    <div class="table-wrapper flex flex-column center">
+        <table cellspacing="0" class="tables data-table tb-consulta flex flex-column">
+            <thead>
+                <tr class="tr-titulo">
+                    <th colspan="{{count_keys(usuarios)}}">Padrinho</th>
+                </tr>
+                <tr class="row-column-titles tr-consultar-id">
+                    {% if not usuarios %}
+                    {% else %}
+                    <td class="td-button"></td>
+                    <td class="td-button"></td>
+                    <td>ID <div class="resize-handle"></div>
+                    </td>
+                    <td>Nome <div class="resize-handle"></div>
+                    </td>
+                    <td>Email <div class="resize-handle"></div>
+                    </td>
+                    <td>Senha <div class="resize-handle"></div>
+                    </td>
+                    <td>Data_Nasc <div class="resize-handle"></div>
+                    </td>
+                    <td>Logradouro <div class="resize-handle"></div>
+                    </td>
+                    <td>Bairro <div class="resize-handle"></div>
+                    </td>
+                    <td>Número Endereço <div class="resize-handle"></div>
+                    </td>
+                    <td>Complemento <div class="resize-handle"></div>
+                    </td>
+                    <td>CEP <div class="resize-handle"></div>
+                    </td>
+                    <td>CPF <div class="resize-handle"></div>
+                    </td>
+                    <td>RG <div class="resize-handle"></div>
+                    </td>
+                    <td>Contato <div class="resize-handle"></div>
+                    </td>
+                    <td>Resposanvel <div class="resize-handle"></div>
+                    </td>
+                    <td>Padrinho <div class="resize-handle"></div>
+                    </td>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {%if usuarios %}
+                <tr>
+                    <td class="td-button">
+                        <form id="formAtribuirPadrinho_{{ usuarios.ID_USER }}" method="POST">
+                            <input type="hidden" name="id_usuario" value="{{ usuarios.ID_USER }}">
+                            <button type="button" onclick="atribuirPadrinho('{{ usuarios.ID_USER }}')"
+                                class="button">Atribuir</button>
+                        </form>
+                        <form id="formEditarUsuario_{{ usuarios.ID_USER }}" method="POST">
+                            <input type="hidden" name="id_usuario" value="{{ usuarios.ID_USER }}">
+                            <button type="button" onclick="editarUsuario('{{ usuarios.ID_USER }}')"
+                                class="button">Editar</button>
+                        </form>
+                    </td>
+                    <td class="td-button">
+                        <form action="?pag=usuario&metodo=excluir" method="POST">
+                            <input type="hidden" name="id_usuario" value="{{ usuarios.ID_USER }}">
+                            <button type="submit"
+                                onclick="return confirm('Tem certeza que deseja excluir este usuário?')"
+                                class="button">Excluir</button>
+                        </form>
+                    </td>
+                    <td>{{usuarios.ID_USER}}</td>
+                    <td>{{usuarios.nome}}</td>
+                    <td>{{usuarios.email}}</td>
+                    <td>{{usuarios.senha}}</td>
+                    <td>{{usuarios.data_nasc}}</td>
+                    <td>{{usuarios.logradouro}}</td>
+                    <td>{{usuarios.bairro}}</td>
+                    <td>{{usuarios.numero_endereco}}</td>
+                    <td>{{usuarios.complemento}}</td>
+                    <td>{{usuarios.cep}}</td>
+                    <td>{{usuarios.cpf}}</td>
+                    <td>{{usuarios.rg}}</td>
+                    <td>{{usuarios.contato}}</td>
+                    <td>{{usuarios.isResponsavel}}</td>
+                    <td>{{usuarios.isPadrinho}}</td>
+                </tr>
+                {%else%}
+                <tr>
+                    <td colspan="15" align="center">{{ erro }}</td>
+                </tr>
+                {%endif%}
+            </tbody>
+        </table>
+    </div>
+</main>

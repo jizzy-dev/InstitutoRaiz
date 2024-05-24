@@ -20,6 +20,10 @@ class Core
             $controller = 'ErroController';
             $metodo = 'index';
         }
+        
+        if ($metodo === 'buscarNomeAluno') {
+            $controller = 'PadrinhoController';
+        }
 
         $id = isset($urlGet['id']) ? $urlGet['id'] : null;
         $nome = isset($urlGet['nome']) ? $urlGet['nome'] : null;
