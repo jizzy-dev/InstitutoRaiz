@@ -1,0 +1,48 @@
+<main class="main-consultar">
+    <div class="table-wrapper flex flex-column center">
+        <form action="?pag=marcar_presenca" method="POST">
+            <table cellspacing="0" class="tables data-table tb-consulta flex flex-column">
+                <thead>
+                    <tr class="tr-titulo">
+                        <th colspan="{{count_keys(usuarios)}}">Marcar Presença</th>
+                    </tr>
+                    <tr class="row-column-titles">
+                        <td>Professor:</td>
+                        <td></td>
+                        <td>Turma:</td>
+                        <td>
+                            <select name="" id="" class="textbox">
+                                <option value="">Turma A</option>
+                                <option value="">Turma B</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="row-column-titles tr-consultar-id">
+                        <td>ID <div class="resize-handle"></div></td>
+                        <td>Aluno <div class="resize-handle"></div></td>
+                        {% for dia in range(1, mesQtdDia) %}
+                            <td>{{ dia }}</td>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for aluno in alunos %}
+                        <tr>
+                            <td>{{ aluno.ID_ALUNO }}</td>
+                            <td>{{ aluno.nome }}</td>
+                            {% for dia in range(1, mesQtdDia) %}
+                                <td>
+                                    <select name="presenca[{{ aluno.ID_ALUNO }}][{{ dia }}]" class="textbox">
+                                        <option value="P">Presente</option>
+                                        <option value="F">Falta</option>
+                                    </select>
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <button type="submit" class="button">Salvar Presença</button>
+        </form>
+    </div>
+</main>

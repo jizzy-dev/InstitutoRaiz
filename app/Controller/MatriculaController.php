@@ -21,7 +21,7 @@ class MatriculaController
                 'complemento' => $_POST['complemento'],
                 'cidade' => $_POST['cidade'],
                 'estado' => $_POST['estado'],
-                'isResponsavel' => isset($_POST['isResponsavel']) ? 1 : 0, // Marcar como responsável se o campo estiver presente
+                'isResponsavel' => 1,
                 'isPadrinho' => isset($_POST['isPadrinho']) ? 1 : 0, // Marcar como padrinho se o campo estiver presente
                 'isAdm' => 0, // Por padrão, não é um administrador
                 'isMod' => 0, // Por padrão, não é um moderador

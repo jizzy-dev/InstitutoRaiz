@@ -41,6 +41,21 @@ main:not(.main-home){
 .sticky {
   position: sticky;
 }
+.top{
+  top: 0;
+}
+.right{
+  right: 0;
+}
+.left{
+  left: 0;
+}
+.bottom{
+  bottom: 0;
+}
+.width-100pc{
+  width: 100%;
+}
 .center {
   justify-content: center;
   align-items: center;
