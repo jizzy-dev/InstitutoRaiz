@@ -27,6 +27,10 @@ class Core
         if ($metodo === 'buscarNomeAluno') {
             $controller = 'PadrinhoController';
         }
+        
+        if ($metodo === 'buscarNomeAluno') {
+            $controller = 'PadrinhoController';
+        }
 
         $id = isset($urlGet['id']) ? $urlGet['id'] : null;
         $nome = isset($urlGet['nome']) ? $urlGet['nome'] : null;
