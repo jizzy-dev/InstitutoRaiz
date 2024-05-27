@@ -131,7 +131,26 @@ class Usuario
             throw new Exception("Erro ao atualizar usuário.");
         }
     }
+    public static function bindPadrinho($dados)
+    {
+        $con = Connection::getConn();
 
+        $sql = "UPDATE usuario 
+        SET  isPadrinho = :isPadrinho
+        WHERE ID_USER = :id";
+
+        $sql = $con->prepare($sql);
+
+        $sql->bindValue(':id', $dados['id_padrinho'], PDO::PARAM_INT);
+        $sql->bindValue(':isPadrinho', $dados['isPadrinho']);
+
+
+        if ($sql->execute()) {
+            return true;
+        } else {
+            throw new Exception("Erro ao atribuir Padrinho.");
+        }
+    }
     public static function filtrar($nomeUser)
     {
         $con = Connection::getConn();

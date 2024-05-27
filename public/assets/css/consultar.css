@@ -14,8 +14,7 @@ main.main-consultar{
     justify-content: center;
     background-color: #1c1c1c;
     color: var(--cor-12);
-    
-}
+    }
 .tb-consulta td,th{
     min-width: 150px;
     max-width: 150px;

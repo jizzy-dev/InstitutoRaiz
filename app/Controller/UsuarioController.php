@@ -76,7 +76,7 @@ class UsuarioController
                 echo TemplateRenderer::render('consultar_usuario.html', ['erro' => 'Nenhum usuário encontrado', 'usuarios' => []]);
             } else {
                 // Renderizar a página com os resultados da consulta
-                $parametros = ['usuarios' => $user,'titulo'=>'Consultar', 'erro' => ''];
+                $parametros = ['usuarios' => $user,'titulo'=>'Consultar Usuário', 'erro' => ''];
                 echo TemplateRenderer::render('consultar_usuario.html', $parametros);
             }
         } catch (Exception $e) {

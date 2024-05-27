@@ -3,7 +3,7 @@
         <table cellspacing="0" class="tables data-table tb-consulta flex flex-column">
             <thead>
                 <tr class="tr-titulo">
-                    <th colspan="{{count_keys(usuarios)}}">Usuario</th>
+                    <th colspan="{{count_keys(usuarios)}}">Padrinho</th>
                 </tr>
                 <tr class="row-column-titles tr-consultar-id">
                     {% if not usuarios %}
@@ -44,9 +44,14 @@
                 </tr>
             </thead>
             <tbody>
-                {%if usuarios%}
+                {%if usuarios %}
                 <tr>
                     <td class="td-button">
+                        <form id="formAtribuirPadrinho_{{ usuarios.ID_USER }}" method="POST">
+                            <input type="hidden" name="id_usuario" value="{{ usuarios.ID_USER }}">
+                            <button type="button" onclick="atribuirPadrinhoInput('{{ usuarios.ID_USER }}')"
+                                class="button">Atribuir</button>
+                        </form>
                         <form id="formEditarUsuario_{{ usuarios.ID_USER }}" method="POST">
                             <input type="hidden" name="id_usuario" value="{{ usuarios.ID_USER }}">
                             <button type="button" onclick="editarUsuarioInput('{{ usuarios.ID_USER }}')"
