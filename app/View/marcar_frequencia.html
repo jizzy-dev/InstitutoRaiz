@@ -1,4 +1,5 @@
 <main class="main-consultar">
+<<<<<<< Updated upstream
     <div class="table-wrapper flex flex-column center">
         <form action="?pag=marcar_presenca" method="POST">
             <table cellspacing="0" class="tables data-table tb-consulta flex flex-column">
@@ -45,4 +46,93 @@
             <button type="submit" class="button">Salvar Presença</button>
         </form>
     </div>
+=======
+	<div class="table-wrapper flex flex-column center">
+		<form id="frequenciaForm" action="?pag=frequencia&metodo=marcarPresenca" method="POST">
+
+			<table cellspacing="0" class="tables data-table tb-consulta tb-frequencia flex flex-column" data-frequencia="{{dataFrequenciaObject}}">
+				<thead>
+					<tr class="tr-titulo">
+						<th colspan="{{mesQtdDia + 2}}">Marcar Presença</th>
+					</tr>
+					<tr class="row-column-titles row-interactive">
+						<td>Professor:</td>
+						<td></td>
+						<td>
+							<label for="ID_TURMA">Turma:</label>
+						</td>
+						<td>
+							<select id="ID_TURMA" name="ID_TURMA" onchange="selectTurmaInputMP()" class="textbox" required>
+								<option value="" {% if id_turma is null %} selected {% endif %}>Selecione a Turma</option>
+								{% for turma in turmas %}
+									<option value="{{turma.ID_TURMA}}" {% if id_turma==turma.ID_TURMA %} selected {% endif %}>
+										{{turma.nome_turma}}</option>
+								{% endfor %}
+							</select>
+						</td>
+						<td>
+							<fieldset>
+								<legend>Filtro:</legend>
+								<form id="filtroForm" method="POST">
+									<input type="radio" id="filtroRadioHoje" name="filtroRadio" value="d" onchange="toggleDateInput();setDataTable({{dataFrequenciaObject}});">
+									<label for="filtroRadioHoje">Dia</label>
+									<input type="date" id="dateInput" name="data" class="textbox" onchange="setDataTable({{dataFrequenciaObject}})" style="display: none;">
+									<input type="radio" id="filtroRadioMes" name="filtroRadio" value="m" onchange="toggleDateInput();setDataTable({{dataFrequenciaObject}});" checked>
+									<label for="filtroRadioMes">Mês todo</label>
+									<button type="submit">Buscar</button>
+								</form>
+							</fieldset>
+						</td>
+					</tr>
+
+				</thead>
+				<tbody>
+					<tr class="row-column-titles row-columns tr-consultar-id">
+						<td>ID
+							<div class="resize-handle"></div>
+						</td>
+						<td>Aluno
+							<div class="resize-handle"></div>
+						</td>
+						{% if diaSelecionado %}
+							{% for dia in range(1, mesQtdDia) %}
+								<td>{{ dia }}</td>
+							{% endfor %}
+						{% endif %}
+					</tr>
+					{% if alunos is not empty %}
+						{% for aluno in alunos %}
+							<tr>
+								<td>{{ aluno.ID_ALUNO }}</td>
+								<td>{{ aluno.nome }}</td>
+								{% for dia in range(1, mesQtdDia) %}
+									{% set presenca = '( N/A )' %}
+									{% for frequencia in frequencias %}
+										{% if frequencia.ID_ALUNO == aluno.ID_ALUNO and frequencia.data_aula|date('d') == dia %}
+											{% set presenca = frequencia.presenca %}
+										{% endif %}
+									{% endfor %}
+									<td>
+										<select name="presenca[{{ aluno.ID_ALUNO }}][{{ dia }}]" class="textbox">
+											<option value="" {% if presenca is null or presenca == "" %} selected {% endif %}>N/A</option>
+											<option value="P" {% if presenca == 'P' %} selected {% endif %}>Presente</option>
+											<option value="F" {% if presenca == 'F' %} selected {% endif %}>Falta</option>
+										</select>
+									</td>
+								{% endfor %}
+							</tr>
+						{% endfor %}
+					{% else %}
+						<tr>
+							<td colspan="{{ mesQtdDia + 2 }}">Selecione uma turma para ver os alunos</td>
+						</tr>
+					{% endif %}
+				</tbody>
+			</table>
+			{% if alunos is not empty %}
+				<button type="submit" class="button">Salvar Presença</button>
+			{% endif %}
+		</form>
+	</div>
+>>>>>>> Stashed changes
 </main>

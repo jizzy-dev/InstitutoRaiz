@@ -19,15 +19,19 @@ class Core
         if (!method_exists($controller, $metodo)) {
             $controller = 'ErroController';
             $metodo = 'index';
+<<<<<<< Updated upstream
         }
         
         if ($metodo === 'buscarNomeAluno') {
             $controller = 'PadrinhoController';
+=======
+>>>>>>> Stashed changes
         }
 
-        $id = isset($urlGet['id']) ? $urlGet['id'] : null;
-        $nome = isset($urlGet['nome']) ? $urlGet['nome'] : null;
+        $id = isset($urlGet['id']) && $urlGet['id'] !== null ? $urlGet['id'] : null;
+        $nome = isset($urlGet['nome']) && $urlGet['nome'] !== null ? $urlGet['nome'] : null;
 
+<<<<<<< Updated upstream
         try {
             ob_start();
             call_user_func_array([new $controller, $metodo], [$id, $nome]);
@@ -42,5 +46,8 @@ class Core
             call_user_func_array([new $controller, $metodo], [$mensagemErro]);
             return ob_get_clean();
         }
+=======
+        call_user_func_array(array(new $controller, $metodo), array($id, $nome));
+>>>>>>> Stashed changes
     }
 }
