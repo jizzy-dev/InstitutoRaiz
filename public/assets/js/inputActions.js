@@ -7,7 +7,14 @@ function editarAlunoInput(idAluno) {
 function atribuirPadrinhoInput(idPadrinho) {
     window.location.href = '?pag=padrinho&metodo=AtribuirPadrinho&id=' + idPadrinho;
 }
-function selectTurmaInput() {
+function selectTurmaInputF() {
+    const idTurma = document.getElementById('ID_TURMA').value;
+
+    if (idTurma) {
+        window.location.href = '?pag=frequencia&turma=' + idTurma;
+    }
+}
+function selectTurmaInputMP() {
     const idTurma = document.getElementById('ID_TURMA').value;
 
     if (idTurma) {

@@ -2,7 +2,7 @@
 *::after,
 *::before {
   font-size: var(--font-clamp--1);
-  font-family: "Futura Md BT", normal, sans-serif;
+  font-family: Montserrat, sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -69,6 +69,18 @@ main:not(.main-home) {
 }
 .justify-center {
   justify-content: center;
+}
+.justify-start {
+  justify-content: start ;
+}
+.justify-end {
+  justify-content: end;
+}
+.flex-start {
+  justify-content: flex-start !important;
+}
+.flex-end {
+  justify-content: flex-end;
 }
 .align-center {
   align-items: center;

@@ -21,33 +21,11 @@ class Core
         if (!method_exists($controller, $metodo)) {
             $controller = 'ErroController';
             $metodo = 'index';
-            $parametros['erro'] = "Essa página não existe.";
-        }
-        
-        if ($metodo === 'buscarNomeAluno') {
-            $controller = 'PadrinhoController';
-        }
-        
-        if ($metodo === 'buscarNomeAluno') {
-            $controller = 'PadrinhoController';
         }
 
-        $id = isset($urlGet['id']) ? $urlGet['id'] : null;
-        $nome = isset($urlGet['nome']) ? $urlGet['nome'] : null;
+        $id = isset($urlGet['id']) && $urlGet['id'] !== null ? $urlGet['id'] : null;
+        $nome = isset($urlGet['nome']) && $urlGet['nome'] !== null ? $urlGet['nome'] : null;
 
-        try {
-            ob_start();
-            call_user_func_array([new $controller, $metodo], $parametros = [$id, $nome]);
-            $saida = ob_get_clean();
-
-            return $saida;
-        } catch (Exception $e) {
-            $controller = 'ErroController';
-            $metodo = 'index';
-            $parametros['erro'] = $e->getMessage();
-            ob_start();
-            call_user_func_array([new $controller, $metodo], [$parametros]);
-            return ob_get_clean();
-        }
+        call_user_func_array(array(new $controller, $metodo), array($id, $nome));
     }
 }

@@ -13,12 +13,22 @@ class FrequenciaController
         // Contar quantos dias tem no mês atual
         $mesQtdDia = cal_days_in_month(CAL_GREGORIAN, $mesAtual, $anoAtual);
 
+        // Verificar se o ID da turma foi passado via GET ou POST
+        $idTurma = isset($_GET['turma']) ? $_GET['turma'] : (isset($_POST['ID_TURMA']) ? $_POST['ID_TURMA'] : null);
+
+        // Consultar a frequência dos alunos de acordo com a turma selecionada
+        $frequencias = $idTurma ? Frequencia::consultarFrequencia($idTurma) : [];
+
         // Obter todos os alunos
-        $alunos = Aluno::selecionarTodos();
+        $turmas = Turma::selecionarTodas();
+        $alunos = $idTurma ? Aluno::selecionarPorTurma($idTurma) : [];
 
         $parametros = [
-            'alunos' => $alunos,
             'titulo' => 'Frequência',
+            'alunos' => $alunos,
+            'frequencias' => $frequencias,
+            'turmas' => $turmas,
+            'id_turma' => $idTurma,
             'anoAtual' => $anoAtual,
             'mesAtual' => $mesAtual,
             'mesQtdDia' => $mesQtdDia
@@ -27,20 +37,34 @@ class FrequenciaController
         echo TemplateRenderer::render('frequencia.html', $parametros);
     }
 
+
     public function marcarPresenca($idTurma = null)
     {
         global $parametros;
+
+        date_default_timezone_set('America/Sao_Paulo');
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $presencas = $_POST['presenca'];
+
             $idTurma = $_POST['ID_TURMA'];
+
             foreach ($presencas as $idAluno => $dias) {
                 foreach ($dias as $dia => $presenca) {
-                    Frequencia::marcarFrequencia($idAluno, $dia, $presenca);
+                    $anoAtual = date('Y');
+                    $mesAtual = date('m');
+                    $data_aula_str = new DateTime("$anoAtual-$mesAtual-$dia");
+                    $data_aula = $data_aula_str->format('Y-m-d');
+
+                    if ($presenca !== "N/A" && $presenca !== "") {
+                        // Inserir a presença no banco de dados
+                        Frequencia::marcarFrequencia($idAluno, $idTurma, $data_aula, $presenca);
+                    }
                 }
             }
-
             // Redirecionar após marcar as presenças
-            $this->index();
+            header('Location: ?pag=frequencia');
+            exit;
         } else {
             try {
                 // Obter o ano e o mês atual
@@ -57,18 +81,21 @@ class FrequenciaController
                 // Verificar se o ID da turma foi passado via GET ou POST
                 $idTurma = isset($_GET['turma']) ? $_GET['turma'] : (isset($_POST['ID_TURMA']) ? $_POST['ID_TURMA'] : null);
 
+                $frequencias = $idTurma ? Frequencia::consultarFrequencia($idTurma) : [];
+
                 // Obter o filtro (dia ou mês)
                 $filtro = isset($_GET['filtro']) ? $_GET['filtro'] : 'd';
                 $data = isset($_GET['data']) ? $_GET['data'] : date('Y-m-d');
 
-                $diaSelecionado = isset($_GET['data']) ? $_GET['data'] : date('d');
+                $diaSelecionado = isset($_GET['data']) ? (new DateTime($_GET['data']))->format('d') : date('d');
 
                 $alunos = $idTurma ? Aluno::selecionarPorTurma($idTurma) : [];
 
                 $parametros = [
-                    'titulo' => 'Frequência',
+                    'titulo' => 'Marcar Frequência',
                     'alunos' => $alunos,
                     'turmas' => $turmas,
+                    'frequencias' => $frequencias,
                     'id_turma' => $idTurma,
                     'anoAtual' => $anoAtual,
                     'mesAtual' => $mesAtual,
@@ -80,16 +107,13 @@ class FrequenciaController
                     'dataFrequenciaObject' => json_encode((object) [
                         'dia' => $diaSelecionado,
                         'mes' => $mesQtdDia,
-                        'alunos' => (object)$alunos
+                        'alunos' => (object)$alunos,
+                        'frequencias' => $frequencias
                     ])
                 ];
-                echo '<pre>';
-                print_r($parametros);
-                echo '</pre>';
 
-                
                 echo TemplateRenderer::render('marcar_frequencia.html', $parametros);
-            } catch (Exception $e) {
+            } catch (Throwable $e) {
                 echo TemplateRenderer::render('marcar_frequencia.html', [
                     'titulo' => 'Erro',
                     'erro' => $e->getMessage(),

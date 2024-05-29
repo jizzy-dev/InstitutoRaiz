@@ -1,9 +1,8 @@
 <main class="main-consultar">
 	<div class="table-wrapper flex flex-column center">
 		<form id="frequenciaForm" action="?pag=frequencia&metodo=marcarPresenca" method="POST">
-            
-			<table cellspacing="0" class="tables data-table tb-consulta flex flex-column"
-            data-frequencia = "{{dataFrequenciaObject}}">
+
+			<table cellspacing="0" class="tables data-table tb-consulta tb-frequencia flex flex-column" data-frequencia="{{dataFrequenciaObject}}">
 				<thead>
 					<tr class="tr-titulo">
 						<th colspan="{{mesQtdDia + 2}}">Marcar Presença</th>
@@ -15,7 +14,7 @@
 							<label for="ID_TURMA">Turma:</label>
 						</td>
 						<td>
-							<select id="ID_TURMA" name="ID_TURMA" onchange="selectTurmaInput()" class="textbox" required>
+							<select id="ID_TURMA" name="ID_TURMA" onchange="selectTurmaInputMP()" class="textbox" required>
 								<option value="" {% if id_turma is null %} selected {% endif %}>Selecione a Turma</option>
 								{% for turma in turmas %}
 									<option value="{{turma.ID_TURMA}}" {% if id_turma==turma.ID_TURMA %} selected {% endif %}>
@@ -27,16 +26,19 @@
 							<fieldset>
 								<legend>Filtro:</legend>
 								<form id="filtroForm" method="POST">
-									<input type="radio" id="filtroRadioHoje" name="filtroRadio" value="d" onchange='toggleDateInput();setDataTable({{dataFrequenciaObject}});'>
+									<input type="radio" id="filtroRadioHoje" name="filtroRadio" value="d" onchange="toggleDateInput();setDataTable({{dataFrequenciaObject}});">
 									<label for="filtroRadioHoje">Dia</label>
-									<input type="date" id="dateInput" name="data" class="textbox" style="display: none;">
-									<input type="radio" id="filtroRadioMes" name="filtroRadio" value="m" onchange="toggleDateInput();">
+									<input type="date" id="dateInput" name="data" class="textbox" onchange="setDataTable({{dataFrequenciaObject}})" style="display: none;">
+									<input type="radio" id="filtroRadioMes" name="filtroRadio" value="m" onchange="toggleDateInput();setDataTable({{dataFrequenciaObject}});" checked>
 									<label for="filtroRadioMes">Mês todo</label>
 									<button type="submit">Buscar</button>
 								</form>
 							</fieldset>
 						</td>
 					</tr>
+
+				</thead>
+				<tbody>
 					<tr class="row-column-titles row-columns tr-consultar-id">
 						<td>ID
 							<div class="resize-handle"></div>
@@ -44,34 +46,32 @@
 						<td>Aluno
 							<div class="resize-handle"></div>
 						</td>
-						<span id="twig-mes-thead-column-td">
-							{% if diaSelecionado %}
-								{% for dia in range(1, mesQtdDia) %}
-									<td>{{ dia }}</td>
-								{% endfor %}
-							{% elseif mesQtdDia == 1 %}
-								<td>{{ diaSelecionado }}</td>
-							{% endif %}
-						</span>
+						{% if diaSelecionado %}
+							{% for dia in range(1, mesQtdDia) %}
+								<td>{{ dia }}</td>
+							{% endfor %}
+						{% endif %}
 					</tr>
-				</thead>
-				<tbody>
 					{% if alunos is not empty %}
 						{% for aluno in alunos %}
 							<tr>
 								<td>{{ aluno.ID_ALUNO }}</td>
 								<td>{{ aluno.nome }}</td>
-								<span id="twig-mes-tbody-column-td">
-                                    {% for dia in range(1, mesQtdDia) %}
-                                        <td>
-                                            <select name="presenca[{{ aluno.ID_ALUNO }}][{{ dia }}]" class="textbox">
-                                                <option value="" {% if aluno.presenca[dia] is null %} selected {% endif %}>N/A</option>
-                                                <option value="P" {% if aluno.presenca[dia] == 'P' %} selected {% endif %}>Presente</option>
-                                                <option value="F" {% if aluno.presenca[dia] == 'F' %} selected {% endif %}>Falta</option>
-                                            </select>
-                                        </td>
-                                    {% endfor %}
-                                </span>
+								{% for dia in range(1, mesQtdDia) %}
+									{% set presenca = '( N/A )' %}
+									{% for frequencia in frequencias %}
+										{% if frequencia.ID_ALUNO == aluno.ID_ALUNO and frequencia.data_aula|date('d') == dia %}
+											{% set presenca = frequencia.presenca %}
+										{% endif %}
+									{% endfor %}
+									<td>
+										<select name="presenca[{{ aluno.ID_ALUNO }}][{{ dia }}]" class="textbox">
+											<option value="" {% if presenca is null or presenca == "" %} selected {% endif %}>N/A</option>
+											<option value="P" {% if presenca == 'P' %} selected {% endif %}>Presente</option>
+											<option value="F" {% if presenca == 'F' %} selected {% endif %}>Falta</option>
+										</select>
+									</td>
+								{% endfor %}
 							</tr>
 						{% endfor %}
 					{% else %}

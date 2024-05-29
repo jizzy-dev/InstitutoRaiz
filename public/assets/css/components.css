@@ -168,6 +168,15 @@ label {
   padding-inline: var(--em--3);
   width: auto;
 }
+
+.tb-frequencia.tr-titulo{
+  justify-content: start !important;
+  background-color: #1c1c1c;
+    color: var(--cor-12);
+}
+.tr-titulo th{
+  overflow: unset;
+}
 .tables tbody tr:not(.tr-submit, .data-table tr) {
   border-bottom: 0.2em solid #1f2926;
 }
