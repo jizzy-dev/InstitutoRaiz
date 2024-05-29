@@ -33,7 +33,26 @@ class Aluno
             throw new Exception("Erro ao cadastrar aluno.");
         }
     }
+    public static function selecionarTodos()
+    {
+        $con = Connection::getConn();
 
+        $sql = "SELECT * FROM aluno LIMIT 5";
+        $sql = $con->prepare($sql);
+        $sql->execute();
+
+        $resultado = array();
+
+        while ($row = $sql->fetchObject('Aluno')) {
+            $resultado[] = $row;
+        }
+
+        if (!$resultado) {
+            throw new Exception("Nenhum registro encontrado.");
+        }
+
+        return $resultado;
+    }
     public static function selecionarPorId($idAluno)
     {
         $con = Connection::getConn();
@@ -44,6 +63,54 @@ class Aluno
         $sql->execute();
 
         $resultado = $sql->fetchObject('Aluno');
+
+        if (!$resultado) {
+            throw new Exception("Nenhum registro encontrado.");
+        }
+
+        return $resultado;
+    }
+    public static function selecionarPorTurma($idTurma)
+    {
+        $con = Connection::getConn();
+
+        $sql = "SELECT * FROM aluno WHERE ID_TURMA = :idTurma";
+        $sql = $con->prepare($sql);
+        $sql->bindValue(':idTurma', $idTurma, PDO::PARAM_INT);
+        $sql->execute();
+
+        $resultado = $sql->fetchAll(PDO::FETCH_OBJ);
+
+        if (!$resultado) {
+            throw new Exception("Nenhum registro encontrado.");
+        }
+        
+        return $resultado;
+    }
+    public static function selecionarPorSituacao($situacao)
+    {
+        $con = Connection::getConn();
+
+        $sql = "SELECT * FROM aluno WHERE situacao_matricula = :situacao";
+        $sql = $con->prepare($sql);
+        $sql->bindValue(':situacao', $situacao);
+        $sql->execute();
+
+        return $sql->fetchAll(PDO::FETCH_OBJ);
+    }
+    public static function filtrar($nomeAluno)
+    {
+        $con = Connection::getConn();
+
+        $sql = "SELECT * FROM aluno WHERE nome LIKE :nome LIMIT 25";
+        $sql = $con->prepare($sql);
+
+        $nomeFiltrado = '%' . $nomeAluno . '%';
+
+        $sql->bindValue(':nome', $nomeFiltrado, PDO::PARAM_STR);
+        $sql->execute();
+
+        $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 
         if (!$resultado) {
             throw new Exception("Nenhum registro encontrado.");
@@ -85,7 +152,21 @@ class Aluno
             throw new Exception("Erro ao atualizar aluno.");
         }
     }
+    public static function atualizarTurma($idAluno, $idTurma)
+    {
+        $con = Connection::getConn();
 
+        $sql = "UPDATE aluno SET ID_TURMA = :ID_TURMA WHERE ID_ALUNO = :id";
+        $sql = $con->prepare($sql);
+        $sql->bindValue(':ID_TURMA', $idTurma);
+        $sql->bindValue(':id', $idAluno, PDO::PARAM_INT);
+
+        if ($sql->execute()) {
+            return true;
+        } else {
+            throw new Exception("Erro ao atualizar a turma do aluno.");
+        }
+    }
     public static function deletarPorId($idAluno)
     {
         $con = Connection::getConn();
@@ -95,46 +176,23 @@ class Aluno
         $sql->bindValue(':id', $idAluno, PDO::PARAM_INT);
         $sql->execute();
     }
-
-    public static function selecionarTodos()
+    public static function bindPadrinho($dados)
     {
         $con = Connection::getConn();
 
-        $sql = "SELECT * FROM aluno LIMIT 5";
-        $sql = $con->prepare($sql);
-        $sql->execute();
+        $sql = "UPDATE aluno 
+                SET ID_USER_PADRINHO = :ID_USER_PADRINHO 
+                WHERE ID_ALUNO = :id";
 
-        $resultado = array();
-
-        while ($row = $sql->fetchObject('Aluno')) {
-            $resultado[] = $row;
-        }
-
-        if (!$resultado) {
-            throw new Exception("Nenhum registro encontrado.");
-        }
-
-        return $resultado;
-    }
-
-    public static function filtrar($nomeAluno)
-    {
-        $con = Connection::getConn();
-
-        $sql = "SELECT * FROM aluno WHERE nome LIKE :nome LIMIT 25";
         $sql = $con->prepare($sql);
 
-        $nomeFiltrado = '%' . $nomeAluno . '%';
+        $sql->bindValue(':id', $dados['id'], PDO::PARAM_INT);
+        $sql->bindValue(':ID_USER_PADRINHO', $dados['ID_USER_PADRINHO']);
 
-        $sql->bindValue(':nome', $nomeFiltrado, PDO::PARAM_STR);
-        $sql->execute();
-
-        $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
-
-        if (!$resultado) {
-            throw new Exception("Nenhum registro encontrado.");
+        if ($sql->execute()) {
+            return true;
+        } else {
+            throw new Exception("Erro ao atualizar aluno.");
         }
-
-        return $resultado;
     }
 }

@@ -27,7 +27,6 @@ main.main-home {
 }
 .sc1-content-right {
   float: right;
-  right: 0;
   width: 45dvw;
   /* transform: translateY(-150px); */
 }

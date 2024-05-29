@@ -66,28 +66,21 @@ class FrequenciaController
             header('Location: ?pag=frequencia');
             exit;
         } else {
-            // Obter o ano e o mês atual
-            $anoAtual = date('Y');
-            $mesAtual = date('m');
+            try {
+                // Obter o ano e o mês atual
+                $anoAtual = date('Y');
+                $mesAtual = date('m');
+                $diaAtual = date('d');
+                $diaSelecionado = null;
+                // Contar quantos dias tem no mês atual
+                $mesQtdDia = cal_days_in_month(CAL_GREGORIAN, $mesAtual, $anoAtual);
 
-            // Contar quantos dias tem no mês atual
-            $mesQtdDia = cal_days_in_month(CAL_GREGORIAN, $mesAtual, $anoAtual);
+                // Obter todos os alunos
+                $turmas = Turma::selecionarTodas();
 
-            // Obter todos os alunos
-            $alunos = Aluno::selecionarPorTurma($idTurma);
+                // Verificar se o ID da turma foi passado via GET ou POST
+                $idTurma = isset($_GET['turma']) ? $_GET['turma'] : (isset($_POST['ID_TURMA']) ? $_POST['ID_TURMA'] : null);
 
-<<<<<<< Updated upstream
-            $parametros = [
-                'titulo' => 'Frequência',
-                'alunos' => $alunos,
-                'id_turma' => $idTurma,
-                'anoAtual' => $anoAtual,
-                'mesAtual' => $mesAtual,
-                'mesQtdDia' => 1 //$mesQtdDia
-            ];
-
-            echo TemplateRenderer::render('marcar_frequencia.html', $parametros);
-=======
                 $frequencias = $idTurma ? Frequencia::consultarFrequencia($idTurma) : [];
 
                 // Obter o filtro (dia ou mês)
@@ -128,7 +121,6 @@ class FrequenciaController
                     'turmas' => [],
                 ]);
             }
->>>>>>> Stashed changes
         }
     }
 }

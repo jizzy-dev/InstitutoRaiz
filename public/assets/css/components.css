@@ -189,6 +189,10 @@ label {
   color: #fff;
   white-space: wrap;
 }
+.row-interactive > td{
+  min-width: 100%;
+  max-width: none !important;
+}
 /* .row-column-titles > td:not(:last-child, :last-child) {
   border-right: var(--em--4) solid #fff;
   text-align: center;
