@@ -7,17 +7,21 @@ class TemplateRenderer
     {
         if (!isset(self::$twig)) {
             $loader = new \Twig\Loader\FilesystemLoader(['app/View']);
-            self::$twig = new \Twig\Environment($loader);
-            self::$twig->addFunction(new \Twig\TwigFunction('count_keys', 
-            function ($obj) {
-                if (is_object($obj)) {
-                    return count(get_object_vars($obj));
-                } elseif (is_array($obj)) {
-                    return count($obj);
-                } else {
-                    return 0;
+            self::$twig = new \Twig\Environment($loader, ['debug' => true]);
+            self::$twig->addFunction(new \Twig\TwigFunction(
+                'count_keys',
+                function ($obj) {
+                    if (is_object($obj)) {
+                        return count(get_object_vars($obj));
+                    } elseif (is_array($obj)) {
+                        return count($obj);
+                    } else {
+                        return 0;
+                    }
                 }
-            }));
+            ));
+            self::$twig->addGlobal('session', $_SESSION);
+            self::$twig->addExtension(new \Twig\Extension\DebugExtension());
         }
     }
 

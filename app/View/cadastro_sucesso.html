@@ -1,2 +1,10 @@
-<h1>Cadastrado com Sucesso!</h1>
+	{% if resultado is defined %}
+		<dialog class="modal" id="modal">
+			<h2>Erro:</h2>
+			<p>
+				{{resultado}}
+			</p>
+			<button class="button close-button">Fechar</button>
+		</dialog>
+	{% endif %}
 <a href="?pag=usuario&metodo=cadastrar">Fazer outro Cadastro</a>

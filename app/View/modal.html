@@ -1,0 +1,28 @@
+{% if erro is defined %}
+	<dialog class="modal modal-type-error" id="modal">
+		<div class="modal-header flex center">
+			<h3>Erro:</h3>
+		</div>
+		<div class="modal-content flex flex-column center">
+			<p>
+				{{erro}}
+			</p>
+			{% if login_redirect == true %}
+				<a href="?pag=autenticar&metodo=sair" class="no-style-link underline">Deseja entrar na conta?</a>
+			{% endif %}
+			<button class="button close-button btn-fechar-modal">Fechar</button>
+		</div>
+	</dialog>
+{% elseif mensagem is defined %}
+	<dialog class="modal modal-type-message" id="modal">
+		<div class="modal-header flex center">
+			<h3>Mensagem:</h3>
+		</div>
+		<div class="modal-content flex flex-column center">
+			<p>
+				{{mensagem}}
+			</p>
+			<button class="button close-button btn-fechar-modal">Fechar</button>
+		</div>
+	</dialog>
+{% endif %}

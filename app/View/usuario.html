@@ -50,7 +50,7 @@
                         <form id="formEditarUsuario_{{ usuarios.ID_USER }}" method="POST">
                             <input type="hidden" name="id_usuario" value="{{ usuarios.ID_USER }}">
                             <button type="button" onclick="editarUsuarioInput('{{ usuarios.ID_USER }}')"
-                                class="button">Editar</button>
+                                class="button action-buttons btn-editar"></button>
                         </form>
                     </td>
                     <td class="td-button">
@@ -58,7 +58,7 @@
                             <input type="hidden" name="id_usuario" value="{{ usuarios.ID_USER }}">
                             <button type="submit"
                                 onclick="return confirm('Tem certeza que deseja excluir este usuário?')"
-                                class="button">Excluir</button>
+                                class="button action-buttons btn-excluir"></button>
                         </form>
                     </td>
                     <td>{{usuarios.ID_USER}}</td>

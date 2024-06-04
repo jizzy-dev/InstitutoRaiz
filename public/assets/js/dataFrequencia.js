@@ -2,46 +2,43 @@ function setTodayAsDefaultDate() {
     const dateInput = document.getElementById('dateInput');
     const today = new Date();
     const yyyy = today.getFullYear();
-    const mm = String(today.getMonth() + 1).padStart(2, '0'); // Months start at 0!
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); // Os meses começam em 0!
     const dd = String(today.getDate()).padStart(2, '0');
     dateInput.value = `${yyyy}-${mm}-${dd}`;
 }
 
-// Set the default date if the page is loaded with "Dia" selected
+// Define a data padrão se a página for carregada com "Dia" selecionado
 if (document.getElementById('filtroRadioHoje').checked) {
     setTodayAsDefaultDate();
 }
+
 function parseDateInputValue(dateInputValue) {
     const parts = dateInputValue.split('-');
     const year = parseInt(parts[0]);
-    const month = parseInt(parts[1]) - 1; // Months are zero-based
+    const month = parseInt(parts[1]) - 1; // Os meses são baseados em zero
     const day = parseInt(parts[2]);
-    return new Date(year, month, day);
+    return new Date(Date.UTC(year, month, day)); // Use UTC para evitar problemas de fuso horário
 }
+
 function setDataTable(objData) {
     const filtroRadio = document.querySelector('input[name="filtroRadio"]:checked').value;
     const MesColumn = document.querySelector('tbody');
 
-
     const alunos = objData.alunos;
     const frequencias = objData.frequencias;
-
 
     const dateInputValue = document.getElementById('dateInput').value;
     const selectedDate = parseDateInputValue(dateInputValue);
 
-    const dia = selectedDate.getDate();
-
     const countMes = objData.mes;
 
-    // console.log('Quantidade de alunos:', Object.keys(alunos).length);
-    // console.log('Quantidade de dias no mês:', countMes);
-    // console.log('Quantidade dia Selecionado:', dia);
-
-    MesColumn.innerHTML = ''
+    MesColumn.innerHTML = '';
 
     switch (filtroRadio) {
         case 'd':
+            const dia = selectedDate.getUTCDate(); // Use getUTCDate para consistência
+            console.log('Data Selecionada:', selectedDate); // Log da data selecionada
+
             MesColumn.innerHTML =
                 `<tr class="tb-frequencia tr-titulo">
                     <td>ID</td>
@@ -54,7 +51,9 @@ function setDataTable(objData) {
                 let presenca = '( N/A )';
                 for (const idFrequencia in frequencias) {
                     const frequencia = frequencias[idFrequencia];
-                    if (frequencia.ID_ALUNO === aluno.ID_ALUNO && new Date(frequencia.data_aula).getDate() === dia) {
+                    const freqDate = new Date(frequencia.data_aula);
+                    const freqDia = freqDate.getUTCDate(); // Use getUTCDate para consistência
+                    if (frequencia.ID_ALUNO === aluno.ID_ALUNO && freqDia === dia) {
                         presenca = frequencia.presenca;
                         break;
                     }
@@ -64,7 +63,7 @@ function setDataTable(objData) {
                     <td>${aluno.ID_ALUNO}</td>
                     <td>${aluno.nome}</td>
                     <td>
-                        <select name="presenca[${aluno.ID_ALUNO}][${dia}]" class="textbox">
+                        <select name="presenca[${aluno.ID_ALUNO}][${dia}]" class="textbox" ${(presenca === 'P' ? 'disabled' : (presenca === 'F') ? 'disabled' : '')}>
                             <option value="" ${presenca === '' ? 'selected' : ''}>N/A</option>
                             <option value="P" ${presenca === 'P' ? 'selected' : ''}>Presente</option>
                             <option value="F" ${presenca === 'F' ? 'selected' : ''}>Falta</option>
@@ -76,14 +75,14 @@ function setDataTable(objData) {
         case 'm':
             let rowContent =
                 `<tr class="tb-frequencia tr-titulo">
-                <td> ID </td>
-                <td> Aluno </td>`;
+                <td>ID</td>
+                <td>Aluno</td>`;
             for (let countDia = 1; countDia <= countMes; countDia++) {
-                rowContent += `<td> ${countDia} </td>`;
+                rowContent += `<td>${countDia}</td>`;
             }
             rowContent += '</tr>';
             MesColumn.innerHTML += rowContent;
-
+            console.clear();
             for (const idAluno in alunos) {
                 const aluno = alunos[idAluno];
                 let rowContent =
@@ -94,14 +93,15 @@ function setDataTable(objData) {
                     let presenca = '( N/A )';
                     for (const idFrequencia in frequencias) {
                         const frequencia = frequencias[idFrequencia];
-                        if (frequencia.ID_ALUNO === aluno.ID_ALUNO && new Date(frequencia.data_aula).getDate() === countDia) {
+                        const freqDate = new Date(frequencia.data_aula);
+                        const dia = freqDate.getUTCDate(); // Use getUTCDate para consistência
+                        if (frequencia.ID_ALUNO === aluno.ID_ALUNO && dia === countDia) {
                             presenca = frequencia.presenca;
-                            break;
                         }
                     }
                     rowContent +=
                         `<td>
-                        <select name="presenca[${aluno.ID_ALUNO}][${countDia}]" class="textbox">
+                        <select name="presenca[${aluno.ID_ALUNO}][${countDia}]" class="textbox" ${(presenca === 'P' ? 'disabled' : (presenca === 'F') ? 'disabled' : '')}>
                             <option value="" ${presenca === '' ? 'selected' : ''}>N/A</option>
                             <option value="P" ${presenca === 'P' ? 'selected' : ''}>Presente</option>
                             <option value="F" ${presenca === 'F' ? 'selected' : ''}>Falta</option>
@@ -111,10 +111,6 @@ function setDataTable(objData) {
                 rowContent += '</tr>';
                 MesColumn.innerHTML += rowContent;
             }
-            break;      // console.log(countAluno);
-
-
-        // Submete o formulário
-        // document.getElementById('frequenciaForm').submit();
+            break;
     }
 }

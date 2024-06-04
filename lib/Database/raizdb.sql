@@ -18,7 +18,7 @@ DEFAULT CHARACTER SET = utf8mb4;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `raizdb`.`imagem` (
   `ID_IMAGEM` INT NOT NULL AUTO_INCREMENT,
-  `imgCaminho` VARCHAR(100) NULL DEFAULT NULL,
+  `imgCaminho` TEXT NULL DEFAULT NULL,
   PRIMARY KEY (`ID_IMAGEM`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
@@ -29,11 +29,11 @@ DEFAULT CHARACTER SET = utf8mb4;
 CREATE TABLE IF NOT EXISTS `raizdb`.`usuario` (
   `ID_USER` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(80) NOT NULL,
-  `cpf` VARCHAR(12) NOT NULL,
+  `cpf` VARCHAR(12) UNIQUE NOT NULL,
   `rg` VARCHAR(12) NOT NULL,
   `contato` VARCHAR(12) NOT NULL,
-  `email` VARCHAR(80) NOT NULL,
-  `senha` VARCHAR(32) NOT NULL,
+  `email` VARCHAR(80) UNIQUE NOT NULL,
+  `senha` VARCHAR(256) NOT NULL,
   `data_nasc` DATE NOT NULL,
   `cep` VARCHAR(12) NOT NULL,
   `logradouro` VARCHAR(80) NOT NULL,
@@ -44,8 +44,7 @@ CREATE TABLE IF NOT EXISTS `raizdb`.`usuario` (
   `estado` VARCHAR(50) NOT NULL,
   `isResponsavel` TINYINT(1) NULL DEFAULT NULL,
   `isPadrinho` TINYINT(1) NULL DEFAULT NULL,
-  `isAdm` TINYINT NULL,
-  `isMod` TINYINT NULL,
+  `perfil_acesso` ENUM('A', 'M', 'D', 'U') NOT NULL DEFAULT 'U',
   `ID_IMAGEM` INT NOT NULL,
   PRIMARY KEY (`ID_USER`),
   INDEX `fk_Usuario_Imagem_idx` (`ID_IMAGEM` ASC),
@@ -61,11 +60,11 @@ DEFAULT CHARACTER SET = utf8mb4;
 CREATE TABLE IF NOT EXISTS `raizdb`.`aluno` (
   `ID_ALUNO` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(80) NOT NULL,
-  `cpf` VARCHAR(13) NOT NULL,
+  `cpf` VARCHAR(13) UNIQUE NOT NULL,
   `rg` VARCHAR(13) NOT NULL,
   `data_nasc` DATE NOT NULL,
-  `certidao` VARCHAR(45) NOT NULL,
-  `carteira_vacina` VARCHAR(45) NOT NULL,
+  `certidao` VARCHAR(45) UNIQUE NOT NULL,
+  `carteira_vacina` VARCHAR(45) UNIQUE NOT NULL,
   `situacao_matricula` ENUM('pendente', 'aprovado', 'reprovado') NOT NULL,
   `data_matricula` DATE NOT NULL,
   `data_inicio` DATE NOT NULL,
@@ -113,7 +112,7 @@ DEFAULT CHARACTER SET = utf8mb4;
 -- Insert `raizdb`.`imagem`
 -- -----------------------------------------------------
 INSERT INTO `imagem` (`ID_IMAGEM`, `imgCaminho`) VALUES
-(1, 'caminho/teste/imagem.png');
+(1, 'https://localhost/InstitutoRaiz/public/assets/images/vectors/icons/user-placeholder-vector.svg');
 
 -- -----------------------------------------------------
 -- Insert `raizdb`.`turma`

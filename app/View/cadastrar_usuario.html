@@ -1,118 +1,131 @@
 {% include 'header.html' %}
 <main class="main-cad">
-    <form action="?pag=usuario&metodo=cadastrar" method="POST" class="form-cad flex flex-column center">
-        <table cellspacing="0" class="tables tb-matricula">
-            <thead>
-                <tr class="tr-titulo">
-                    <th colspan="2" class="tb-matricula-th">Cadastro de Usuário</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Informações do Usuário -->
-                <tr class="tr-titulo-section">
-                    <th colspan="2" class="tb-matricula-th">Informações do Usuário</th>
-                </tr>
-                <tr>
-                    <td>Nome do Usuário</td>
-                    <td>
-                        <input type="text" name="nome_responsavel" class="textbox cad-textbox" placeholder="Seu Nome" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Email do Usuário</td>
-                    <td>
-                        <input type="email" name="email_responsavel" class="textbox cad-textbox"
-                            placeholder="exemplo@email.com" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Senha</td>
-                    <td>
-                        <input type="password" name="senha_responsavel" class="textbox cad-textbox" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Data de Nascimento do Usuário</td>
-                    <td>
-                        <input type="date" name="data_nasc_responsavel" class="textbox cad-textbox" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>CPF do Usuário</td>
-                    <td>
-                        <input type="text" name="cpf_responsavel" class="textbox cad-textbox"
-                            placeholder="Ex: 000.000.000-00" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>RG do Usuário</td>
-                    <td>
-                        <input type="text" name="rg_responsavel" class="textbox cad-textbox"
-                            placeholder="Ex: 00.000.000-0" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Contato do Usuário</td>
-                    <td>
-                        <input type="text" name="contato_responsavel" class="textbox cad-textbox"
-                            placeholder="Ex: (00) 00000-0000" required>
-                    </td>
-                </tr>
-                <tr class="tr-titulo-section">
-                    <th colspan="2" class="tb-matricula-th">Dados de Endereço</th>
-                </tr>
-                <tr>
-                    <td>CEP</td>
-                    <td>
-                        <input type="text" name="cep" class="textbox cad-textbox" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Logradouro</td>
-                    <td>
-                        <input type="text" name="logradouro" class="textbox cad-textbox" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Bairro</td>
-                    <td>
-                        <input type="text" name="bairro" class="textbox cad-textbox" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Número</td>
-                    <td>
-                        <input type="text" name="numero_endereco" class="textbox cad-textbox" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Complemento</td>
-                    <td>
-                        <input type="text" name="complemento" class="textbox cad-textbox" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Cidade</td>
-                    <td>
-                        <input type="text" name="cidade" class="textbox cad-textbox" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Estado (UF)</td>
-                    <td>
-                        <input type="text" name="estado" class="textbox cad-textbox" required>
-                    </td>
-                </tr>
-                <!-- Botão de Submit -->
-                <tr class="tr-titulo-section tr-submit">
-                    <th colspan="2" class="tb-matricula-th text-center">
-                        <button type="submit" class="button btn-form-submit">
-                            Cadastrar Usuário
-                        </button>
-                    </th>
-                </tr>
-            </tbody>
-        </table>
-    </form>
+
+	<form action="?pag=usuario&metodo=cadastrar" method="POST" class="form-cad flex flex-column center" enctype="multipart/form-data">
+		<table cellspacing="0" class="tables tb-matricula">
+			<thead>
+				<tr class="tr-titulo">
+					<th colspan="2" class="tb-matricula-th">Cadastro de Usuário</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- Foto de Perfil -->
+				<tr class="tr-titulo-section">
+					<th colspan="2" class="tb-matricula-th">Foto de Perfil</th>
+				</tr>
+				<tr>
+					<td>Inserir imagem</td>
+					<td class="center">
+						<img src="https://localhost/InstitutoRaiz/public/assets/images/vectors/icons/user-placeholder-vector.svg" alt="Imagem do usuário" id="imgView" class="profile-image">
+					</td>
+					<td>
+						<input type="file" name="imgInput" id="imgInput" accept="image/*">
+					</td>
+					<td><input type="checkbox" name="noImage" id="noImage">
+						Sem Foto</td>
+				</tr>
+				<!-- Informações do Usuário -->
+				<tr class="tr-titulo-section">
+					<th colspan="2" class="tb-matricula-th">Informações do Usuário</th>
+				</tr>
+				<tr>
+					<td>Nome do Usuário</td>
+					<td>
+						<input type="text" name="nome_responsavel" class="textbox cad-textbox" placeholder="Seu Nome" required>
+					</td>
+				</tr>
+				<tr>
+					<td>Email do Usuário</td>
+					<td>
+						<input type="email" name="email_responsavel" class="textbox cad-textbox" placeholder="exemplo@email.com" required>
+					</td>
+				</tr>
+				<tr>
+					<td>Senha</td>
+					<td>
+						<input type="password" name="senha_responsavel" class="textbox cad-textbox" required>
+					</td>
+				</tr>
+				<tr>
+					<td>Data de Nascimento do Usuário</td>
+					<td>
+						<input type="date" name="data_nasc_responsavel" class="textbox cad-textbox" required>
+					</td>
+				</tr>
+				<tr>
+					<td>CPF do Usuário</td>
+					<td>
+						<input type="text" name="cpf_responsavel" class="textbox cad-textbox" placeholder="Ex: 000.000.000-00" required>
+					</td>
+				</tr>
+				<tr>
+					<td>RG do Usuário</td>
+					<td>
+						<input type="text" name="rg_responsavel" class="textbox cad-textbox" placeholder="Ex: 00.000.000-0" required>
+					</td>
+				</tr>
+				<tr>
+					<td>Contato do Usuário</td>
+					<td>
+						<input type="text" name="contato_responsavel" class="textbox cad-textbox" placeholder="Ex: (00) 00000-0000" required>
+					</td>
+				</tr>
+				<tr class="tr-titulo-section">
+					<th colspan="2" class="tb-matricula-th">Dados de Endereço</th>
+				</tr>
+				<tr>
+					<td>CEP</td>
+					<td>
+						<input type="text" name="cep" class="textbox cad-textbox" required>
+					</td>
+				</tr>
+				<tr>
+					<td>Logradouro</td>
+					<td>
+						<input type="text" name="logradouro" class="textbox cad-textbox" required>
+					</td>
+				</tr>
+				<tr>
+					<td>Bairro</td>
+					<td>
+						<input type="text" name="bairro" class="textbox cad-textbox" required>
+					</td>
+				</tr>
+				<tr>
+					<td>Número</td>
+					<td>
+						<input type="text" name="numero_endereco" class="textbox cad-textbox" required>
+					</td>
+				</tr>
+				<tr>
+					<td>Complemento</td>
+					<td>
+						<input type="text" name="complemento" class="textbox cad-textbox" required>
+					</td>
+				</tr>
+				<tr>
+					<td>Cidade</td>
+					<td>
+						<input type="text" name="cidade" class="textbox cad-textbox" required>
+					</td>
+				</tr>
+				<tr>
+					<td>Estado (UF)</td>
+					<td>
+						<input type="text" name="estado" class="textbox cad-textbox" required>
+					</td>
+				</tr>
+				<!-- Botão de Submit -->
+				<tr class="tr-titulo-section tr-submit">
+					<th colspan="2" class="tb-matricula-th text-center">
+						<button type="submit" class="button btn-form-submit">
+							Cadastrar Usuário
+						</button>
+					</th>
+				</tr>
+			</tbody>
+		</table>
+	</form>
 </main>
 {% include 'footer.html' %}
+<script src="public/assets/js/inputImage.js"></script>

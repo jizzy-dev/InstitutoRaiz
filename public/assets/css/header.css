@@ -2,7 +2,7 @@ header {
     position: absolute;
     width: 100%;
     height: var(--header-height);
-    z-index: 1;
+    z-index: 4;
   }
   
   header::after {
