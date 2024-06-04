@@ -2,6 +2,45 @@
 
 class Usuario
 {
+    public static function Create($dados)
+    {
+        $con = Connection::getConn();
+
+        $sql = "INSERT INTO usuario 
+        (nome, cpf, rg, contato, email, senha, data_nasc, cep, logradouro, 
+        bairro, numero_endereco, complemento, cidade, estado, isResponsavel, 
+        isPadrinho, perfil_acesso, ID_IMAGEM) 
+        VALUES (:nome, :cpf, :rg, :contato, :email, :senha, :data_nasc, :cep, 
+        :logradouro, :bairro, :numero_endereco, :complemento, :cidade, :estado, 
+        :isResponsavel, :isPadrinho, :perfil_acesso, :ID_IMAGEM)";
+
+        $sql = $con->prepare($sql);
+
+        $sql->bindValue(':nome', htmlspecialchars($dados['nome']));
+        $sql->bindValue(':cpf', htmlspecialchars($dados['cpf']));
+        $sql->bindValue(':rg', htmlspecialchars($dados['rg']));
+        $sql->bindValue(':contato', htmlspecialchars($dados['contato']));
+        $sql->bindValue(':email', htmlspecialchars($dados['email']));
+        $sql->bindValue(':senha', password_hash($dados['senha'], PASSWORD_DEFAULT));
+        $sql->bindValue(':data_nasc', htmlspecialchars($dados['data_nasc']));
+        $sql->bindValue(':cep', htmlspecialchars($dados['cep']));
+        $sql->bindValue(':logradouro', htmlspecialchars($dados['logradouro']));
+        $sql->bindValue(':bairro', htmlspecialchars($dados['bairro']));
+        $sql->bindValue(':numero_endereco', htmlspecialchars($dados['numero_endereco']));
+        $sql->bindValue(':complemento', htmlspecialchars($dados['complemento']));
+        $sql->bindValue(':cidade', htmlspecialchars($dados['cidade']));
+        $sql->bindValue(':estado', htmlspecialchars($dados['estado']));
+        $sql->bindValue(':isResponsavel', isset($dados['isResponsavel']) ? htmlspecialchars($dados['isResponsavel']) : 0);
+        $sql->bindValue(':isPadrinho', isset($dados['isPadrinho']) ? htmlspecialchars($dados['isPadrinho']) : 0);
+        $sql->bindValue(':perfil_acesso', isset($dados['perfil_acesso']) ? htmlspecialchars($dados['perfil_acesso']) : 'U');
+        $sql->bindValue(':ID_IMAGEM', isset($dados['ID_IMAGEM'])?$dados['ID_IMAGEM']:1);
+
+        if ($sql->execute()) {
+            return $con->lastInsertId();
+        } else {
+            throw new Exception("Erro ao cadastrar um usuário.");
+        }
+    }
     public static function selecionaTodos()
     {
         $con = Connection::getConn();
@@ -39,55 +78,6 @@ class Usuario
 
         return $resultado;
     }
-    public static function Create($dados)
-    {
-        $con = Connection::getConn();
-
-        $sql = "INSERT INTO usuario 
-        (nome, cpf, rg, contato, email, senha, data_nasc, cep, logradouro, 
-        bairro, numero_endereco, complemento, cidade, estado, isResponsavel, 
-        isPadrinho, isAdm, isMod, ID_IMAGEM) 
-        VALUES (:nome, :cpf, :rg, :contato, :email, :senha, :data_nasc, :cep, 
-        :logradouro, :bairro, :numero_endereco, :complemento, :cidade, :estado, 
-        :isResponsavel, :isPadrinho, :isAdm, :isMod, :ID_IMAGEM)";
-
-        $sql = $con->prepare($sql);
-
-        $sql->bindValue(':nome', $dados['nome']);
-        $sql->bindValue(':cpf', $dados['cpf']);
-        $sql->bindValue(':rg', $dados['rg']);
-        $sql->bindValue(':contato', $dados['contato']);
-        $sql->bindValue(':email', $dados['email']);
-        $sql->bindValue(':senha', $dados['senha']);
-        $sql->bindValue(':data_nasc', $dados['data_nasc']);
-        $sql->bindValue(':cep', $dados['cep']);
-        $sql->bindValue(':logradouro', $dados['logradouro']);
-        $sql->bindValue(':bairro', $dados['bairro']);
-        $sql->bindValue(':numero_endereco', $dados['numero_endereco']);
-        $sql->bindValue(':complemento', $dados['complemento']);
-        $sql->bindValue(':cidade', $dados['cidade']);
-        $sql->bindValue(':estado', $dados['estado']);
-        $sql->bindValue(':isResponsavel', isset($dados['isResponsavel']) ? $dados['isResponsavel'] : null);
-        $sql->bindValue(':isPadrinho', isset($dados['isPadrinho']) ? $dados['isPadrinho'] : null);
-        $sql->bindValue(':isAdm', isset($dados['isAdm']) ? $dados['isAdm'] : null);
-        $sql->bindValue(':isMod', isset($dados['isMod']) ? $dados['isMod'] : null);
-        $sql->bindValue(':ID_IMAGEM', $dados['ID_IMAGEM']);
-
-        if ($sql->execute()) {
-            return $con->lastInsertId();
-        } else {
-            throw new Exception("Erro ao cadastrar um usuário.");
-        }
-    }
-    public static function deletarPorId($idUser)
-    {
-        $con = Connection::getConn();
-
-        $sql = "DELETE FROM usuario WHERE ID_USER = :id";
-        $sql = $con->prepare($sql);
-        $sql->bindValue(':id', $idUser, PDO::PARAM_INT);
-        $sql->execute();
-    }
     public static function atualizarPorId($dados)
     {
         $con = Connection::getConn();
@@ -99,31 +89,30 @@ class Usuario
         numero_endereco = :numero_endereco, complemento = :complemento, 
         cidade = :cidade, 
         estado = :estado, isResponsavel = :isResponsavel, isPadrinho = :isPadrinho, 
-        isAdm = :isAdm, isMod = :isMod, ID_IMAGEM = :id_imagem 
+        perfil_acesso = :perfil_acesso, ID_IMAGEM = :id_imagem 
         WHERE ID_USER = :id";
 
         $sql = $con->prepare($sql);
 
         $sql->bindValue(':id', $dados['id'], PDO::PARAM_INT);
-        $sql->bindValue(':nome', $dados['nome']);
-        $sql->bindValue(':cpf', $dados['cpf']);
-        $sql->bindValue(':rg', $dados['rg']);
-        $sql->bindValue(':contato', $dados['contato']);
-        $sql->bindValue(':email', $dados['email']);
-        $sql->bindValue(':senha', $dados['senha']);
-        $sql->bindValue(':data_nasc', $dados['data_nasc']);
-        $sql->bindValue(':cep', $dados['cep']);
-        $sql->bindValue(':logradouro', $dados['logradouro']);
-        $sql->bindValue(':bairro', $dados['bairro']);
-        $sql->bindValue(':numero_endereco', $dados['numero_endereco']);
-        $sql->bindValue(':complemento', $dados['complemento']);
-        $sql->bindValue(':cidade', $dados['cidade']);
-        $sql->bindValue(':estado', $dados['estado']);
-        $sql->bindValue(':isResponsavel', isset($dados['isResponsavel']) ? $dados['isResponsavel'] : 0);
-        $sql->bindValue(':isPadrinho', isset($dados['isPadrinho']) ? $dados['isPadrinho'] : 0);
-        $sql->bindValue(':isAdm', isset($dados['isAdm']) ? $dados['isAdm'] : 0);
-        $sql->bindValue(':isMod', isset($dados['isMod']) ? $dados['isMod'] : 0);
-        $sql->bindValue(':id_imagem', $dados['ID_IMAGEM']);
+        $sql->bindValue(':nome', htmlspecialchars($dados['nome']));
+        $sql->bindValue(':cpf', htmlspecialchars($dados['cpf']));
+        $sql->bindValue(':rg', htmlspecialchars($dados['rg']));
+        $sql->bindValue(':contato', htmlspecialchars($dados['contato']));
+        $sql->bindValue(':email', htmlspecialchars($dados['email']));
+        $sql->bindValue(':senha', password_hash($dados['senha'], PASSWORD_DEFAULT));
+        $sql->bindValue(':data_nasc', htmlspecialchars($dados['data_nasc']));
+        $sql->bindValue(':cep', htmlspecialchars($dados['cep']));
+        $sql->bindValue(':logradouro', htmlspecialchars($dados['logradouro']));
+        $sql->bindValue(':bairro', htmlspecialchars($dados['bairro']));
+        $sql->bindValue(':numero_endereco', htmlspecialchars($dados['numero_endereco']));
+        $sql->bindValue(':complemento', htmlspecialchars($dados['complemento']));
+        $sql->bindValue(':cidade', htmlspecialchars($dados['cidade']));
+        $sql->bindValue(':estado', htmlspecialchars($dados['estado']));
+        $sql->bindValue(':isResponsavel', isset($dados['isResponsavel']) ? htmlspecialchars($dados['isResponsavel']) : 0);
+        $sql->bindValue(':isPadrinho', isset($dados['isPadrinho']) ? htmlspecialchars($dados['isPadrinho']) : 0);
+        $sql->bindValue(':perfil_acesso', isset($dados['perfil_acesso']) ? htmlspecialchars($dados['perfil_acesso']) : 'U');
+        $sql->bindValue(':id_imagem', 1);
 
         if ($sql->execute()) {
             return true;
@@ -131,6 +120,16 @@ class Usuario
             throw new Exception("Erro ao atualizar usuário.");
         }
     }
+    public static function deletarPorId($idUser)
+    {
+        $con = Connection::getConn();
+
+        $sql = "DELETE FROM usuario WHERE ID_USER = :id";
+        $sql = $con->prepare($sql);
+        $sql->bindValue(':id', $idUser, PDO::PARAM_INT);
+        $sql->execute();
+    }
+
     public static function bindPadrinho($dados)
     {
         $con = Connection::getConn();

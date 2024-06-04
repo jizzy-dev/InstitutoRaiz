@@ -1,8 +1,7 @@
 <main class="main-consultar">
-	<div class="table-wrapper flex flex-column center">
-		<form id="frequenciaForm" action="?pag=frequencia&metodo=marcarPresenca" method="POST">
-
-			<table cellspacing="0" class="tables data-table tb-consulta tb-frequencia flex flex-column" data-frequencia="{{dataFrequenciaObject}}">
+	<form id="frequenciaForm" action="?pag=frequencia&metodo=marcarPresenca" method="POST" class="flex flex-column center">
+		<div class="tabble-wrapper">
+			<table cellspacing="0" class="tables data-table tb-consulta flex flex-column" data-frequencia="{{dataFrequenciaObject}}">
 				<thead>
 					<tr class="tr-titulo">
 						<th colspan="{{mesQtdDia + 2}}">Marcar Presença</th>
@@ -36,7 +35,6 @@
 							</fieldset>
 						</td>
 					</tr>
-
 				</thead>
 				<tbody>
 					<tr class="row-column-titles row-columns tr-consultar-id">
@@ -65,7 +63,7 @@
 										{% endif %}
 									{% endfor %}
 									<td>
-										<select name="presenca[{{ aluno.ID_ALUNO }}][{{ dia }}]" class="textbox">
+										<select name="presenca[{{ aluno.ID_ALUNO }}][{{ dia }}]" class="textbox" {% if presenca == 'P' or presenca == 'F'%} disabled {% endif %}>
 											<option value="" {% if presenca is null or presenca == "" %} selected {% endif %}>N/A</option>
 											<option value="P" {% if presenca == 'P' %} selected {% endif %}>Presente</option>
 											<option value="F" {% if presenca == 'F' %} selected {% endif %}>Falta</option>
@@ -80,10 +78,10 @@
 						</tr>
 					{% endif %}
 				</tbody>
+				{% if alunos is not empty %}
+					<button type="submit" class="button">Salvar Presença</button>
+				{% endif %}
 			</table>
-			{% if alunos is not empty %}
-				<button type="submit" class="button">Salvar Presença</button>
-			{% endif %}
-		</form>
-	</div>
+		</div>
+	</form>
 </main>

@@ -5,127 +5,133 @@
   font-family: Montserrat, sans-serif;
   margin: 0;
   padding: 0;
+  box-sizing: inherit;
 }
 html {
+  box-sizing: border-box;
   scroll-behavior: smooth;
 }
 body {
   background-color: #ffffff;
   width: 100%;
+  min-height: 100dvh;
 }
-main:not(.main-home) {
+main:not(.main-home,.main-erro) {
   font-size: var(--font-clamp-2);
   padding: calc(var(--header-height) + 4em) 0 4em 0;
 }
 .flex {
-  display: flex;
+  display: flex !important;
 }
 .flex-column {
-  flex-direction: column;
+  flex-direction: column !important;
 }
 .flex-row {
-  flex-direction: row;
+  flex-direction: row !important;
 }
 .grid {
-  display: grid;
+  display: grid !important;
 }
 .absolute {
-  position: absolute;
+  position: absolute !important;
 }
 .fixed {
-  position: fixed;
+  position: fixed !important;
 }
 .relative {
-  position: relative;
+  position: relative !important;
 }
 .sticky {
-  position: sticky;
+  position: sticky !important;
 }
 .top {
-  top: 0;
+  top: 0 !important;
 }
 .right {
-  right: 0;
+  right: 0 !important;
 }
 .left {
-  left: 0;
+  left: 0 !important;
 }
 .bottom {
-  bottom: 0;
+  bottom: 0 !important;
 }
 .width-100pc {
-  width: 100%;
+  width: 100% !important;
 }
 .height-100pc {
-  height: 100%;
+  height: 100% !important;
 }
 .size-100pc {
-  width: 100%;
-  height: 100%;
+  width: 100% !important;
+  height: 100% !important;
 }
 .center {
-  justify-content: center;
-  align-items: center;
+  justify-content: center !important;
+  align-items: center !important;
 }
 .justify-center {
-  justify-content: center;
+  justify-content: center !important;
 }
 .justify-start {
-  justify-content: start ;
+  justify-content: start  !important;
 }
 .justify-end {
-  justify-content: end;
+  justify-content: end !important;
 }
 .flex-start {
   justify-content: flex-start !important;
 }
 .flex-end {
-  justify-content: flex-end;
+  justify-content: flex-end !important;
 }
 .align-center {
-  align-items: center;
+  align-items: center !important;
 }
 .space-between {
-  justify-content: space-between;
+  justify-content: space-between !important;
 }
 .space-around {
-  justify-content: space-around;
+  justify-content: space-around !important;
 }
 .space-evenly {
-  justify-content: space-evenly;
+  justify-content: space-evenly !important;
 }
 .text-center {
-  text-align: center;
+  text-align: center !important;
 }
 .text-left {
-  text-align: left;
+  text-align: left !important;
 }
 .text-right {
-  text-align: right;
+  text-align: right !important;
 }
 .border-box {
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
 .weight-lighter {
-  font-weight: lighter;
+  font-weight: lighter !important;
 }
 .weight-normal {
-  font-weight: normal;
+  font-weight: normal !important;
 }
 .weight-bold {
-  font-weight: bold;
+  font-weight: bold !important;
 }
 .weight-semi-bold {
-  font-weight: 400;
+  font-weight: 400 !important;
 }
 .weight-bolder {
-  font-weight: bolder;
+  font-weight: bolder !important;
 }
 .overflow-hidden {
-  overflow: hidden;
+  overflow: hidden !important;
 }
 .textflow-ellipse {
-  text-overflow: ellipsis;
+  text-overflow: ellipsis !important;
+}
+.textflow-default {
+  text-overflow: unset !important;
 }
 h1 {
   font-size: var(--font-clamp-5);
@@ -152,14 +158,14 @@ small {
   font-size: var(--font-clamp-1);
 }
 .uppercase {
-  text-transform: uppercase;
+  text-transform: uppercase !important;
 }
 .italic {
-  font-style: italic;
+  font-style: italic !important;
 }
 .montserrat {
-  font-family: Montserrat;
+  font-family: Montserrat !important;
 }
 .font-inherit {
-  font-size: inherit;
+  font-size: inherit !important;
 }

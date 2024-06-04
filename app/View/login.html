@@ -1,0 +1,66 @@
+{% include 'header.html' %}
+<main class="main-login">
+	{% if mensagem is defined %}
+		<dialog class="modal" id="modal">
+			<h2>Erro:</h2>
+			<p>
+				{{mensagem}}
+			</p>
+			<button class="button close-button">Fechar</button>
+		</dialog>
+	{% endif %}
+	<form action="?pag=autenticar&metodo=logar" method="POST" class="form-cad flex flex-column center">
+		<table cellspacing="0" class="tables tb-matricula">
+			{% if session.user is defined %}
+				<thead>
+					<tr class="tr-titulo">
+						<th colspan="2" class="tb-matricula-th">Login</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Você já está Logado:</td>
+					</tr>
+					<tr>
+						<td class="flex flex-column center">
+							<img src="{{session.imagem.imgCaminho}}" alt="" class="profile-image" role="image">
+							<h5>{{session.user.email}}</h5>
+						</td>
+					</tr>
+					<tr>
+						<td class="center">
+							<a href="?pag=autenticar&metodo=sair" class="no-style-link">Entrar com outra Conta?</a>
+						</td>
+					</tr>
+				</tbody>
+			{% else %}
+				<thead>
+					<tr class="tr-titulo">
+						<th colspan="2" class="tb-matricula-th">Login</th>
+					</tr>
+				</thead>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Email</td>
+					<td>
+						<input type="email" name="email" class="textbox cad-textbox" placeholder="exemplo@email.com" required>
+					</td>
+				</tr>
+				<tr>
+					<td>Senha</td>
+					<td>
+						<input type="password" name="senha" class="textbox cad-textbox" required>
+					</td>
+				</tr>
+				<tr class="tr-titulo-section tr-submit">
+					<th colspan="2" class="tb-matricula-th text-center">
+						<button type="submit" class="button btn-form-submit">
+							Entrar
+						</button>
+					</th>
+				</tr>
+			</tbody>
+		{% endif %}
+	</table>
+</form></main>{% include 'footer.html' %}

@@ -1,7 +1,6 @@
 main.main-home {
   background-color: #ffffff;
   padding-top: var(--header-height);
-  height: 100%;
 }
 .sections {
   margin-inline: auto;
@@ -133,7 +132,7 @@ main.main-home {
   background-color: var(--cor-6);
   max-width: none !important;
   gap: 2em;
-  z-index: 1;
+  z-index: 2;
 }
 #sc3::before {
   content: "";
@@ -164,7 +163,7 @@ main.main-home {
   background-color: var(--cor-9);
   max-width: none !important;
   gap: 2em;
-  z-index: 1;
+  z-index: 3;
 }
 #sc4::before {
   content: "";

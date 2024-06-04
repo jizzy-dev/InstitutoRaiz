@@ -2,7 +2,7 @@ function toggleRelationship() {
     var rows = document.querySelectorAll('.tr-toggle');
     rows.forEach(function (row) {
         if (row.style.display === 'none' || row.style.display === '') {
-            row.style.display = 'table-row';
+            row.style.display = 'flex';
         } else {
             row.style.display = 'none';
         }
@@ -19,5 +19,5 @@ function toggleDateInput() {
         dateInput.style.display = 'none';
         dateInput.required = false;
     }
-}
 
+}

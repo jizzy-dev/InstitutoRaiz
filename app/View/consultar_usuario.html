@@ -15,7 +15,7 @@
                         <td class="td-button"></td>
                         <td class="td-button"></td>
                         <td class="td-button"></td>
-                        <td>ID <div class="resize-handle"></div>
+                        <td class="td-ID">ID <div class="resize-handle"></div>
                         </td>
                         <td>Nome <div class="resize-handle"></div>
                         </td>
@@ -54,17 +54,14 @@
                         <td class="td-button">
                             <form action="?pag=usuario&metodo=index" method="POST">
                                 <input type="hidden" name="id_usuario" value="{{ usuario.ID_USER }}">
-                                <a href="?pag=usuario&id={{ usuario.ID_USER}}" class="button flex center">
-                                    <img src="/InstitutoRaiz/public/assets/images/vectors/icons/redirect-icon.svg"
-                                        alt="" class="icon">
-                                </a>
+                                <a href="?pag=usuario&id={{ usuario.ID_USER}}" class="button action-buttons btn-redirect flex center"></a>
                             </form>
                         </td>
                         <td class="td-button">
                             <form id="formEditarUsuario_{{ usuario.ID_USER }}" method="POST">
                                 <input type="hidden" name="id_usuario" value="{{ usuario.ID_USER }}">
                                 <button type="button" onclick="editarUsuarioInput('{{ usuario.ID_USER }}')"
-                                    class="button">Editar</button>
+                                    class="button action-buttons btn-editar"></button>
                             </form>
                         </td>
                         <td class="td-button">
@@ -72,11 +69,11 @@
                                 <input type="hidden" name="id_usuario" value="{{ usuario.ID_USER }}">
                                 <button type="submit"
                                     onclick="return confirm('Tem certeza que deseja excluir este usuário?')"
-                                    class="button">Excluir</button>
+                                    class="button action-buttons btn-excluir"></button>
                             </form>
                         </td>
 
-                        <td>{{usuario.ID_USER}}</td>
+                        <td class="td-ID">{{usuario.ID_USER}}</td>
                         <td>{{usuario.nome}}</td>
                         <td>{{usuario.email}}</td>
                         <td>{{usuario.senha}}</td>
