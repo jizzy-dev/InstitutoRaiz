@@ -30,12 +30,25 @@
 /* .textbox:required:focus{
   box-shadow: rgb(248, 51, 64) 1px 1px 0px 2px;
 } */
+
 /* anchors */
 :is(a, svg):is(:link, :hover, :active) {
   transition: 0.3s;
 }
 :is(a, svg):hover {
   text-shadow: var(--text-shadow-1);
+}
+.no-style-link {
+  text-decoration: none;
+  font-size: var(--font-clamp-1);
+  color: unset;
+}
+.no-style-link.underline {
+  text-decoration: underline;
+}
+.no-style-link:hover {
+  text-decoration: underline;
+  text-shadow: none;
 }
 
 /* buttons */
@@ -44,19 +57,15 @@
   cursor: pointer;
   text-decoration: none;
   text-align: center;
-  color: #fff;
+  color: #000;
   border: none;
-  border-radius: var(--radius--3);
+  border-radius: var(--radius-0);
   box-sizing: border-box;
-<<<<<<< Updated upstream
-  padding: 5px 15px 5px 15px;
-=======
   -webkit-box-shadow: var(--box-shadow-1);
   -moz-box-shadow: var(--box-shadow-1);
   box-shadow: var(--box-shadow-1);
   padding: 5px 15px 5px 15px;
   transition: 0.2s;
->>>>>>> Stashed changes
 }
 .button:hover {
   background-color: var(--btn-default-hover);
@@ -66,14 +75,11 @@
 }
 /* homepage-buttons */
 .homepage-buttons {
-  border-radius: var(--radius-0);
   text-transform: uppercase;
+  color: #fff;
   height: var(--rem-3);
   width: 12.313rem;
   font-size: var(--font-clamp-1);
-<<<<<<< Updated upstream
-  box-shadow: var(--box-shadow-1);
-=======
 }
 
 /*action-buttons*/
@@ -126,7 +132,6 @@
 }
 .btn-fechar-modal:active {
   background-color: var(--btn-fechar-modal-pressed);
->>>>>>> Stashed changes
 }
 
 /* btn-entrar */
@@ -164,19 +169,22 @@
 .btn-matricula:active {
   background-color: var(--btn-matricula-pressed);
 }
-/* btn-form-matricula */
-.btn-form-matricula {
-  background-color: var(--btn-form-matricula-enabled);
+/* btn-form-submit */
+.btn-form-submit {
+  background-color: var(--btn-form-submit-enabled);
+  color: #fff;
   aspect-ratio: 1/3;
+  font-size: var(--font-clamp-1);
+  padding: var(--rem-1) var(--rem-2);
   width: 12.313em;
   height: var(--rem-4);
   border-radius: var(--radius-0);
 }
-.btn-form-matricula:hover {
-  background-color: var(--btn-form-matricula-hover);
+.btn-form-submit:hover {
+  background-color: var(--btn-form-submit-hover);
 }
-.btn-form-matricula:active {
-  background-color: var(--btn-form-matricula-pressed);
+.btn-form-submit:active {
+  background-color: var(--btn-form-submit-pressed);
 }
 
 /* btn-sobre */
@@ -210,8 +218,6 @@
 .btn-apadrinhar:active {
   background-color: var(--btn-apadrinhar-pressed);
 }
-<<<<<<< Updated upstream
-=======
 /* btn-save-form */
 .btn-save-form {
   background-color: var(--btn-save-form-enabled);
@@ -255,22 +261,16 @@
   -moz-box-shadow: var(--box-shadow-1);
   box-shadow: var(--box-shadow-1);
 }
->>>>>>> Stashed changes
 
 /* tabelas */
 .tables {
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
   border-collapse: collapse;
-  max-width: 80vw;
-  overflow-x: auto;
-  table-layout: fixed;
+  width: 100%;
 }
 .table-wrapper {
-  width: 100%;
-  /* max-width: 500px; */
+  max-width: 80dvw;
   overflow-x: auto;
-<<<<<<< Updated upstream
-=======
   border-top-left-radius: var(--radius-1);
   border-top-right-radius: var(--radius-1);
   -webkit-box-shadow: var(--box-shadow-1);
@@ -303,7 +303,6 @@
 .tables td {
   display: flex;
   align-items: center;
->>>>>>> Stashed changes
 }
 .tables td,
 th,
@@ -313,39 +312,38 @@ label {
   font-size: var(--font-clamp-2);
 }
 
-.tables th,td {
+.tables th,
+td:not(.td-button) {
   position: relative;
-  text-align: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   padding-inline: var(--em--3);
   width: auto;
 }
-.tables tbody tr:not(.tr-submit) {
+
+.tb-frequencia.tr-titulo {
+  justify-content: start !important;
+}
+.tables tbody tr:not(.tr-submit, .data-table tr) {
   border-bottom: 0.2em solid #1f2926;
 }
-.row-column-titles > td:not(:last-child, :nth-last-child(2)) {
-  background-color: #1c1c1c;
-  border: none;
+.data-table tbody td {
+  border-bottom: 0.2rem solid #1f2926;
+}
+.row-column-titles td {
+  background-color: var(--cor-5);
+}
+.row-column-titles > td {
+  display: flex;
+  align-items: center;
   color: #fff;
   white-space: wrap;
 }
-/* .row-column-titles > td:not(:last-child, :last-child) {
-  border-right: var(--em--4) solid #fff;
-  text-align: center;
-  padding-inline: var(--em--3);
-} */
-.td-button{
-  min-width: 100px !important;
+.row-interactive > td {
+  min-width: 100%;
+  max-width: none !important;
 }
-<<<<<<< Updated upstream
-.tables th {
-  background-color: #1c1c1c;
-  color: var(--cor-12);
-  padding: 1em 0;
-}
-=======
 .row-interactive{
   padding: 1em 2em;
 }
@@ -364,7 +362,6 @@ label {
   border: none;
 }
 
->>>>>>> Stashed changes
 .resize-handle {
   position: absolute;
   right: 0;
@@ -379,11 +376,9 @@ label {
   background-color: #ccc;
 }
 
-.icon{
+.icon {
   aspect-ratio: 1/1;
   max-width: 32px;
-<<<<<<< Updated upstream
-=======
 }
 
 /* modal */
@@ -468,5 +463,4 @@ menu.menu-sidebar .sidebar-item-link:hover{
   font-weight: bold;
   text-decoration: none;
   color: inherit;
->>>>>>> Stashed changes
 }

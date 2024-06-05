@@ -1,0 +1,146 @@
+<main class="main-consultar flex flex-column center">
+	<div class="table-wrapper flex flex-column center">
+		<div class="table-wrapper">
+			<table cellspacing="0" class="tables data-table tb-consulta flex flex-column">
+				<thead>
+					<tr class="tr-titulo">
+						<th colspan="{{count_keys(alunos)}}">Aluno</th>
+					</tr>
+					<tr class="row-column-titles tr-consultar-id">
+						{% if not alunos %}
+							{% else %}
+								<td class="td-button"></td>
+								<td class="td-button"></td>
+								<td class="td-button"></td>
+								<td class="td-ID">ID
+									<div class="resize-handle"></div>
+								</td>
+								<td>Nome
+									<div class="resize-handle"></div>
+								</td>
+								<td>CPF
+									<div class="resize-handle"></div>
+								</td>
+								<td>RG
+									<div class="resize-handle"></div>
+								</td>
+								<td>Data_Nasc
+									<div class="resize-handle"></div>
+								</td>
+								<td>Certidão
+									<div class="resize-handle"></div>
+								</td>
+								<td>Carteira Vacina
+									<div class="resize-handle"></div>
+								</td>
+								<td>Situacão Matrícula
+									<div class="resize-handle"></div>
+								</td>
+								<td>Data Matrícula
+									<div class="resize-handle"></div>
+								</td>
+								<td>Data Inicio
+									<div class="resize-handle"></div>
+								</td>
+								<td>ID_USER_TURMA
+									<div class="resize-handle"></div>
+								</td>
+								<td>ID_USER_RESPONSAVEL
+									<div class="resize-handle"></div>
+								</td>
+								<td>ID_USER_PADRINHO
+									<div class="resize-handle"></div>
+								</td>
+						{% endif %}
+					</tr>
+				</thead>
+				<tbody>
+					{% if alunos %}
+						<tr>
+							<td class="td-button">
+								<button type="button" class="button action-buttons btn-relationship" onclick="toggleRelationship()"></button>
+							</td>
+							<td class="td-button">
+								<form id="formEditarAluno_{{ alunos.ID_ALUNO }}" method="POST">
+									<input type="hidden" name="id_alunos" value="{{ alunos.ID_ALUNO }}">
+									<button type="button" onclick="editarAlunoInput('{{ alunos.ID_ALUNO }}')" class="button action-buttons btn-editar"></button>
+								</form>
+							</td>
+							<td class="td-button">
+								<form action="?pag=aluno&metodo=excluir" method="POST">
+									<input type="hidden" name="id_alunos" value="{{ alunos.ID_ALUNO }}">
+									<button type="submit" onclick="return confirm('Tem certeza que deseja excluir este aluno?')" class="button action-buttons btn-excluir"></button>
+								</form>
+							</td>
+							<td class="td-ID">{{alunos.ID_ALUNO}}</td>
+							<td>{{alunos.nome}}</td>
+							<td>{{alunos.cpf}}</td>
+							<td>{{alunos.rg}}</td>
+							<td>{{alunos.data_nasc}}</td>
+							<td>{{alunos.certidao}}</td>
+							<td>{{alunos.carteira_vacina}}</td>
+							<td>{{alunos.situacao_matricula}}</td>
+							<td>{{alunos.data_matricula}}</td>
+							<td>{{alunos.data_inicio}}</td>
+							<td>{{alunos.ID_USER_TURMA}}</td>
+							<td>{{alunos.ID_USER_RESPONSAVEL}}</td>
+							<td>{{alunos.ID_USER_PADRINHO}}</td>
+						</tr>
+						{% if responsavel %}
+							<tr id="responsavel_{{ alunos.ID_USER_RESPONSAVEL }}" class="tr-toggle" style="display: none;">
+								<td class="td-button text-right">
+									<a href="?pag=usuario&id={{padrinho.ID_USER}}" class="action-buttons btn-link-relationship"></a>
+								</td>
+								<td colspan="2" class="td-button">
+									<a href="?pag=usuario&id={{responsavel.ID_USER}}" class="no-style-link">Responsável</a>
+								</td>
+								<td class="td-ID">
+									<a href="?pag=usuario&id={{responsavel.ID_USER}}" class="no-style-link">
+										{{ responsavel.ID_USER }}
+									</a>
+								</td>
+								<td>
+									<a href="?pag=usuario&id={{responsavel.ID_USER}}" class="no-style-link">
+										{{ responsavel.nome }}
+									</a>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="15" align="center">{{ erro }}</td>
+							</tr>
+						{% endif %}
+						{% if padrinho %}
+							<tr id="padrinho_{{ alunos.ID_USER_PADRINHO }}" class="tr-toggle" style="display: none;">
+								<td class="td-button text-right">
+									<a href="?pag=usuario&id={{padrinho.ID_USER}}" class="action-buttons btn-link-relationship"></a>
+								</td>
+								<td colspan="2" class="td-button">
+									<a href="?pag=usuario&id={{padrinho.ID_USER}}" class="no-style-link">Padrinho</a>
+								</td>
+								<td class="td-ID">
+									<a href="?pag=usuario&id={{padrinho.ID_USER}}" class="no-style-link">
+										{{ padrinho.ID_USER }}
+									</a>
+								</td>
+								<td>
+									<a href="?pag=usuario&id={{padrinho.ID_USER}}" class="no-style-link">
+										{{ padrinho.nome }}
+									</a>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="15" align="center">{{ erro }}</td>
+							</tr>
+						{% endif %}
+					{% else %}
+						<tr>
+							<td colspan="15" align="center">{{ erro }}</td>
+						</tr>
+					{% endif %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</main>

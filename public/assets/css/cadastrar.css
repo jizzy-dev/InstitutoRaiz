@@ -1,11 +1,5 @@
-main.main-cad {
-  font-size: var(--font-clamp-2);
-  padding: calc(var(--header-height) + 4em) 0 4em 0;
-}
-
 .tb-matricula {
   width: 600px;
-  box-shadow: var(--box-shadow-1);
   }
 .tb-matricula td {
   box-sizing: border-box;
@@ -17,12 +11,9 @@ main.main-cad {
   border-inline: 1px solid #1f2926;
   display: flex;
   flex-direction: column;
+  padding: 1em 0;
 }
-/* border radius */
-.tb-matricula .tr-titulo th,.tb-matricula {
-  border-top-left-radius: var(--radius-1);
-  border-top-right-radius: var(--radius-1);
-}
+
 
 /*  */
 .tb-matricula th {
@@ -35,11 +26,7 @@ main.main-cad {
 
 /* inputs */
 
-/* buttons */
-.btn-form-matricula {
-  font-size: var(--font-clamp-1);
-  padding: var(--rem-1) var(--rem-2);
-}
+
 
 /* text */
 .cad-textbox {

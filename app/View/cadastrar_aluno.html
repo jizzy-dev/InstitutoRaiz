@@ -1,0 +1,66 @@
+{% include 'header.html' %}
+<main class="main-cad">
+    <form action="?pag=aluno&metodo=cadastrar" method="POST" class="form-cad flex flex-column center">
+        <table cellspacing="0" class="tables tb-matricula">
+            <thead>
+                <tr class="tr-titulo">
+                    <th colspan="2" class="tb-matricula-th">Cadastro de Aluno</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Informações do Aluno -->
+                <tr class="tr-titulo-section">
+                    <th colspan="2" class="tb-matricula-th">Informações do Aluno</th>
+                </tr>
+                <tr>
+                    <td>Nome do Aluno</td>
+                    <td>
+                        <input type="text" name="nome_aluno" class="textbox cad-textbox" placeholder="Seu Nome" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Data de Nascimento do Aluno</td>
+                    <td>
+                        <input type="date" name="data_nasc_aluno" class="textbox cad-textbox" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>CPF do Aluno</td>
+                    <td>
+                        <input type="text" name="cpf_aluno" class="textbox cad-textbox"
+                            placeholder="Ex: 000.000.000-00" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>RG do Aluno</td>
+                    <td>
+                        <input type="text" name="rg_aluno" class="textbox cad-textbox" placeholder="Ex: 00.000.000-0" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Certidão do Aluno</td>
+                    <td>
+                        <input type="text" name="certidao_aluno" class="textbox cad-textbox textflow-ellipse"
+                            placeholder="Ex: 999999999999.9999999999999" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Carteira de Vacina do Aluno</td>
+                    <td>
+                        <input type="text" name="carteira_vacina_aluno" class="textbox cad-textbox" required>
+                    </td>
+                </tr>
+                
+                <!-- Botão de Submit -->
+                <tr class="tr-titulo-section tr-submit">
+                    <th colspan="2" class="tb-matricula-th text-center">
+                        <button type="submit" class="button btn-form-submit">
+                            Cadastrar Aluno
+                        </button>
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</main>
+{% include 'footer.html' %}

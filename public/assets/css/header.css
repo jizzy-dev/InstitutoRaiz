@@ -1,0 +1,50 @@
+header {
+    position: absolute;
+    width: 100%;
+    height: var(--header-height);
+    z-index: 4;
+  }
+  
+  header::after {
+    content: "";
+    background: url("/InstitutoRaiz/public/assets/images/vectors/shapes/HeaderShape.svg")
+      no-repeat center bottom;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  .header-content {
+    gap: 2em;
+  }
+  .logo {
+    width: 123px;
+    /* aspect-ratio: 1/1; */
+  }
+  .header-links {
+    list-style: none;
+    gap: var(--rem-1-half);
+  }
+  nav.header-nav > ul > li {
+    padding: var(--rem-1);
+  }
+  nav.header-nav .header-link {
+    font-size: calc(var(--font-clamp-2) - .365rem);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .header-link {
+    color: var(--header-link-enabled);
+  }
+  .header-link:hover {
+    color: var(--header-link-hover);
+  }
+  .header-link:active {
+    color: var(--header-link-pressed);
+  }
+  .header-shape {
+    width: auto;
+  }

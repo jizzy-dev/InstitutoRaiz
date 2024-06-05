@@ -1,0 +1,13 @@
+header.header-sistema::after{
+    content: "";
+    background: url("/InstitutoRaiz/public/assets/images/vectors/shapes/HeaderSistemaShape.svg")
+      no-repeat center bottom;
+    background-size: cover;
+    transform: rotateY(180deg);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}

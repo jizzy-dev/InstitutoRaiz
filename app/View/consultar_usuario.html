@@ -6,16 +6,16 @@
             <input type="submit" onclick="buscar()" value="Buscar" class="button weight-bold">
         </div>
         <div class="table-wrapper flex flex-column center">
-            <table cellspacing="0" class="tables tb-consulta flex flex-column">
+            <table cellspacing="0" class="tables data-table tb-consulta flex flex-column">
                 <thead>
-                    <tr class="tr-titulo">
+                    <tr class="tr-titulo row-column-titles tr-consultar">
                         <th colspan="17">Usuario</th>
                     </tr>
                     <tr class="row-column-titles tr-consultar">
                         <td class="td-button"></td>
                         <td class="td-button"></td>
                         <td class="td-button"></td>
-                        <td>ID <div class="resize-handle"></div>
+                        <td class="td-ID">ID <div class="resize-handle"></div>
                         </td>
                         <td>Nome <div class="resize-handle"></div>
                         </td>
@@ -54,19 +54,14 @@
                         <td class="td-button">
                             <form action="?pag=usuario&metodo=index" method="POST">
                                 <input type="hidden" name="id_usuario" value="{{ usuario.ID_USER }}">
-                                <button type="button"
-                                    onclick="redirecionarPorId('{{ usuario.ID_USER }}')"
-                                    class="button">
-                                    <img src="/InstitutoRaiz/public/assets/images/vectors/icons/redirect-icon.svg"
-                                        alt="" class="icon">
-                                </button>
+                                <a href="?pag=usuario&id={{ usuario.ID_USER}}" class="button action-buttons btn-redirect flex center"></a>
                             </form>
                         </td>
                         <td class="td-button">
                             <form id="formEditarUsuario_{{ usuario.ID_USER }}" method="POST">
                                 <input type="hidden" name="id_usuario" value="{{ usuario.ID_USER }}">
-                                <button type="button" onclick="editarUsuario('{{ usuario.ID_USER }}')"
-                                    class="button">Editar</button>
+                                <button type="button" onclick="editarUsuarioInput('{{ usuario.ID_USER }}')"
+                                    class="button action-buttons btn-editar"></button>
                             </form>
                         </td>
                         <td class="td-button">
@@ -74,11 +69,11 @@
                                 <input type="hidden" name="id_usuario" value="{{ usuario.ID_USER }}">
                                 <button type="submit"
                                     onclick="return confirm('Tem certeza que deseja excluir este usuário?')"
-                                    class="button">Excluir</button>
+                                    class="button action-buttons btn-excluir"></button>
                             </form>
                         </td>
 
-                        <td>{{usuario.ID_USER}}</td>
+                        <td class="td-ID">{{usuario.ID_USER}}</td>
                         <td>{{usuario.nome}}</td>
                         <td>{{usuario.email}}</td>
                         <td>{{usuario.senha}}</td>
@@ -105,3 +100,4 @@
         </div>
     </form>
 </main>
+{% include 'footer.html' %}

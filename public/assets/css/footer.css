@@ -48,6 +48,8 @@ footer {
     align-items: center;
     justify-content: start;
     gap: .3em;
+    text-wrap: wrap;
+    max-width: 25ch;
   }
   .footer-link:hover {
     color: var(--footer-link-hover);

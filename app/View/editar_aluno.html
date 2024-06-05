@@ -1,0 +1,67 @@
+<main class="main-editar-aluno">
+    <form action="?pag=aluno&metodo=editar" method="POST" class="form-cad flex flex-column center">
+        <input type="hidden" name="id_aluno" value="{{ aluno.ID_ALUNO }}">
+        <table cellspacing="0" class="tables tb-matricula">
+            <thead>
+                <tr class="tr-titulo">
+                    <th colspan="2" class="tb-matricula-th">Editar Aluno</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="tr-titulo-section">
+                    <th colspan="2" class="tb-matricula-th">Informações do Aluno</th>
+                </tr>
+                <tr>
+                    <td>Nome</td>
+                    <td><input type="text" name="nome_aluno" value="{{ aluno.nome }}" class="textbox cad-textbox">
+                    </td>
+                </tr>
+                <td>Data de Nascimento</td>
+                <td><input type="date" name="data_nasc_aluno" value="{{ aluno.data_nasc }}"
+                        class="textbox cad-textbox">
+                </td>
+                <tr>
+                    <td>CPF</td>
+                    <td><input type="text" name="cpf_aluno" value="{{ aluno.cpf }}" class="textbox cad-textbox">
+                    </td>
+                </tr>
+                <tr>
+                    <td>RG</td>
+                    <td><input type="text" name="rg_aluno" value="{{ aluno.rg }}" class="textbox cad-textbox">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Certidão do Aluno</td>
+                    <td>
+                        <input type="text" name="certidao_aluno" value="{{ aluno.certidao }}" class="textbox cad-textbox">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Carteira de Vacina do Aluno</td>
+                    <td>
+                        <input type="text" name="carteira_vacina_aluno" value="{{ aluno.carteira_vacina}}" class="textbox cad-textbox">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Situacão Matrícula</td>
+                    <td>
+                        <input type="text" name="situacao_matricula" value="{{ aluno.situacao_matricula}}" class="textbox cad-textbox">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Data Matrícula</td>
+                    <td><input type="date" name="data_matricula" value="{{ aluno.data_matricula}}" class="textbox cad-textbox"></td>
+                </tr>
+                <tr>
+                    <td>Data Inicio</td>
+                    <td><input type="date" name="data_inicio" value="{{ aluno.data_inicio}}" class="textbox cad-textbox"></td>
+                </tr>
+                <tr class="tr-submit">
+                    <th colspan="2" class="tb-matricula-th td-submit"><input type="submit" value="Atualizar"
+                            class="button btn-form-submit"></th>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</main>
+{% include 'footer.html' %}
