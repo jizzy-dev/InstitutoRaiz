@@ -1,0 +1,57 @@
+<main class="main-consultar flex center">
+	<div class="table-wrapper flex flex-column center">
+		<table cellspacing="0" class="tables data-table tb-consulta flex flex-column">
+			<thead>
+				<tr class="tr-titulo">
+					<th colspan="{{count_keys(usuarios)}}">Frequência</th>
+				</tr>
+				<tr class="row-column-titles row-interactive">
+					<td>Professor:</td>
+					<td></td>
+					<td>
+						<label for="ID_TURMA">Turma:</label>
+					</td>
+					<td>
+						<select id="ID_TURMA" name="ID_TURMA" onchange="selectTurmaInputF()" class="textbox" required>
+							<option value="" {% if id_turma is null %} selected {% endif %}>Selecione a Turma</option>
+							{% for turma in turmas %}
+								<option value="{{turma.ID_TURMA}}" {% if id_turma==turma.ID_TURMA %} selected {% endif %}>
+									{{turma.nome_turma}}</option>
+							{% endfor %}
+						</select>
+					</td>
+				</tr>
+				<tr class="row-column-titles tr-consultar-id">
+					<td>ID
+						<div class="resize-handle"></div>
+					</td>
+					<td>Aluno
+						<div class="resize-handle"></div>
+					</td>
+					{% for dia in range(1, mesQtdDia) %}
+						<td>{{ dia }}</td>
+					{% endfor %}
+				</tr>
+			</thead>
+			<tbody>
+				{% for aluno in alunos %}
+					<tr>
+						<td>{{ aluno.ID_ALUNO }}</td>
+						<td>{{ aluno.nome }}</td>
+						{% for dia in range(1, mesQtdDia) %}
+							<td>
+								{% set presenca = '( N/A )' %}
+								{% for frequencia in frequencias %}
+									{% if frequencia.ID_ALUNO == aluno.ID_ALUNO and frequencia.data_aula|date('d') == dia %}
+										{% set presenca = frequencia.presenca %}
+									{% endif %}
+								{% endfor %}
+								{{ presenca }}
+							</td>
+						{% endfor %}
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</main>

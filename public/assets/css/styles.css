@@ -35,6 +35,15 @@ body {
 .sticky {
   position: sticky;
 }
+.gap-1{
+  gap: 1em !important;
+}
+.gap-2{
+  gap: 2em !important;
+}
+.gap-3{
+  gap: 3em !important;
+}
 .center {
   justify-content: center;
   align-items: center;

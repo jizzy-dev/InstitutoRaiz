@@ -114,6 +114,11 @@
   --btn-entrar-hover: var(--cor-4);
   --btn-entrar-pressed: var(--cor-5);
 
+  /* btn-sair states */
+  --btn-sair-enabled: var(--cor-9);
+  --btn-sair-hover: var(--cor-4);
+  --btn-sair-pressed: var(--cor-20);
+
   /* btn-matricula states */
   --btn-matricula-enabled: var(--cor-8);
   --btn-matricula-hover: var(--cor-17);
@@ -133,4 +138,9 @@
   --btn-apadrinhar-enabled: var(--cor-14);
   --btn-apadrinhar-hover: var(--cor-16);
   --btn-apadrinhar-pressed: var(--cor-8);
+  
+  /* btn-save-form states */
+  --btn-save-form-enabled: var(--cor-14);
+  --btn-save-form-hover: var(--cor-16);
+  --btn-save-form-pressed: var(--cor-8);
 }

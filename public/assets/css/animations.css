@@ -1,0 +1,65 @@
+/* keyframes */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-out {
+  100% {
+    opacity: 0;
+  }
+  0% {
+    opacity: 1;
+  }
+}
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+@keyframes slide-out-right {
+  100% {
+    transform: translateX(50%);
+  }
+  0% {
+    transform: translateX(0%);
+  }
+}
+@keyframes hover-expand-radius {
+  100% {
+    -webkit-box-shadow: 0 0 0 13px rgba(216 216 216 / 20%);
+    -moz-box-shadow: 0 0 0 13px rgba(216 216 216 / 20%);
+    box-shadow: 0 0 0 13px rgba(216 216 216 / 20%);
+  }
+  0% {
+    -webkit-box-shadow: var(--box-shadow-1);
+    -moz-box-shadow: var(--box-shadow-1);
+    box-shadow: var(--box-shadow-1);
+  }
+}
+
+/* applying */
+
+.sidebar::backdrop {
+  opacity: 0;
+}
+.sidebar[open] {
+  animation: slide-in-left 300ms forwards, fade-in 300ms forwards;
+}
+.sidebar[open]::backdrop {
+  animation: fade-in 300ms forwards;
+}
+.sidebar[closing] {
+  display: block;
+  pointer-events: none;
+  animation: slide-out-right 300ms forwards, fade-out 300ms forwards;
+}
+.sidebar[closing]::backdrop {
+  animation: fade-out 300ms forwards;
+}
