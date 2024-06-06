@@ -19,7 +19,8 @@ if (modal) {
     });
 }
 const sidebar = document.getElementById('sidebar');
-const openSidebar = document.querySelector('.open-sidebar-button');
+const sidebarBackdrop = document.querySelector('.sidebar::backdrop');
+const openSidebar = document.querySelector('.open-sidebar-profile-button');
 const closeSidebar = document.querySelector('.close-sidebar-button');
 
 if (openSidebar) {
@@ -30,5 +31,25 @@ if (openSidebar) {
 if (closeSidebar) {
     closeSidebar.addEventListener('click', () => {
         sidebar.close();
+    })
+}
+if (sidebar) {
+    sidebar.addEventListener('click', (event) => {
+        if (event.target == sidebar) {
+            sidebar.setAttribute('closing', "");
+            sidebar.addEventListener('animationend', () => {
+                sidebar.removeAttribute('closing');
+                sidebar.close();
+            }, { once: true })
+        }
+    })
+    sidebar.addEventListener('mouseover', (event) => {
+        if (event.target == sidebar) {
+            sidebar.setAttribute('closing', "");
+            sidebar.addEventListener('animationend', () => {
+                sidebar.removeAttribute('closing');
+                sidebar.close();
+            }, { once: true })
+        }
     })
 }

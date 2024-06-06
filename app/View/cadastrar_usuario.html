@@ -16,7 +16,7 @@
 				<tr>
 					<td>Inserir imagem</td>
 					<td class="center">
-						<img src="https://localhost/InstitutoRaiz/public/assets/images/vectors/icons/user-placeholder-vector.svg" alt="Imagem do usuário" id="imgView" class="profile-image">
+						<img src="https://localhost/InstitutoRaiz/public/assets/images/vectors/icons/user-placeholder-vector.svg" width="150px" alt="Imagem do usuário" id="imgView" class="profile-image">
 					</td>
 					<td>
 						<input type="file" name="imgInput" id="imgInput" accept="image/*">
@@ -46,6 +46,9 @@
 						<input type="password" name="senha_responsavel" class="textbox cad-textbox" required>
 					</td>
 				</tr>
+				<tr class="tr-titulo-section">
+                    <th colspan="2" class="tb-matricula-th">Dados Pessoais</th>
+                </tr>
 				<tr>
 					<td>Data de Nascimento do Usuário</td>
 					<td>
@@ -128,4 +131,3 @@
 	</form>
 </main>
 {% include 'footer.html' %}
-<script src="public/assets/js/inputImage.js"></script>

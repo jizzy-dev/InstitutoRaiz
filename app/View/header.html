@@ -1,9 +1,16 @@
 {% include "modal.html" %}
+<p>
+ID_USER: {{session.user.ID_USER}}
+{{session.user.nome}}
+{{session.imagem.ID_IMAGEM}}
+{{session.imagem.imgCaminho}}
+</p>
+
 <header class="flex flex-column justify-center align-center">
 	<div class="header-content flex">
 		<div class="logo">
 			<a href="#">
-				<img src="/InstitutoRaiz/public/assets/images/png/logo.png" alt="Logo do Instituto Raiz do Futuro" class="header-logo logo">
+				<img src="/InstitutoRaiz/public/assets/images/png/logo.png" width="123px" alt="Logo do Instituto Raiz do Futuro" class="header-logo logo">
 			</a>
 		</div>
 		<nav class="header-nav flex space-between align-center">
@@ -24,22 +31,34 @@
 		</nav>
 		<div class="header-interactive flex center relative">
 			{% if session.user is defined %}
-				<button class="button open-sidebar-button">Abrir</button>
+				<button class="open-sidebar-profile-button flex center">
+					<img src="{{session.imagem.imgCaminho}}" width="78px" alt="imagem de perfil" class="profile-image open-sidebar-profile-img">
+				</button>
 				<dialog class="sidebar" id="sidebar">
-					<button class="button close-sidebar-button">fechar</button>
-					<menu class="menu-sidebar flex flex-column center">
-						<li>
-							<img src="{{session.imagem.imgCaminho}}" alt="" class="profile-image" role="image">
-						</li>
-						<li>
-							<h5>{{session.user.nome}}</h5>
-						</li>
-						<li>
-							<h5>{{session.user.email}}</h5>
-						</li>
-						<li>
-							<a href="?pag=autenticar&metodo=sair" class="button homepage-buttons btn-entrar flex center">Sair</a>
-						</li>
+					<menu class="menu-sidebar flex flex-column flex-start align-center gap-1">
+						<div class="sidebar-item-group profile-group flex flex-column center gap-1">
+							<li>
+								<img src="{{session.imagem.imgCaminho}}" alt="imagem de perfil" class="profile-image" role="image">
+							</li>
+							<li>
+								<a href="?pag=usuario&metodo=editar&id={{session.user.ID_USER}}" class="button">Editar Usuário</a>
+							</li>
+							<li>
+								<h5>{{session.user.nome}}</h5>
+							</li>
+							<li>
+								<h5>{{session.user.email}}</h5>
+							</li>
+						</div>
+						<div class="sidebar-item-group logout-group">
+							<li>
+								<a href="?pag=autenticar&metodo=sair" class="sidebar-item-link flex align-center">
+									<img src="/InstitutoRaiz/public/assets/images/vectors/icons/logout-vector.svg" 
+									width="42px" class="sidebar-item-link-img" alt="">
+									Sair
+								</a>
+							</li>
+						</div>
 					</menu>
 				</dialog>
 			{% else %}

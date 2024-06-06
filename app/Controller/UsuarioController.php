@@ -137,31 +137,63 @@ class UsuarioController
     }
     public function Editar($id = null)
     {
+        VerificarSessao::verificarLogin();
+
         global $parametros;
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Se for uma requisição POST, atualizar o usuário
-            $dados = [
-                'id' =>  htmlspecialchars($_POST['id_usuario']),
-                'nome' => htmlspecialchars($_POST['nome_responsavel']),
-                'cpf' => htmlspecialchars($_POST['cpf_responsavel']),
-                'rg' => htmlspecialchars($_POST['rg_responsavel']),
-                'contato' => htmlspecialchars($_POST['contato_responsavel']),
-                'email' => htmlspecialchars($_POST['email_responsavel']),
-                'senha' => htmlspecialchars($_POST['senha_responsavel']),
-                'data_nasc' => htmlspecialchars($_POST['data_nasc_responsavel']),
-                'cep' => htmlspecialchars($_POST['cep']),
-                'logradouro' => htmlspecialchars($_POST['logradouro']),
-                'bairro' => htmlspecialchars($_POST['bairro']),
-                'numero_endereco' => htmlspecialchars($_POST['numero_endereco']),
-                'complemento' => htmlspecialchars($_POST['complemento']),
-                'cidade' => htmlspecialchars($_POST['cidade']),
-                'estado' => htmlspecialchars($_POST['estado']),
-                'isResponsavel' => isset($_POST['isResponsavel']) ? 1 : 0,
-                'isPadrinho' => isset($_POST['isPadrinho']) ? 1 : 0,
-                'perfil_acesso' => isset($_POST['perfil_acesso']) ? $_POST['perfil_acesso'] : 'U',
-                'ID_IMAGEM' => 1
-            ];
             try {
+                $id_imagem = null;
+                if (isset($_FILES['imgInput']) && $_FILES['imgInput']['error'] == 0) {
+                    $id_imagem = Imagem::upload($_FILES['imgInput']);
+                }
+
+                $emailExiste = ValidarDuplos::verificarEmailDuplo($_POST['email_responsavel']);
+                if ($emailExiste) {
+                    $erro = 'O e-mail informado já está em uso';
+                    $parametros = [
+                        'erro' => $erro,
+                        'login_redirect' => true
+                    ];
+                }
+
+                $cpfExiste = ValidarDuplos::verificarCPFDuplo($_POST['cpf_responsavel']);
+                if ($cpfExiste) {
+                    $erro = 'O CPF informado já está em uso';
+                    $parametros = [
+                        'erro' => $erro,
+                        'login_redirect' => true
+                    ];
+                }
+
+                if ($emailExiste && $cpfExiste) {
+                    $erro = "Os seguintes campos informados já estão cadastrados:\n Email, CPF";
+                    $parametros = [
+                        'erro' => $erro,
+                        'login_redirect' => true
+                    ];
+                }
+                $dados = [
+                    'id' =>  htmlspecialchars($_POST['id_usuario']),
+                    'nome' => htmlspecialchars($_POST['nome_responsavel']),
+                    'cpf' => htmlspecialchars($_POST['cpf_responsavel']),
+                    'rg' => htmlspecialchars($_POST['rg_responsavel']),
+                    'contato' => htmlspecialchars($_POST['contato_responsavel']),
+                    'email' => htmlspecialchars($_POST['email_responsavel']),
+                    'senha' => htmlspecialchars($_POST['senha_responsavel']),
+                    'data_nasc' => htmlspecialchars($_POST['data_nasc_responsavel']),
+                    'cep' => htmlspecialchars($_POST['cep']),
+                    'logradouro' => htmlspecialchars($_POST['logradouro']),
+                    'bairro' => htmlspecialchars($_POST['bairro']),
+                    'numero_endereco' => htmlspecialchars($_POST['numero_endereco']),
+                    'complemento' => htmlspecialchars($_POST['complemento']),
+                    'cidade' => htmlspecialchars($_POST['cidade']),
+                    'estado' => htmlspecialchars($_POST['estado']),
+                    'isResponsavel' => isset($_POST['isResponsavel']) ? 1 : 0,
+                    'isPadrinho' => isset($_POST['isPadrinho']) ? 1 : 0,
+                    'perfil_acesso' => isset($_POST['perfil_acesso']) ? $_POST['perfil_acesso'] : 'U',
+                    'ID_IMAGEM' => $id_imagem
+                ];
+
                 Usuario::atualizarPorId($dados);
                 // Redirecionar para a página de consulta após a atualização
                 header('Location: ?pag=usuario&metodo=consultar');
