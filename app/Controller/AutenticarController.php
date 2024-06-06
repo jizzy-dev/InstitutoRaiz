@@ -38,14 +38,7 @@ class AutenticarController
     }
     public function Sair()
     {
-        $mensagem = 'Desconectado com sucesso!';
-        $parametros['mensagem'] = $mensagem; 
-        echo TemplateRenderer::render('login.html', $parametros);
         session_destroy();
-        header('Location: ?pag=autenticar&metodo=logar');
-    }
-    public function redictLogout()
-    {
-        session_destroy();
+        header('Location: ?pag=desconectar');
     }
 }

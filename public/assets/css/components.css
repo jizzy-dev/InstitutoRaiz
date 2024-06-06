@@ -24,7 +24,7 @@
   -moz-box-shadow: #338bf8 1px 1px 0px 2px;
   box-shadow: #338bf8 1px 1px 0px 2px;
 }
-.turma-select{
+.turma-select {
   max-width: 12ch;
 }
 /* .textbox:required:focus{
@@ -119,6 +119,27 @@
   background: url("/InstitutoRaiz/public/assets/images/vectors/icons/arrow-subdirectory.svg")
     center/contain no-repeat;
   box-shadow: unset;
+}
+
+/*btn-input-image*/
+.btn-input-image {
+  background-color: var(--cor-14);
+  color: #fff;
+  font-size: var(--font-clamp-0);
+  padding: .7rem 1rem;
+  gap: 5px;
+  border-radius: 1rem;
+  background-position-x: 95%;
+}
+.btn-input-image > svg > path {
+  fill: var(--cor-6);
+}
+.btn-input-image:hover > svg > path {
+  fill: var(--cor-18);
+  transition: .2s;
+}
+.btn-input-image:hover {
+  color: var(--cor-18);
 }
 
 /* btn-fechar-modal */
@@ -242,9 +263,8 @@
   box-shadow: unset;
 }
 
-.open-sidebar-profile-img:hover{
-  animation: 
-  hover-expand-radius 300ms forwards;
+.open-sidebar-profile-img:hover {
+  animation: hover-expand-radius 300ms forwards;
 }
 
 /* input image */
@@ -255,7 +275,8 @@
   aspect-ratio: 1 / 1;
   object-fit: cover;
 }
-.open-sidebar-profile-img{
+
+.open-sidebar-profile-img {
   width: inherit;
   -webkit-box-shadow: var(--box-shadow-1);
   -moz-box-shadow: var(--box-shadow-1);
@@ -344,7 +365,7 @@ td:not(.td-button) {
   min-width: 100%;
   max-width: none !important;
 }
-.row-interactive{
+.row-interactive {
   padding: 1em 2em;
 }
 .td-ID {
@@ -358,7 +379,7 @@ td:not(.td-button) {
   position: sticky;
 }
 
-.fieldset-filtro-frequencia{
+.fieldset-filtro-frequencia {
   border: none;
 }
 
@@ -439,26 +460,26 @@ td:not(.td-button) {
   list-style: none;
   height: 100dvh;
 }
-.sidebar-item-group{
+.sidebar-item-group {
   width: 100%;
 }
-.sidebar-item-group::after{
+.sidebar-item-group::after {
   position: absolute;
-  content: '';
+  content: "";
   border-bottom: 1px solid #d2d7da;
   width: 70%;
   transform: translateX(-50%);
   bottom: -15px;
   left: 50%;
 }
-menu.menu-sidebar .sidebar-item-link{
+menu.menu-sidebar .sidebar-item-link {
   padding: 1em 0;
 }
-menu.menu-sidebar .sidebar-item-link:hover{
+menu.menu-sidebar .sidebar-item-link:hover {
   background-color: rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
-.sidebar-item-link{
+.sidebar-item-link {
   font-size: var(--font-clamp-1);
   font-weight: bold;
   text-decoration: none;

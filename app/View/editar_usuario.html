@@ -1,83 +1,138 @@
+{% include "header_sistema.html" %}
 <main class="main-editar-usuario">
-    <form action="?pag=usuario&metodo=editar" method="POST" class="form-cad flex flex-column center">
-        <input type="hidden" name="id_usuario" value="{{ usuario.ID_USER }}">
-        <table cellspacing="0" class="tables tb-matricula">
-            <thead>
-                <tr class="tr-titulo">
-                    <th colspan="2" class="tb-matricula-th">Editar Usuario</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="tr-titulo-section">
-                    <th colspan="2" class="tb-matricula-th">Informações do Usuario</th>
-                </tr>
-                <tr>
-                    <td>Nome</td>
-                    <td><input type="text" name="nome_responsavel" value="{{ usuario.nome }}" class="textbox cad-textbox"></td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td><input type="email" name="email_responsavel" value="{{ usuario.email }}" class="textbox cad-textbox"></td>
-                </tr>
-                <tr>
-                    <td>Senha</td>
-                    <td><input type="password" name="senha_responsavel" class="textbox cad-textbox"></td>
-                </tr>
-                <tr>
-                    <td>Data de Nascimento</td>
-                    <td><input type="date" name="data_nasc_responsavel" value="{{ usuario.data_nasc }}" class="textbox cad-textbox">
-                    </td>
-                </tr>
-                <tr>
-                    <td>CPF</td>
-                    <td><input type="text" name="cpf_responsavel" value="{{ usuario.cpf }}" class="textbox cad-textbox"></td>
-                </tr>
-                <tr>
-                    <td>RG</td>
-                    <td><input type="text" name="rg_responsavel" value="{{ usuario.rg }}" class="textbox cad-textbox"></td>
-                </tr>
-                <tr>
-                    <td>Contato</td>
-                    <td><input type="text" name="contato_responsavel" value="{{ usuario.contato }}" class="textbox cad-textbox"></td>
-                </tr>
-                <tr class="tr-titulo-section">
-                    <th colspan="2" class="tb-matricula-th">Dados de Endereço</th>
-                </tr>
-                <tr>
-                    <td>CEP</td>
-                    <td><input type="text" name="cep" value="{{ usuario.cep }}" class="textbox cad-textbox"></td>
-                </tr>
-                <tr>
-                    <td>Logradouro</td>
-                    <td><input type="text" name="logradouro" value="{{ usuario.logradouro }}" class="textbox cad-textbox"></td>
-                </tr>
-                <tr>
-                    <td>Bairro</td>
-                    <td><input type="text" name="bairro" value="{{ usuario.bairro }}" class="textbox cad-textbox"></td>
-                </tr>
-                <tr>
-                    <td>Número</td>
-                    <td><input type="text" name="numero_endereco" value="{{ usuario.numero_endereco }}" class="textbox cad-textbox">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Complemento</td>
-                    <td><input type="text" name="complemento" value="{{ usuario.complemento }}" class="textbox cad-textbox"></td>
-                </tr>
-                <tr>
-                    <td>Cidade</td>
-                    <td><input type="text" name="cidade" value="{{ usuario.cidade }}" class="textbox cad-textbox"></td>
-                </tr>
-                <tr>
-                    <td>Estado (UF)</td>
-                    <td><input type="text" name="estado" value="{{ usuario.estado }}" class="textbox cad-textbox"></td>
-                </tr>
-                <tr class="tr-submit">
-                    <th colspan="2"  class="tb-matricula-th td-submit"><input type="submit" value="Atualizar"
-                            class="button btn-form-submit"></th>
-                </tr>
-            </tbody>
-        </table>
-    </form>
-</main>
-{% include 'footer.html' %}
+	<form action="?pag=usuario&metodo=editar" method="POST" class="form-cad flex flex-column center">
+		<input type="hidden" name="id_usuario" value="{{ usuario.ID_USER }}">
+		<table cellspacing="0" class="tables tb-matricula">
+			<thead>
+				<tr class="tr-titulo">
+					<th colspan="2" class="tb-matricula-th">Editar Usuario</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="tr-titulo-section">
+					<th colspan="2" class="tb-matricula-th">Foto de Perfil</th>
+				</tr>
+				<tr>
+					<td>Inserir imagem</td>
+					<td class="center">
+						<img src="{{session.imagem.imgCaminho}}" width="150px" alt="Imagem do usuário" id="imgView" class="profile-image">
+					</td>
+					<td>
+						<fieldset class="fieldset-file flex center border-none width-100pc">
+							<label for="imgInput" class="button btn-input-image flex align-center">
+								<span class="weight-bold">Escolher Arquivo</span>
+								<?xml
+								version="1.0" encoding="utf-8"?>
+								<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+								<svg width="22px" height="22px" viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+									<path fill-rule="evenodd" clip-rule="evenodd" d="M1 5C1 3.34315 2.34315 2 4 2H8.55848C9.84977 2 10.9962 2.82629 11.4045 4.05132L11.7208 5H20C21.1046 5 22 5.89543 22 7V9.00961C23.1475 9.12163 23.9808 10.196 23.7695 11.3578L22.1332 20.3578C21.9603 21.3087 21.132 22 20.1654 22H3C1.89543 22 1 21.1046 1 20V5ZM20 9V7H11.7208C10.8599 7 10.0956 6.44914 9.82339 5.63246L9.50716 4.68377C9.37105 4.27543 8.98891 4 8.55848 4H4C3.44772 4 3 4.44772 3 5V12.2709L3.35429 10.588C3.54913 9.66249 4.36562 9 5.31139 9H20ZM3.36634 20C3.41777 19.9109 3.4562 19.8122 3.47855 19.706L5.31139 11L21 11H21.8018L20.1654 20L3.36634 20Z" fill="#1C1C1C"/>
+								</svg>
+							</label>
+							<input type="file" name="imgInput" id="imgInput" class="display-none" accept="image/*"></fieldset>
+						</td>
+						<td>
+							<input type="checkbox" name="noImage" id="noImage">
+								Sem Foto</td>
+						</tr>
+						<tr class="tr-titulo-section">
+							<th colspan="2" class="tb-matricula-th">Informações do Usuario</th>
+						</tr>
+						<tr>
+							<td>Nome</td>
+							<td>
+								<input type="text" name="nome_responsavel" value="{{ usuario.nome }}" class="textbox cad-textbox" {% if session.user.perfil_acesso != 'A' %} readonly disabled {% else %} required {% endif %} ></td>
+							</tr>
+							<tr>
+								<td>Email</td>
+								<td>
+									<input type="email" name="email_responsavel" value="{{ usuario.email }}" class="textbox cad-textbox" {% if session.user.perfil_acesso != 'A' %} readonly disabled {% else %} required {% endif %}></td>
+								</tr>
+								<tr>
+									<td>Senha</td>
+									<td>
+										<input type="password" name="senha_responsavel" class="textbox cad-textbox" required></td>
+									</tr>
+									<tr class="tr-titulo-section">
+										<th colspan="2" class="tb-matricula-th">Dados Pessoais</th>
+									</tr>
+									<tr>
+										<td>Data de Nascimento</td>
+										<td>
+											<input type="date" name="data_nasc_responsavel" value="{{ usuario.data_nasc }}" class="textbox cad-textbox" required></td>
+										</tr>
+										<tr>
+											<td>CPF</td>
+											<td>
+												<input type="text" name="cpf_responsavel" value="{{ usuario.cpf }}" class="textbox cad-textbox" required></td>
+											</tr>
+											<tr>
+												<td>RG</td>
+												<td>
+													<input type="text" name="rg_responsavel" value="{{ usuario.rg }}" class="textbox cad-textbox" required></td>
+												</tr>
+												<tr>
+													<td>Contato</td>
+													<td>
+														<input type="text" name="contato_responsavel" value="{{ usuario.contato }}" class="textbox cad-textbox" required></td>
+													</tr>
+													<tr class="tr-titulo-section">
+														<th colspan="2" class="tb-matricula-th">Dados de Endereço</th>
+													</tr>
+													<tr>
+														<td>CEP</td>
+														<td>
+															<input type="text" name="cep" value="{{ usuario.cep }}" class="textbox cad-textbox" required></td>
+														</tr>
+														<tr>
+															<td>Logradouro</td>
+															<td>
+																<input type="text" name="logradouro" value="{{ usuario.logradouro }}" class="textbox cad-textbox" required></td>
+															</tr>
+															<tr>
+																<td>Bairro</td>
+																<td>
+																	<input type="text" name="bairro" value="{{ usuario.bairro }}" class="textbox cad-textbox" required></td>
+																</tr>
+																<tr>
+																	<td>Número</td>
+																	<td>
+																		<input type="text" name="numero_endereco" value="{{ usuario.numero_endereco }}" class="textbox cad-textbox" required></td>
+																	</tr>
+																	<tr>
+																		<td>Complemento</td>
+																		<td>
+																			<input type="text" name="complemento" value="{{ usuario.complemento }}" class="textbox cad-textbox"></td>
+																		</tr>
+																		<tr>
+																			<td>Cidade</td>
+																			<td>
+																				<input type="text" name="cidade" value="{{ usuario.cidade }}" class="textbox cad-textbox" required></td>
+																			</tr>
+																			<tr>
+																				<td>Estado (UF)</td>
+																				<td>
+																					<input type="text" name="estado" value="{{ usuario.estado }}" class="textbox cad-textbox" required></td>
+																				</tr>
+																				<tr class="tr-submit">
+																					<th colspan="2" class="tb-matricula-th td-submit">
+																						<input type="submit" value="Atualizar" class="button btn-form-submit"></th>
+																					</tr>
+																				</tbody>
+																			</table>
+																		</form>
+																	</main>
+																	{% include 'footer.html' %}
+																</tr>
+															</tr>
+														</tr>
+													</tr>
+												</tr>
+											</tr>
+										</tr>
+									</tr>
+								</tr>
+							</tr>
+						</tr>
+					</td>
+				</tr>
+			</tbody>

@@ -1,4 +1,11 @@
 {% include "modal.html" %}
+<p>
+ID_USER: {{session.user.ID_USER}}
+{{session.user.nome}}
+{{session.imagem.ID_IMAGEM}}
+{{session.imagem.imgCaminho}}
+</p>
+
 <header class="flex flex-column justify-center align-center">
 	<div class="header-content flex">
 		<div class="logo">
@@ -34,7 +41,7 @@
 								<img src="{{session.imagem.imgCaminho}}" alt="imagem de perfil" class="profile-image" role="image">
 							</li>
 							<li>
-								<a href="" class="button">Editar Usuário</a>
+								<a href="?pag=usuario&metodo=editar&id={{session.user.ID_USER}}" class="button">Editar Usuário</a>
 							</li>
 							<li>
 								<h5>{{session.user.nome}}</h5>

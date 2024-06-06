@@ -18,7 +18,7 @@ require_once 'app/Helper/VerificarSessao.php';
 require_once 'app/Helper/TemplateRenderer.php';
 // controladores
 require_once 'app/Controller/AutenticarController.php';
-require_once 'app/Controller/AutenticarController.php';
+require_once 'app/Controller/DesconectarController.php';
 require_once 'app/Controller/ImagemController.php';
 require_once 'app/Controller/HomeController.php';
 require_once 'app/Controller/UsuarioController.php';
