@@ -4,13 +4,20 @@ main.main-home {
 }
 .sections {
   margin-inline: auto;
+  width: 100%;
   min-height: 90dvh;
+  margin-top: 70px;
+}
+.sections::before {
+  height: 17%;
+  top: calc(-17% - -2em);
 }
 .sections:not(#sc1, #sc2) {
   padding: 3em 0;
 }
 #sc1 {
   /* background-color: red; */
+  margin: unset;
   transform: translateY(-5em);
   height: 100%;
 }
@@ -30,8 +37,7 @@ main.main-home {
   /* transform: translateY(-150px); */
 }
 .sc1-banner {
-  top: -3em;
-  height: 100%;
+  height: calc(100% + 150px);
   width: 100%;
   aspect-ratio: 1/1;
   object-fit: cover;
@@ -60,7 +66,7 @@ main.main-home {
   top: -8em;
   left: 0;
   width: 100%;
-  height: 20%;
+
   z-index: -1;
 }
 .sc2-title {
@@ -86,20 +92,20 @@ main.main-home {
   /* border-radius: 10px; */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-.sc2-carousel-items{
+.sc2-carousel-items {
   transition: transform 0.5s ease;
-} 
-.sc2-carousel-item{
+}
+.sc2-carousel-item {
   min-width: 100%;
   transition: opacity 0.5s ease;
   opacity: 0;
   display: none;
-} 
-.sc2-carousel-item.active{
+}
+.sc2-carousel-item.active {
   display: block;
   opacity: 1;
 }
-.sc2-image-carousel img{
+.sc2-image-carousel img {
   width: 100%;
   display: block;
 }
@@ -140,10 +146,8 @@ main.main-home {
     no-repeat center bottom;
   background-size: cover;
   position: absolute;
-  top: -3em;
   left: 0;
   width: 100%;
-  height: 20%;
   z-index: -1;
 }
 .sc3-title {
@@ -171,10 +175,9 @@ main.main-home {
     no-repeat center bottom;
   background-size: cover;
   position: absolute;
-  top: -3em;
   left: 0;
   width: 100%;
-  height: 20%;
+
   z-index: -1;
 }
 .sc4-title {
@@ -184,6 +187,37 @@ main.main-home {
   gap: 3em;
 }
 .sc4-text-content-p {
+  color: var(--cor-7);
+  max-width: 50ch;
+  text-overflow: ellipsis;
+  height: 100%;
+}
+#sc5 {
+  position: relative;
+  background-color: var(--cor-8);
+  max-width: none !important;
+  min-height: calc(90dvh + 10em);
+  gap: 2em;
+  z-index: 4;
+}
+#sc5::before {
+  content: "";
+  background: url("/InstitutoRaiz/public/assets/images/vectors/shapes/PageTransitionShape_sc4.svg")
+    no-repeat center bottom;
+  background-size: cover;
+  position: absolute;
+  left: 0;
+  width: 100%;
+
+  z-index: -1;
+}
+.sc5-title {
+  color: var(--cor-17);
+}
+.sc5-content {
+  gap: 3em;
+}
+.sc5-text-content-p {
   color: var(--cor-7);
   max-width: 50ch;
   text-overflow: ellipsis;

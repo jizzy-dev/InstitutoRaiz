@@ -70,7 +70,7 @@ class PadrinhoController
                 $nomeUsuario = $nome;
             }
 
-            $user =  Usuario::filtrar($nomeUsuario);
+            $user =  Usuario::selecionarPadrinhos();
 
             if ($user === null) {
                 // Renderizar a página com a mensagem de erro
@@ -78,6 +78,7 @@ class PadrinhoController
             } else {
                 // Renderizar a página com os resultados da consulta
                 $parametros = ['usuarios' => $user, 'titulo' => 'Consultar Padrinho', 'erro' => ''];
+
                 echo TemplateRenderer::render('consultar_padrinho.html', $parametros);
             }
         } catch (Exception $e) {
@@ -85,7 +86,7 @@ class PadrinhoController
             echo TemplateRenderer::render('consultar_padrinho.html', ['erro' => $e->getMessage(), 'usuarios' => []]);
         }
     }
-    public function AtribuirPadrinho($id = null)
+    public function atribuirPadrinho($id = null)
     {
         global $parametros;
 
@@ -114,17 +115,20 @@ class PadrinhoController
         } else {
             if ($id !== null) {
                 try {
-                    $user = Usuario::selecionarPorId($id);
+                    $user = Usuario::selecionarPadrinhoPorId($id);
                     $aluno = Aluno::selecionarPorId(3);
                     $parametros = [
                         'usuario' => $user,
                         'aluno' => $aluno,
-                        'titulo' => 'Editar Padrinho'
+                        'titulo' => 'Atribuir Padrinho',
+                        'alunoObject' => json_encode((object)[
+                            'aluno' => $aluno
+                        ])
                     ];
                     // echo "<pre>";
                     // var_dump($parametros['aluno']);
                     // echo '</pre>';
-                    echo TemplateRenderer::render('editar_padrinho.html', $parametros);
+                    echo TemplateRenderer::render('atribuir_padrinho.html', $parametros);
                 } catch (Exception $e) {
                     echo "<script>alert('Erro ao carregar dados: " . $e->getMessage() . "')</script>";
                 }
@@ -138,7 +142,7 @@ class PadrinhoController
             try {
                 $aluno = Aluno::selecionarPorId($idAluno);
                 if ($aluno) {
-                    
+
                     // Renderiza o JSON dentro do template 'noDOM'
                     echo TemplateRenderer::render('noDOM.html', ['aluno' => $aluno]);
                 } else {

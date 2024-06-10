@@ -2,7 +2,7 @@
     <form action="?pag=usuario&metodo=consultar" method="POST" class="flex flex-column center">
         <div class="controles flex space-between">
             <label for="filtro">Filtro:</label>
-            <input type="text" name="filtro" id="filtro" class="textbox" placeholder="Nome">
+            <input type="text" name="filtro" onkeyup="buscar()" id="filtro" class="textbox" placeholder="Nome">
             <input type="submit" onclick="buscar()" value="Buscar" class="button weight-bold">
         </div>
         <div class="table-wrapper flex flex-column center">
@@ -48,8 +48,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {%if usuarios%}
-                    {%for usuario in usuarios%}
+                    {% if usuarios %}
+                    {% for usuario in usuarios %}
                     <tr>
                         <td class="td-button">
                             <form action="?pag=usuario&metodo=index" method="POST">

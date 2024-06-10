@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `raizdb`.`usuario` (
   `isResponsavel` TINYINT(1) NULL DEFAULT NULL,
   `isPadrinho` TINYINT(1) NULL DEFAULT NULL,
   `perfil_acesso` ENUM('A', 'M', 'D', 'U') NOT NULL DEFAULT 'U',
-  `ID_IMAGEM` INT NOT NULL,
+  `ID_IMAGEM` INT NOT NULL DEFAULT 1,
   PRIMARY KEY (`ID_USER`),
   INDEX `fk_Usuario_Imagem_idx` (`ID_IMAGEM` ASC),
   CONSTRAINT `fk_Usuario_Imagem`
@@ -135,3 +135,10 @@ INSERT INTO `aluno` (`ID_ALUNO`, `nome`, `cpf`, `rg`, `data_nasc`, `certidao`, `
 (1, 'João', '2132131', '12213133', '2024-05-20', '12321313211231', '132213123211', 'pendente', '2024-05-20', '2024-05-20', 2, 1, 1),
 (2, 'Karol', '3333', '222222', '2024-05-19', '55555', '666666', 'aprovado', '2024-05-08', '2024-05-02', 1, 1, 1),
 (3, 'Jeziel', '31231', '23131', '2024-05-21', '21313', '123123', 'pendente', '2024-05-21', '2024-05-21', 1, 1, 1);
+-- -----------------------------------------------------
+-- Views
+-- -----------------------------------------------------
+CREATE VIEW alunos_mais_de_um_ano AS
+SELECT *
+FROM `aluno`
+WHERE DATE_ADD(data_inicio, INTERVAL 1 YEAR) <= CURDATE();

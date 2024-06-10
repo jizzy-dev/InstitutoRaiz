@@ -15,13 +15,28 @@ body {
   background-color: #ffffff;
   width: 100%;
   min-height: 100dvh;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas: 
+  'h'
+  'm'
+  'f';
 }
-main:not(.main-home,.main-erro) {
+main{
+  grid-area: m;
+}
+main:not(.main-home, .main-erro) {
   font-size: var(--font-clamp-2);
   padding: calc(var(--header-height) + 4em) 0 4em 0;
 }
-.display-none{
+.display-none {
   display: none !important;
+}
+.inline {
+  display: inline !important;
+}
+.inline-block {
+  display: inline-block !important;
 }
 .flex {
   display: flex !important;
@@ -69,13 +84,13 @@ main:not(.main-home,.main-erro) {
   width: 100% !important;
   height: 100% !important;
 }
-.gap-1{
+.gap-1 {
   gap: 1rem !important;
 }
-.gap-2{
+.gap-2 {
   gap: 2rem !important;
 }
-.gap-3{
+.gap-3 {
   gap: 3rem !important;
 }
 .center {
@@ -86,7 +101,7 @@ main:not(.main-home,.main-erro) {
   justify-content: center !important;
 }
 .justify-start {
-  justify-content: start  !important;
+  justify-content: start !important;
 }
 .justify-end {
   justify-content: end !important;
@@ -112,11 +127,20 @@ main:not(.main-home,.main-erro) {
 .text-center {
   text-align: center !important;
 }
+.text-justify {
+  text-align: justify !important;
+}
 .text-left {
   text-align: left !important;
 }
 .text-right {
   text-align: right !important;
+}
+.wrap {
+  flex-wrap: wrap;
+}
+.no-wrap {
+  flex-wrap: nowrap;
 }
 .border-none {
   border: none !important;
@@ -149,29 +173,27 @@ main:not(.main-home,.main-erro) {
   text-overflow: unset !important;
 }
 h1 {
-  font-size: var(--font-clamp-5);
-}
-h2 {
-  font-size: var(--font-clamp-4);
-}
-h3 {
   font-size: var(--font-clamp-3);
 }
-h4 {
+h2 {
   font-size: var(--font-clamp-2);
 }
-h5 {
+h3 {
+  font-size: var(--font-clamp-1);
+}
+h4 {
+  font-size: var(--font-clamp-0);
+}
+small,
+h5,
+p,
+b {
   font-size: var(--font-clamp-1);
 }
 h6 {
   font-size: var(--font-clamp-0);
 }
-p {
-  font-size: var(--font-clamp-1);
-}
-small {
-  font-size: var(--font-clamp-1);
-}
+
 .uppercase {
   text-transform: uppercase !important;
 }
@@ -183,4 +205,10 @@ small {
 }
 .font-inherit {
   font-size: inherit !important;
+}
+.cursor-none {
+  cursor: none !important;
+}
+.cursor-pointer {
+  cursor: pointer !important;
 }

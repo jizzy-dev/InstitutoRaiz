@@ -1,15 +1,15 @@
 {% include "modal.html" %}
-<p>
+{# <p>
 ID_USER: {{session.user.ID_USER}}
 {{session.user.nome}}
 {{session.imagem.ID_IMAGEM}}
 {{session.imagem.imgCaminho}}
-</p>
+</p> #}
 
 <header class="flex flex-column justify-center align-center">
 	<div class="header-content flex">
 		<div class="logo">
-			<a href="#">
+			<a href="?pag=home">
 				<img src="/InstitutoRaiz/public/assets/images/png/logo.png" width="123px" alt="Logo do Instituto Raiz do Futuro" class="header-logo logo">
 			</a>
 		</div>
@@ -25,7 +25,7 @@ ID_USER: {{session.user.ID_USER}}
 					<a href="#sc4" class="header-link">Apadrinhar</a>
 				</li>
 				<li>
-					<a href="#sc5" class="header-link">Matrícula</a>
+					<a href="?pag=matricula" class="header-link">Matrícula</a>
 				</li>
 			</ul>
 		</nav>
@@ -49,6 +49,17 @@ ID_USER: {{session.user.ID_USER}}
 							<li>
 								<h5>{{session.user.email}}</h5>
 							</li>
+						</div>
+						<div class="sidebar-item-group pages-group">
+							{% if session.user.perfil_acesso != 'U'%}
+								<li>
+									<a href="?pag=sistema" class="sidebar-item-link flex align-center">
+										<img src="/InstitutoRaiz/public/assets/images/vectors/icons/admin-vector.svg" 
+										width="42px" class="sidebar-item-link-img" alt="">
+										Sistema
+									</a>
+								</li>
+							{% endif %}
 						</div>
 						<div class="sidebar-item-group logout-group">
 							<li>
