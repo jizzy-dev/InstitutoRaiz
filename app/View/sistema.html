@@ -1,14 +1,30 @@
 {% include 'header_sistema.html' %}
-<main class="main-sistema">
-    <ul>
-        <li><a href="?pag=usuario&metodo=cadastrar">Matrícula</a></li>
-        <li><a href="?pag=usuario&metodo=cadastrar">Cadastrar Usuario</a></li>
-        <li><a href="?pag=usuario&metodo=consultar">Consultar Usuario</a></li>
-        <li><a href="?pag=padrinho&metodo=cadastrar">Cadastrar Padrinho</a></li>
-        <li><a href="?pag=padrinho&metodo=consultar">Consultar Padrinho</a></li>
-        <li><a href="?pag=aluno&metodo=cadastrar">Cadastrar Aluno</a></li>
-        <li><a href="?pag=aluno&metodo=consultar">Consultar Aluno</a></li>
-        <li><a href="?pag=aluno&metodo=consultar">Consultar Aluno</a></li>
-        <li><a href="?pag=frequencia&metodo=index">Frequencia</a></li>
-    </ul>
+<main class="main-sistema flex flex-column center">
+  {# <ul>
+    <li><a href="?pag=usuario&metodo=cadastrar">Matrícula</a></li>
+    <li><a href="?pag=usuario&metodo=cadastrar">Cadastrar Usuario</a></li>
+    <li><a href="?pag=usuario&metodo=consultar">Consultar Usuario</a></li>
+    <li><a href="?pag=padrinho&metodo=cadastrar">Cadastrar Padrinho</a></li>
+    <li><a href="?pag=padrinho&metodo=consultar">Consultar Padrinho</a></li>
+    <li><a href="?pag=aluno&metodo=cadastrar">Cadastrar Aluno</a></li>
+    <li><a href="?pag=aluno&metodo=consultar">Consultar Aluno</a></li>
+    <li><a href="?pag=aluno&metodo=consultar">Consultar Aluno</a></li>
+    <li><a href="?pag=frequencia&metodo=index">Frequencia</a></li>
+  </ul> #}
+  <div class="cards-container">
+    <div class="card-wrapper flex wrap gap-2">
+      <a href="?pag=usuario&metodo=cadastrar" class="card flex flex-column space-evenly align-center" id="card-1">
+      <div class="card-image"><img src="/InstitutoRaiz/public/assets/images/vectors/icons/admin-vector.svg" alt=""></div>
+        <div class="card-content">
+          <b>Matrícula</b>
+        </div>
+      </a>
+      <div class="card" id="card-2"href="?pag=usuario&metodo=cadastrar">
+      <div class="card-image"><img src="/InstitutoRaiz/public/assets/images/vectors/icons/admin-vector.svg" alt=""></div>
+        <div class="card-content">
+          <a href="?pag=usuario&metodo=cadastrar" class="no-style-link">Matrícula</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </main>

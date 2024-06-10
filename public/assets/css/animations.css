@@ -53,7 +53,7 @@
   animation: slide-in-left 300ms forwards, fade-in 300ms forwards;
 }
 .sidebar[open]::backdrop {
-  animation: fade-in 300ms forwards;
+  animation: fade-in 500ms forwards;
 }
 .sidebar[closing] {
   display: block;

@@ -6,6 +6,7 @@ footer {
     padding: 3em 0;
     gap: 2em;
     z-index: 1;
+    grid-area: f;
   }
   .footer-trademark{
     gap: 3em;

@@ -21,3 +21,25 @@ function toggleDateInput() {
     }
 
 }
+function togglePassword() {
+    const togglePassword = document.getElementById('togglePassword');
+    const password = document.getElementById('senha');
+
+    const type = password.type === 'password' ? 'text' : 'password';
+
+    password.type = type;
+
+    togglePassword.classList.toggle("senha-icon-open");
+    togglePassword.classList.toggle("senha-icon-close");
+
+}
+function toggleEyeSlash() {
+    const togglePassword = document.getElementById('togglePassword');
+    const password = document.getElementById('senha').value;
+    if (password == '') {
+        togglePassword.classList.add("display-none");
+    } else {
+        togglePassword.classList.remove("display-none");
+
+    }
+}

@@ -33,7 +33,7 @@ class Usuario
         $sql->bindValue(':isResponsavel', isset($dados['isResponsavel']) ? htmlspecialchars($dados['isResponsavel']) : 0);
         $sql->bindValue(':isPadrinho', isset($dados['isPadrinho']) ? htmlspecialchars($dados['isPadrinho']) : 0);
         $sql->bindValue(':perfil_acesso', isset($dados['perfil_acesso']) ? htmlspecialchars($dados['perfil_acesso']) : 'U');
-        $sql->bindValue(':ID_IMAGEM', isset($dados['ID_IMAGEM'])?$dados['ID_IMAGEM']:1);
+        $sql->bindValue(':ID_IMAGEM', isset($dados['ID_IMAGEM']) ? $dados['ID_IMAGEM'] : 1);
 
         if ($sql->execute()) {
             return $con->lastInsertId();
@@ -78,22 +78,54 @@ class Usuario
 
         return $resultado;
     }
-    public static function atualizarPorId($dados)
+    public static function selecionarPadrinhos()
     {
         $con = Connection::getConn();
 
-        $sql = "UPDATE usuario 
-        SET nome = :nome, cpf = :cpf, rg = :rg, contato = :contato, 
-        email = :email, senha = :senha, data_nasc = :data_nasc, cep = :cep, 
-        logradouro = :logradouro, bairro = :bairro, 
-        numero_endereco = :numero_endereco, complemento = :complemento, 
-        cidade = :cidade, 
-        estado = :estado, isResponsavel = :isResponsavel, isPadrinho = :isPadrinho, 
-        perfil_acesso = :perfil_acesso, ID_IMAGEM = :id_imagem 
-        WHERE ID_USER = :id";
-
+        $sql = "SELECT * FROM vw_padrinho LIMIT 25";
         $sql = $con->prepare($sql);
+        $sql->execute();
 
+        $resultado = array();
+
+        while ($row = $sql->fetchObject('Usuario')) {
+            $resultado[] = $row;
+        }
+
+        if (!$resultado) {
+            throw new Exception("Nenhum Registro Encontrado.");
+        }
+
+        return $resultado;
+    }
+    public static function selecionarPadrinhoPorId($id)
+    {
+        $con = Connection::getConn();
+
+        $sql = "SELECT * FROM vw_padrinho WHERE ID_USER = :id";
+        $sql = $con->prepare($sql);
+        $sql->bindValue(':id', $id, PDO::PARAM_INT);
+        $sql->execute();
+
+        $resultado = $sql->fetchObject('Usuario');
+
+        if (!$resultado) {
+            throw new Exception("Nenhum Registro Encontrado.");
+        }
+
+        return $resultado;
+    }
+    public static function atualizarPorId($dados)
+    {
+        $con = Connection::getConn();
+        $sql = "UPDATE usuario 
+                SET nome = :nome, cpf = :cpf, rg = :rg, contato = :contato, 
+                    email = :email, senha = :senha, data_nasc = :data_nasc, cep = :cep, 
+                    logradouro = :logradouro, bairro = :bairro, 
+                    numero_endereco = :numero_endereco, complemento = :complemento, 
+                    cidade = :cidade, estado = :estado, ID_IMAGEM = :ID_IMAGEM 
+                WHERE ID_USER = :id";
+        $sql = $con->prepare($sql);
         $sql->bindValue(':id', $dados['id'], PDO::PARAM_INT);
         $sql->bindValue(':nome', htmlspecialchars($dados['nome']));
         $sql->bindValue(':cpf', htmlspecialchars($dados['cpf']));
@@ -109,14 +141,9 @@ class Usuario
         $sql->bindValue(':complemento', htmlspecialchars($dados['complemento']));
         $sql->bindValue(':cidade', htmlspecialchars($dados['cidade']));
         $sql->bindValue(':estado', htmlspecialchars($dados['estado']));
-        $sql->bindValue(':isResponsavel', isset($dados['isResponsavel']) ? htmlspecialchars($dados['isResponsavel']) : 0);
-        $sql->bindValue(':isPadrinho', isset($dados['isPadrinho']) ? htmlspecialchars($dados['isPadrinho']) : 0);
-        $sql->bindValue(':perfil_acesso', isset($dados['perfil_acesso']) ? htmlspecialchars($dados['perfil_acesso']) : 'U');
-        $sql->bindValue(':id_imagem', 1);
-
-        if ($sql->execute()) {
-            return true;
-        } else {
+        $sql->bindValue(':ID_IMAGEM', $dados['ID_IMAGEM']);
+        
+        if (!$sql->execute()) {
             throw new Exception("Erro ao atualizar usuário.");
         }
     }
@@ -129,7 +156,26 @@ class Usuario
         $sql->bindValue(':id', $idUser, PDO::PARAM_INT);
         $sql->execute();
     }
+public static function filtrar($nomeUser)
+    {
+        $con = Connection::getConn();
 
+        $sql = "SELECT * FROM usuario WHERE nome LIKE :nome LIMIT 25";
+        $sql = $con->prepare($sql);
+
+        $nomeFiltrado = '%' . $nomeUser . '%';
+
+        $sql->bindValue(':nome', $nomeFiltrado, PDO::PARAM_STR);
+        $sql->execute();
+
+        $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!$resultado) {
+            throw new Exception("Nenhum Registro Encontrado..");
+        }
+
+        return $resultado;
+    }
     public static function bindPadrinho($dados)
     {
         $con = Connection::getConn();
@@ -150,24 +196,5 @@ class Usuario
             throw new Exception("Erro ao atribuir Padrinho.");
         }
     }
-    public static function filtrar($nomeUser)
-    {
-        $con = Connection::getConn();
-
-        $sql = "SELECT * FROM usuario WHERE nome LIKE :nome LIMIT 25";
-        $sql = $con->prepare($sql);
-
-        $nomeFiltrado = '%' . $nomeUser . '%';
-
-        $sql->bindValue(':nome', $nomeFiltrado, PDO::PARAM_STR);
-        $sql->execute();
-
-        $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
-
-        if (!$resultado) {
-            throw new Exception("Nenhum Registro Encontrado..");
-        }
-
-        return $resultado;
-    }
+    
 }

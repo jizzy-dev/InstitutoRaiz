@@ -50,7 +50,18 @@
 				<tr>
 					<td>Senha</td>
 					<td>
-						<input type="password" name="senha" class="textbox cad-textbox" required>
+					<fieldset class="field-senha inline-block border-none relative">
+						<input type="password" name="senha" class="textbox cad-textbox width-100pc" id="senha" onkeyup="toggleEyeSlash()" placeholder="Digite sua senha" required>
+						<i class="senha-eye-icon senha-icon-open absolute cursor-pointer display-none" onclick="togglePassword()" id="togglePassword"></i>
+						</fieldset>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<a href="" class="no-style-link">Esqueceu a Senha?</a>
+					</td>
+					<td>
+						<a href="" class="no-style-link underline">Entrar com CPF</a>
 					</td>
 				</tr>
 				<tr class="tr-titulo-section tr-submit">

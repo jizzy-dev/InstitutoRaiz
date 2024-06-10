@@ -24,12 +24,41 @@
   -moz-box-shadow: #338bf8 1px 1px 0px 2px;
   box-shadow: #338bf8 1px 1px 0px 2px;
 }
+.homepage-textbox {
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: var(--box-shadow-1);
+  font-size: var(--font-clamp-1);
+  padding: 0.8rem;
+  max-width: 40ch;
+  max-height: 20ch;
+  width: 100%;
+}
 .turma-select {
   max-width: 12ch;
 }
-/* .textbox:required:focus{
+.larger-textarea {
+  width: 100%;
+  min-height: 10ch;
+}
+.textbox:invalid:focus {
   box-shadow: rgb(248, 51, 64) 1px 1px 0px 2px;
-} */
+}
+
+.senha-eye-icon {
+  top: 100%;
+  left: 98%;
+  width: 28px;
+  aspect-ratio: 1/1;
+  transform: translateX(-100%) translateY(-100%);
+  background-size: contain;
+}
+.senha-eye-icon.senha-icon-open {
+  background-image: url("/InstitutoRaiz/public/assets/images/vectors/icons/pass-eye-open-vector.svg");
+}
+.senha-eye-icon.senha-icon-close {
+  background-image: url("/InstitutoRaiz/public/assets/images/vectors/icons/pass-eye-close-vector.svg");
+}
 
 /* anchors */
 :is(a, svg):is(:link, :hover, :active) {
@@ -126,7 +155,7 @@
   background-color: var(--cor-14);
   color: #fff;
   font-size: var(--font-clamp-0);
-  padding: .7rem 1rem;
+  padding: 0.7rem 1rem;
   gap: 5px;
   border-radius: 1rem;
   background-position-x: 95%;
@@ -136,7 +165,7 @@
 }
 .btn-input-image:hover > svg > path {
   fill: var(--cor-18);
-  transition: .2s;
+  transition: 0.2s;
 }
 .btn-input-image:hover {
   color: var(--cor-18);
@@ -484,4 +513,91 @@ menu.menu-sidebar .sidebar-item-link:hover {
   font-weight: bold;
   text-decoration: none;
   color: inherit;
+}
+
+/* cards */
+
+.cards-container {
+  border: 1px red solid;
+  width: 90dvw;
+  height: 90dvh;
+}
+.card-wrapper {
+  margin: 2em;
+}
+.card {
+  width: 250px;
+  /* height: 100px; */
+  background: #243a86;
+  border: 2px solid #b6b6b6;
+  box-shadow: var(--box-shadow-3);
+  padding: 2em;
+  margin: 2em;
+  aspect-ratio: 3/2;
+  border-radius: var(--radius-2);
+  text-decoration: none;
+  transition: 0.2s;
+}
+.card > * {
+  color: #fff;
+}
+.card:hover {
+  background: #4259ab;
+  scale: calc(100% + 5%);
+  box-shadow: var(--box-shadow-hover);
+  transition: 0.4s;
+}
+/* cards-contact-info */
+.sc5-contact-info {
+  transform: scale(0.8);
+}
+.card-contact-info {
+  width: 250px;
+  aspect-ratio: 4/4;
+  background-color: #fff;
+  border: none;
+  border-radius: 2rem;
+  box-shadow: var(--box-shadow-2);
+  padding: 1rem 2rem;
+}
+.card-contact-info:hover {
+  background-color: #58b2cd;
+}
+.card-contact-info > * {
+  color: #1c1c1c;
+  stroke: #1c1c1c;
+}
+.card-contact-info:hover > * {
+  color: #fff;
+}
+.card-contact-info:hover svg path {
+  fill: #fff;
+  stroke: #fff;
+}
+main.main-matricula .content-text p {
+  max-width: 50ch;
+  color: #1c1c1c;
+  font-weight: 600;
+}
+main.main-matricula {
+  color: var(--cor-11);
+}
+.content-text-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.content-text-list li::marker {
+  font-weight: bold;
+  font-size: var(--font-clamp-1);
+}
+.content-text details > summary {
+  list-style: none;
+}
+
+.content-text details[open] .sp-saiba-mais {
+  display: none !important;
+}
+.content-text details[open] .sp-saiba-menos {
+  display: unset !important;
 }

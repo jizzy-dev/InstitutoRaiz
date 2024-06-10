@@ -1,0 +1,160 @@
+{% include 'header.html' %}
+<main class="main-cad">
+    <form action="?pag=matricula&metodo=cadastrar" method="POST" class="form-cad flex flex-column center">
+        <table cellspacing="0" class="tables tb-matricula">
+            <thead>
+                <tr class="tr-titulo">
+                    <th colspan="2" class="tb-matricula-th">Matrícula</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Informações do Aluno -->
+                <tr class="tr-titulo-section">
+                    <th colspan="2" class="tb-matricula-th">Informações do Aluno</th>
+                </tr>
+                <tr>
+                    <td>Nome do Aluno</td>
+                    <td>
+                        <input type="text" name="nome_aluno" class="textbox cad-textbox" placeholder="Seu Nome" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Data de Nascimento do Aluno</td>
+                    <td>
+                        <input type="date" name="data_nasc_aluno" class="textbox cad-textbox" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>CPF do Aluno</td>
+                    <td>
+                        <input type="text" name="cpf_aluno" class="textbox cad-textbox"
+                            placeholder="Ex: 000.000.000-00" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>RG do Aluno</td>
+                    <td>
+                        <input type="text" name="rg_aluno" class="textbox cad-textbox" placeholder="Ex: 00.000.000-0" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Certidão do Aluno</td>
+                    <td>
+                        <input type="text" name="certidao_aluno" class="textbox cad-textbox textflow-ellipse"
+                            placeholder="Ex: 999999999999.9999999999999" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Carteira de Vacina do Aluno</td>
+                    <td>
+                        <input type="text" name="carteira_vacina_aluno" class="textbox cad-textbox" required>
+                    </td>
+                </tr>
+                <!-- Informações do Responsável -->
+                <tr class="tr-titulo-section">
+                    <th colspan="2" class="tb-matricula-th">Informações do Responsável</th>
+                </tr>
+                <tr>
+                    <td>Nome do Responsável</td>
+                    <td>
+                        <input type="text" name="nome_responsavel" class="textbox cad-textbox" placeholder="Seu Nome" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email do Responsável</td>
+                    <td>
+                        <input type="email" name="email_responsavel" class="textbox cad-textbox"
+                            placeholder="exemplo@email.com" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Senha</td>
+                    <td>
+                        <input type="password" name="senha_responsavel" class="textbox cad-textbox" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Data de Nascimento do Responsável</td>
+                    <td>
+                        <input type="date" name="data_nasc_responsavel" class="textbox cad-textbox" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>CPF do Responsável</td>
+                    <td>
+                        <input type="text" name="cpf_responsavel" class="textbox cad-textbox"
+                            placeholder="Ex: 000.000.000-00" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>RG do Responsável</td>
+                    <td>
+                        <input type="text" name="rg_responsavel" class="textbox cad-textbox"
+                            placeholder="Ex: 00.000.000-0" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Contato do Responsável</td>
+                    <td>
+                        <input type="text" name="contato_responsavel" class="textbox cad-textbox"
+                            placeholder="Ex: (00) 00000-0000" required>
+                    </td>
+                </tr>
+                <tr class="tr-titulo-section">
+                    <th colspan="2" class="tb-matricula-th">Dados de Endereço</th>
+                </tr>
+                <tr>
+                    <td>CEP</td>
+                    <td>
+                        <input type="text" name="cep" class="textbox cad-textbox" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Logradouro</td>
+                    <td>
+                        <input type="text" name="logradouro" class="textbox cad-textbox" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Bairro</td>
+                    <td>
+                        <input type="text" name="bairro" class="textbox cad-textbox" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Número</td>
+                    <td>
+                        <input type="text" name="numero_endereco" class="textbox cad-textbox" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Complemento</td>
+                    <td>
+                        <input type="text" name="complemento" class="textbox cad-textbox" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Cidade</td>
+                    <td>
+                        <input type="text" name="cidade" class="textbox cad-textbox" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Estado (UF)</td>
+                    <td>
+                        <input type="text" name="estado" class="textbox cad-textbox" required>
+                    </td>
+                </tr>
+                <!-- Botão de Submit -->
+                <tr class="tr-titulo-section tr-submit">
+                    <th colspan="2" class="tb-matricula-th text-center">
+                        <button type="submit" class="button btn-form-submit">
+                            Matricular Aluno
+                        </button>
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</main>
+{% include 'footer.html' %}

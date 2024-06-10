@@ -3,6 +3,7 @@ header {
     width: 100%;
     height: var(--header-height);
     z-index: 4;
+    grid-area: h;
   }
   
   header::after {

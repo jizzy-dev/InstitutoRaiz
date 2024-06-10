@@ -1,6 +1,9 @@
 <?php
 class MatriculaController
 {
+    public function index() {
+        echo TemplateRenderer::render('matricula.html');
+    }
     public function Cadastrar()
     {
         global $parametros;
@@ -38,7 +41,7 @@ class MatriculaController
                     'certidao' => $_POST['certidao_aluno'],
                     'carteira_vacina' => $_POST['carteira_vacina_aluno'],
                     'situacao_matricula' => isset($_POST['situacao_matricula']) ? $_POST['situacao_matricula'] : 'pendente',
-                    'data_matricula' => isset($_POST['data_matricula']) ? $_POST['data_matricula'] : date('Y-m-d h:i:s'),
+                    'data_matricula' => date('Y-m-d h:i:s'),
                     'data_inicio' => isset($_POST['data_inicio']) ? $_POST['data_inicio'] : date('Y-m-d h:i:s'),
                     'ID_TURMA' => isset($_POST['ID_TURMA']) ? $_POST['ID_TURMA'] : 1,
                     'ID_USER_RESPONSAVEL' => $id_usuario,
@@ -52,7 +55,7 @@ class MatriculaController
                 $this->handleError('Erro ao cadastrar matrícula: ' . $e->getMessage());
             }
         } else {
-            echo TemplateRenderer::render('cadastrar.html', $parametros);
+            echo TemplateRenderer::render('cadastrar_matricula.html', $parametros);
         }
     }
     private function handleError($errorMessage)

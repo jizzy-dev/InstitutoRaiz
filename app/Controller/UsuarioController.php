@@ -137,43 +137,21 @@ class UsuarioController
     }
     public function Editar($id = null)
     {
-        VerificarSessao::verificarLogin();
-
+        // VerificarSessao::verificarLogin();
         global $parametros;
+        $id = $_GET['id'];
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
-                $id_imagem = null;
+                $user = Usuario::selecionarPorId($id);
+                $id_imagem = $user->ID_IMAGEM;
+
                 if (isset($_FILES['imgInput']) && $_FILES['imgInput']['error'] == 0) {
-                    $id_imagem = Imagem::upload($_FILES['imgInput']);
+                    $id_imagem = Imagem::uploadUpdate($_FILES['imgInput'], $id_imagem);
                 }
 
-                $emailExiste = ValidarDuplos::verificarEmailDuplo($_POST['email_responsavel']);
-                if ($emailExiste) {
-                    $erro = 'O e-mail informado já está em uso';
-                    $parametros = [
-                        'erro' => $erro,
-                        'login_redirect' => true
-                    ];
-                }
-
-                $cpfExiste = ValidarDuplos::verificarCPFDuplo($_POST['cpf_responsavel']);
-                if ($cpfExiste) {
-                    $erro = 'O CPF informado já está em uso';
-                    $parametros = [
-                        'erro' => $erro,
-                        'login_redirect' => true
-                    ];
-                }
-
-                if ($emailExiste && $cpfExiste) {
-                    $erro = "Os seguintes campos informados já estão cadastrados:\n Email, CPF";
-                    $parametros = [
-                        'erro' => $erro,
-                        'login_redirect' => true
-                    ];
-                }
                 $dados = [
-                    'id' =>  htmlspecialchars($_POST['id_usuario']),
+                    'id' => htmlspecialchars($id),
                     'nome' => htmlspecialchars($_POST['nome_responsavel']),
                     'cpf' => htmlspecialchars($_POST['cpf_responsavel']),
                     'rg' => htmlspecialchars($_POST['rg_responsavel']),
@@ -190,33 +168,25 @@ class UsuarioController
                     'estado' => htmlspecialchars($_POST['estado']),
                     'isResponsavel' => isset($_POST['isResponsavel']) ? 1 : 0,
                     'isPadrinho' => isset($_POST['isPadrinho']) ? 1 : 0,
-                    'perfil_acesso' => isset($_POST['perfil_acesso']) ? $_POST['perfil_acesso'] : 'U',
                     'ID_IMAGEM' => $id_imagem
                 ];
 
                 Usuario::atualizarPorId($dados);
-                // Redirecionar para a página de consulta após a atualização
-                header('Location: ?pag=usuario&metodo=consultar');
-                exit;
+                echo "<script>alert('Usuário atualizado com sucesso!'); window.location.href = '?pag=usuario&metodo=index&id=" . $id . "';</script>";
             } catch (Exception $e) {
                 echo "<script>alert('Erro ao editar usuário: " . $e->getMessage() . "')</script>";
             }
         } else {
-            // Se não for uma requisição POST, verificar se o ID do usuário está presente na URL
             if ($id !== null) {
                 try {
-                    // Obter o ID do usuário da URL
-                    $id = $_GET['id']; // Supondo que o ID do usuário seja passado na URL
-                    // Selecionar o usuário pelo ID
                     $user = Usuario::selecionarPorId($id);
-                    $parametros = ['usuario' => $user, 'titulo' => 'Editar Usuário'];
-                    // Renderizar a view de edição e passar os dados do usuário
+                    $imagem = Imagem::selecionarPorId($user->ID_IMAGEM);
+                    $parametros = ['usuario' => $user, 'imagem'=> $imagem, 'titulo' => 'Editar Usuário'];
                     echo TemplateRenderer::render('editar_usuario.html', $parametros);
                 } catch (Exception $e) {
                     echo "<script>alert('Erro ao editar usuário: " . $e->getMessage() . "')</script>";
                 }
             } else {
-                // Se o ID do usuário não estiver presente na URL, redirecionar para a página de consulta
                 header('Location: ?pag=usuario&metodo=consultar');
                 exit;
             }

@@ -102,6 +102,8 @@
   /* shadows */
   --box-shadow-1: 0px 0px 15px -2px rgba(0, 0, 0, 0.25);
   --box-shadow-2: 0px 0px 10px -2px rgba(0, 0, 0, 0.25);
+  --box-shadow-3: 0px 0px 10px -1px rgba(0, 0, 0, 0.25);
+  --box-shadow-hover: 0 0 0 13px rgb(182 182 182 / 33%);
   --text-shadow-1: 0px 0px 15px rgba(0, 0, 0, 0.25);
 
   /* elements colors */
