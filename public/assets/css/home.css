@@ -214,9 +214,7 @@ main.main-home {
 .sc5-title {
   color: var(--cor-17);
 }
-.sc5-content {
-  gap: 3em;
-}
+
 .sc5-text-content-p {
   color: var(--cor-7);
   max-width: 50ch;

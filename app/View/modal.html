@@ -1,4 +1,4 @@
-{% if erro is defined %}
+{% if ModalTipo == 'Erro' %}
 	<dialog class="modal modal-type-error" id="modal">
 		<div class="modal-header flex center">
 			<h3>Erro:</h3>
@@ -10,10 +10,10 @@
 			{% if login_redirect == true %}
 				<a href="?pag=autenticar&metodo=sair" class="no-style-link underline">Deseja entrar na conta?</a>
 			{% endif %}
-			<button class="button close-button btn-fechar-modal">Fechar</button>
+			<button class="button close-button btn-fechar-modal" id="close-button">Fechar</button>
 		</div>
 	</dialog>
-{% elseif mensagem is defined %}
+{% elseif ModalTipo == 'Mensagem' %}
 	<dialog class="modal modal-type-message" id="modal">
 		<div class="modal-header flex center">
 			<h3>Mensagem:</h3>
@@ -22,7 +22,29 @@
 			<p>
 				{{mensagem}}
 			</p>
-			<button class="button close-button btn-fechar-modal">Fechar</button>
+			<button class="button close-button btn-fechar-modal" id="close-button">Fechar</button>
+		</div>
+	</dialog>
+{% elseif ModalTipo == 'YesNo' %}
+	<dialog class="modal modal-type-message" id="modal">
+		<div class="modal-header flex center">
+			<h3>Confirmar:</h3>
+		</div>
+		<div class="modal-content flex flex-column center">
+			<p>
+				{{mensagem}}
+			</p>
+			<div class="buttons-yesno flex space-evenly gap-1">
+			{% if YesNoAnchor == true %}
+				{% if pag == 'matricula' %}
+					<a href="{{hrefLink}}" class="button close-button btn-yes-modal">Sim</a>
+					<a href="?pag=matricula&metodo=consultar&situacao=pendente" class="button close-button btn-no-modal" id="close-button" autofocus>No</a>
+				{% endif %}
+			{% else %}
+				<button class="button close-button btn-no-modal" id="close-button">Sim</button>
+				<button class="button close-button btn-no-modal" id="close-button">Não</button>
+			{% endif %}
+			</div>
 		</div>
 	</dialog>
 {% endif %}

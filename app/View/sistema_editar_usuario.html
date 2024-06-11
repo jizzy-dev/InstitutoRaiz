@@ -1,0 +1,25 @@
+{% include 'header_sistema.html' %}
+<main class="main-sistema flex flex-column center">
+  <h1> {{titulo}} </h1>  
+<menu class="flex flex-column center gap-3">
+    <div class="cards-container">
+      <div class="card-wrapper flex space-evenly wrap gap-2">
+        <a href="?pag=usuario&metodo=editar" class="card flex flex-column space-evenly align-center" id="card-1">
+        <div class="card-image"><img src="/InstitutoRaiz/public/assets/images/vectors/icons/user-pen-vector.svg" alt=""></div>
+          <div class="card-content">
+            <b class="">Editar Info</b>
+          </div>
+        </a>
+        <a 
+        href="?pag=sistema&metodo=redirectPag&titulo=Garantir%20Acesso&atual=editar_usuario&redirecionar=editar_usuario{% if session.user.perfil_acesso != 'A'%}&permissao=necessaria{% else %}&permissao=permitido{% endif %}" 
+        class="card flex flex-column space-evenly align-center" 
+        id="card-1">
+        <div class="card-image"><img src="/InstitutoRaiz/public/assets/images/vectors/icons/user-lock-vector.svg" alt=""></div>
+          <div class="card-content">
+            <b class="">Garantir Acesso</b>
+          </div>
+        </a>
+      </div>
+  </menu>
+</main>
+{% include 'footer.html' %}

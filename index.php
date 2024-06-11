@@ -5,6 +5,7 @@ require_once 'app/Core/Core.php';
 require_once 'lib/Database/Connection.php';
 // modelos
 require_once 'app/Model/Autenticar.php';
+require_once 'app/Model/Validador.php';
 require_once 'app/Model/Imagem.php';
 require_once 'app/Model/Usuario.php';
 require_once 'app/Model/ValidarDuplos.php';

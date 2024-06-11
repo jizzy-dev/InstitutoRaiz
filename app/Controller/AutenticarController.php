@@ -15,7 +15,7 @@ class AutenticarController
 
             $dados = [
                 'email' => filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL),
-                'senha' => $_POST['senha']??''
+                'senha' => $_POST['senha'] ?? ''
             ];
 
             try {
@@ -23,13 +23,16 @@ class AutenticarController
                 $imagem = Imagem::selecionarPorId($user->ID_IMAGEM);
                 $_SESSION['user'] = $user;
                 $_SESSION['imagem'] = $imagem;
-                
+
                 header('Location: ?pag=home');
                 exit;
             } catch (Exception $e) {
-                $parametros['erro'] = $e->getMessage();
-                 echo TemplateRenderer::render('login.html', $parametros);
-                 session_destroy();
+                $parametros = [
+                    'ModalTipo'=>'Erro',
+                    'erro' => $e->getMessage(),
+                ];
+                echo TemplateRenderer::render('login.html', $parametros);
+                session_destroy();
             }
         } else {
             $parametros = ['titulo' => 'Login'];

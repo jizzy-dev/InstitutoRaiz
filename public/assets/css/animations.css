@@ -43,6 +43,14 @@
     box-shadow: var(--box-shadow-1);
   }
 }
+@keyframes grow-bottom{
+  0%{
+    height: 100px;
+  }
+  100%{
+    height: 200px;
+  }
+}
 
 /* applying */
 
@@ -62,4 +70,8 @@
 }
 .sidebar[closing]::backdrop {
   animation: fade-out 300ms forwards;
+}
+
+.content-text details[open]{
+  animation: fade-in 300ms forwards;
 }
