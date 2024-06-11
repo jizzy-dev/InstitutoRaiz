@@ -10,8 +10,6 @@
 						{% if not alunos %}
 							{% else %}
 								<td class="td-button"></td>
-								<td class="td-button"></td>
-								<td class="td-button"></td>
 								<td class="td-ID">ID
 									<div class="resize-handle"></div>
 								</td>
@@ -42,13 +40,13 @@
 								<td>Data Inicio
 									<div class="resize-handle"></div>
 								</td>
-								<td>ID_USER_TURMA
+								<td>TURMA
 									<div class="resize-handle"></div>
 								</td>
-								<td>ID_USER_RESPONSAVEL
+								<td>IdResponsavel
 									<div class="resize-handle"></div>
 								</td>
-								<td>ID_USER_PADRINHO
+								<td>IdPadrinho
 									<div class="resize-handle"></div>
 								</td>
 						{% endif %}
@@ -59,14 +57,10 @@
 						<tr>
 							<td class="td-button">
 								<button type="button" class="button action-buttons btn-relationship" onclick="toggleRelationship()"></button>
-							</td>
-							<td class="td-button">
 								<form id="formEditarAluno_{{ alunos.ID_ALUNO }}" method="POST">
 									<input type="hidden" name="id_alunos" value="{{ alunos.ID_ALUNO }}">
 									<button type="button" onclick="editarAlunoInput('{{ alunos.ID_ALUNO }}')" class="button action-buttons btn-editar"></button>
 								</form>
-							</td>
-							<td class="td-button">
 								<form action="?pag=aluno&metodo=excluir" method="POST">
 									<input type="hidden" name="id_alunos" value="{{ alunos.ID_ALUNO }}">
 									<button type="submit" onclick="return confirm('Tem certeza que deseja excluir este aluno?')" class="button action-buttons btn-excluir"></button>
@@ -82,7 +76,12 @@
 							<td>{{alunos.situacao_matricula}}</td>
 							<td>{{alunos.data_matricula}}</td>
 							<td>{{alunos.data_inicio}}</td>
-							<td>{{alunos.ID_USER_TURMA}}</td>
+							{% if alunos.ID_TURMA == 1 %}
+								{% set turma = 'A' %}
+							{% elseif alunos.ID_TURMA == 2 %}
+								{% set turma = 'B' %}
+							{% endif %}
+							<td>{{turma}}</td>
 							<td>{{alunos.ID_USER_RESPONSAVEL}}</td>
 							<td>{{alunos.ID_USER_PADRINHO}}</td>
 						</tr>

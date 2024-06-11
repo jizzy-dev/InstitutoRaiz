@@ -142,7 +142,7 @@ class Usuario
         $sql->bindValue(':cidade', htmlspecialchars($dados['cidade']));
         $sql->bindValue(':estado', htmlspecialchars($dados['estado']));
         $sql->bindValue(':ID_IMAGEM', $dados['ID_IMAGEM']);
-        
+
         if (!$sql->execute()) {
             throw new Exception("Erro ao atualizar usuário.");
         }
@@ -156,7 +156,7 @@ class Usuario
         $sql->bindValue(':id', $idUser, PDO::PARAM_INT);
         $sql->execute();
     }
-public static function filtrar($nomeUser)
+    public static function filtrar($nomeUser)
     {
         $con = Connection::getConn();
 
@@ -196,5 +196,19 @@ public static function filtrar($nomeUser)
             throw new Exception("Erro ao atribuir Padrinho.");
         }
     }
-    
+    public static function atualizarPerfilAcesso($dados)
+    {
+        $con = Connection::getConn();
+        $sql = "UPDATE usuario 
+                SET perfil_acesso = :perfil_acesso 
+                WHERE ID_USER = :id";
+        $sql = $con->prepare($sql);
+        $sql->bindValue(':id', $dados['id'], PDO::PARAM_INT);
+        $sql->bindValue(':perfil_acesso', $dados['perfil_acesso'], PDO::PARAM_STR);
+
+
+        if (!$sql->execute()) {
+            throw new Exception("Erro ao alterar perfil do usuário.");
+        }
+    }
 }

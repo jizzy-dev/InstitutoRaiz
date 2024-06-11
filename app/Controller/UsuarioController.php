@@ -181,7 +181,7 @@ class UsuarioController
                 try {
                     $user = Usuario::selecionarPorId($id);
                     $imagem = Imagem::selecionarPorId($user->ID_IMAGEM);
-                    $parametros = ['usuario' => $user, 'imagem'=> $imagem, 'titulo' => 'Editar Usuário'];
+                    $parametros = ['usuario' => $user, 'imagem' => $imagem, 'titulo' => 'Editar Usuário'];
                     echo TemplateRenderer::render('editar_usuario.html', $parametros);
                 } catch (Exception $e) {
                     echo "<script>alert('Erro ao editar usuário: " . $e->getMessage() . "')</script>";
@@ -192,6 +192,41 @@ class UsuarioController
             }
         }
     }
+    public function atribuirAcesso()
+    {
+        VerificarSessao::verificarLogin();
+        VerificarSessao::verificarPerfil('A');
+
+        global $parametros;
+
+        $id = isset($_POST['id_usuario']) ? $_POST['id_usuario'] : ($_GET['id'] ? $_GET['id'] : 1);
+        $perfil_acesso = isset($_POST['perfil_acesso']) ? $_POST['perfil_acesso'] : null;
+
+        $user = Usuario::selecionarPorId($id);
+        $parametros['usuario'] = $user;
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            try {
+
+                $dados = [
+                    'id' => htmlspecialchars($id),
+                    'perfil_acesso' => htmlspecialchars($perfil_acesso)
+                ];
+                $parametros = [
+                    'titulo' => 'Atribuir Acesso',
+                    'ModalTipo' => 'Mensagem',
+                    'mensagem' => 'Atribuição de Perfil feita com Sucesso!'
+                ];
+                Usuario::atualizarPerfilAcesso($dados);
+                echo TemplateRenderer::render('atribuir_perfil_acesso.html', $parametros);
+            } catch (Exception $e) {
+                echo "<script>alert('Erro ao editar usuário: " . $e->getMessage() . "')</script>";
+            }
+        } else {
+            echo TemplateRenderer::render('atribuir_perfil_acesso.html', $parametros);
+        }
+    }
+
     private function handleError($errorMessage)
     {
         $erroController = new ErroController();

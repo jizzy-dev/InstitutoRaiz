@@ -29,8 +29,8 @@ DEFAULT CHARACTER SET = utf8mb4;
 CREATE TABLE IF NOT EXISTS `raizdb`.`usuario` (
   `ID_USER` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(80) NOT NULL,
-  `cpf` VARCHAR(12) UNIQUE NOT NULL,
-  `rg` VARCHAR(12) NOT NULL,
+  `cpf` VARCHAR(11) UNIQUE NOT NULL,
+  `rg` VARCHAR(9) NOT NULL,
   `contato` VARCHAR(12) NOT NULL,
   `email` VARCHAR(80) UNIQUE NOT NULL,
   `senha` VARCHAR(256) NOT NULL,
@@ -60,10 +60,10 @@ DEFAULT CHARACTER SET = utf8mb4;
 CREATE TABLE IF NOT EXISTS `raizdb`.`aluno` (
   `ID_ALUNO` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(80) NOT NULL,
-  `cpf` VARCHAR(13) UNIQUE NOT NULL,
-  `rg` VARCHAR(13) NOT NULL,
+  `cpf` VARCHAR(11) UNIQUE NOT NULL,
+  `rg` VARCHAR(9) NOT NULL,
   `data_nasc` DATE NOT NULL,
-  `certidao` VARCHAR(45) UNIQUE NOT NULL,
+  `certidao` VARCHAR(32) UNIQUE NOT NULL,
   `carteira_vacina` VARCHAR(45) UNIQUE NOT NULL,
   `situacao_matricula` ENUM('pendente', 'aprovado', 'reprovado') NOT NULL,
   `data_matricula` DATE NOT NULL,
@@ -138,7 +138,12 @@ INSERT INTO `aluno` (`ID_ALUNO`, `nome`, `cpf`, `rg`, `data_nasc`, `certidao`, `
 -- -----------------------------------------------------
 -- Views
 -- -----------------------------------------------------
-CREATE VIEW alunos_mais_de_um_ano AS
+CREATE VIEW vw_aluno_validar_tempo_padrinho AS
 SELECT *
 FROM `aluno`
 WHERE DATE_ADD(data_inicio, INTERVAL 1 YEAR) <= CURDATE();
+
+CREATE VIEW vw_padrinho AS
+SELECT *
+FROM `usuario`
+WHERE isPadrinho = 1;

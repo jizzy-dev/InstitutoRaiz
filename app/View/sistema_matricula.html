@@ -1,0 +1,23 @@
+{% include 'header_sistema.html' %}
+<main class="main-sistema flex flex-column center">
+  <h1> {{titulo}} </h1>  
+  <menu class="flex flex-column center gap-3">
+    <div class="cards-container">
+      <div class="card-wrapper flex space-evenly wrap gap-2">
+        <a href="?pag=matricula&metodo=cadastrar" class="card flex flex-column space-evenly align-center" id="card-1">
+        <div class="card-image"><img src="/InstitutoRaiz/public/assets/images/vectors/icons/form-vector.svg" alt=""></div>
+          <div class="card-content">
+            <b>Cadastrar Matrícula</b>
+          </div>
+        </a>
+        <a href="?pag=matricula&metodo=consultar&situacao=aprovado" class="card flex flex-column space-evenly align-center" id="card-1">
+        <div class="card-image"><img src="/InstitutoRaiz/public/assets/images/vectors/icons/search-vector.svg" alt=""></div>
+          <div class="card-content">
+            <b class="">Consultar Matrícula</b>
+          </div>
+        </a>
+    
+    </div>
+  </menu>
+</main>
+{% include 'footer.html' %}

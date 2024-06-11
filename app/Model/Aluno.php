@@ -27,6 +27,9 @@ class Aluno
         $sql->bindValue(':ID_USER_RESPONSAVEL', $dados['ID_USER_RESPONSAVEL']);
         $sql->bindValue(':ID_USER_PADRINHO', $dados['ID_USER_PADRINHO']);
 
+        error_log('Valor de situacao_matricula: ' . $dados['situacao_matricula']);
+
+
         if ($sql->execute()) {
             return true;
         } else {
@@ -41,16 +44,12 @@ class Aluno
         $sql = $con->prepare($sql);
         $sql->execute();
 
-        $resultado = array();
-
-        while ($row = $sql->fetchObject('Aluno')) {
-            $resultado[] = $row;
-        }
+        $resultado = $sql->fetchAll(PDO::FETCH_OBJ);
 
         if (!$resultado) {
             throw new Exception("Nenhum registro encontrado.");
         }
-
+        
         return $resultado;
     }
     public static function selecionarPorId($idAluno)
@@ -108,6 +107,27 @@ class Aluno
         $nomeFiltrado = '%' . $nomeAluno . '%';
 
         $sql->bindValue(':nome', $nomeFiltrado, PDO::PARAM_STR);
+        $sql->execute();
+
+        $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!$resultado) {
+            throw new Exception("Nenhum registro encontrado.");
+        }
+
+        return $resultado;
+    }
+    public static function filtrarNomeSitucao($nomeAluno ,$situacao)
+    {
+        $con = Connection::getConn();
+
+        $sql = "SELECT * FROM aluno WHERE nome LIKE :nome AND situacao_matricula = :situacao LIMIT 25";
+        $sql = $con->prepare($sql);
+
+        $nomeFiltrado = '%' . $nomeAluno . '%';
+
+        $sql->bindValue(':nome', $nomeFiltrado, PDO::PARAM_STR);
+        $sql->bindValue(':situacao', $situacao, PDO::PARAM_STR);
         $sql->execute();
 
         $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -193,6 +213,24 @@ class Aluno
             return true;
         } else {
             throw new Exception("Erro ao atualizar aluno.");
+        }
+    }
+    public static function aprovarMatricula($dados) {
+        $con = Connection::getConn();
+
+        $sql = "UPDATE aluno 
+                SET situacao_matricula = :situacao 
+                WHERE ID_ALUNO = :id";
+
+        $sql = $con->prepare($sql);
+
+        $sql->bindValue(':situacao', $dados['situacao'],PDO::PARAM_STR);
+        $sql->bindValue(':id', $dados['id'], PDO::PARAM_INT);
+
+        if ($sql->execute()) {
+            return true;
+        } else {
+            throw new Exception("Erro ao aprovar matrícula.");
         }
     }
 }

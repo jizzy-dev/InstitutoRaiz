@@ -1,0 +1,138 @@
+{% include 'header_sistema.html' %}
+<main class="main-consultar">
+	<form action="?pag=matricula&metodo=consultar" method="POST" class="flex flex-column center">
+	
+	<div class="table-wrapper flex center">
+			<table cellspacing="0" class="tables data-table tb-consulta flex flex-column">
+				<thead>
+					<tr class="tr-titulo">
+						<th colspan="17">Matrícula</th>
+					</tr>
+					<tr class="tr-input flex center">
+						<td>
+							<label for="filtro">Filtro:</label>
+						</td>
+						<td>
+							<input type="text" name="filtro" id="filtro" class="textbox" placeholder="Nome">
+						</td>
+						<td>
+							<label for="">Situação: </label>
+							<select name="situacao" id="situacao" class="textbox" oninput="this.form.submit()" required>
+								<option value="" {% if situacao is not defined %}selected disabled{% endif %} >Selecionar</option>
+								<option value="aprovado" {% if situacao == 'aprovado' %}selected{% endif %} >Aprovada</option>
+								<option value="pendente" {% if situacao == 'pendente' %}selected{% endif %} >Pendente</option>
+								<option value="reprovado" {% if situacao == 'reprovado' %}selected{% endif %} >Reprovada</option>
+							</select>
+						</td>	
+						<td>
+							<input type="submit"  value="Buscar" class="button weight-bold">
+						</td>
+					</tr>
+				</thead>
+				<tbody>
+					{% if alunos %}
+					<tr class="row-column-titles tr-consultar">
+					{% if situacao == 'pendente' %}
+						<td class="td-button">Aprovar</td>
+					{% else %}
+						<td class="td-button"></td>
+					{% endif %}
+						<td class="td-ID">ID
+							<div class="resize-handle"></div>
+						</td>
+						<td>Nome
+							<div class="resize-handle"></div>
+						</td>
+						<td>CPF
+							<div class="resize-handle"></div>
+						</td>
+						<td>RG
+							<div class="resize-handle"></div>
+						</td>
+						<td>Data_Nasc
+							<div class="resize-handle"></div>
+						</td>
+						<td>Certidão
+							<div class="resize-handle"></div>
+						</td>
+						<td>Carteira Vacina
+							<div class="resize-handle"></div>
+						</td>
+						<td>Situacão Matrícula
+							<div class="resize-handle"></div>
+						</td>
+						<td>Data Matrícula
+							<div class="resize-handle"></div>
+						</td>
+						<td>Data Inicio
+							<div class="resize-handle"></div>
+						</td>
+						<td>Turma
+							<div class="resize-handle"></div>
+						</td>
+						<td>ID_USER_RESPONSAVEL
+							<div class="resize-handle"></div>
+						</td>
+						<td>ID_USER_PADRINHO
+							<div class="resize-handle"></div>
+						</td>
+					</tr>
+							{% for aluno in alunos %}
+								<tr>
+									{% if situacao == 'aprovado' %}
+										<td class="td-button">
+											<form action="?pag=aluno&metodo=index" method="POST">
+												<input type="hidden" name="id_aluno" value="{{ aluno.ID_ALUNO }}">
+												<a href="?pag=aluno&id={{ aluno.ID_ALUNO}}" class="button action-buttons btn-redirect flex center"></a>
+											</form>
+											<form id="formEditarAluno_{{ aluno.ID_ALUNO }}" method="POST">
+												<input type="hidden" name="id_aluno" value="{{ aluno.ID_ALUNO }}">
+												<button type="button" onclick="editarAlunoInput('{{ aluno.ID_ALUNO }}')" class="button action-buttons btn-editar"></button>
+											</form>
+											<form action="?pag=aluno&metodo=excluir" method="POST">
+												<input type="hidden" name="id_aluno" value="{{ aluno.ID_ALUNO }}">
+												<button type="submit" onclick="return confirm('Tem certeza que deseja excluir este usuário?')" class="button action-buttons btn-excluir"></button>
+											</form>
+										</td>
+									{% elseif situacao == 'pendente' %}
+										<td class="td-button">
+											<form action="?pag=aluno&metodo=index" method="POST">
+												<a href="?pag=matricula&metodo=validarmatricula&id={{ aluno.ID_ALUNO }}&redirect=aprovar" class="button action-buttons btn-aprovar flex center"></a>
+											</form>
+											<form action="?pag=aluno&metodo=index" method="POST">
+												<a href="?pag=matricula&metodo=validarmatricula&id={{ aluno.ID_ALUNO }}&redirect=reprovar" class="button action-buttons btn-reprovar flex center"></a>
+											</form>
+										</td>
+									{% endif %}
+									<td class="td-ID">{{aluno.ID_ALUNO}}</td>
+									<td>{{aluno.nome}}</td>
+									<td>{{aluno.cpf}}</td>
+									<td>{{aluno.rg}}</td>
+									<td>{{aluno.data_nasc}}</td>
+									<td>{{aluno.certidao}}</td>
+									<td>{{aluno.carteira_vacina}}</td>
+									<td>{{aluno.situacao_matricula}}</td>
+									<td>{{aluno.data_matricula}}</td>
+									<td>{{aluno.data_inicio}}</td>
+										{% if aluno.ID_TURMA == 1 %}
+										{% set turma = 'A' %}
+									{% elseif aluno.ID_TURMA == 2 %}
+										{% set turma = 'B' %}
+									{% endif %}
+									<td>{{turma}}</td>
+									<td>{{aluno.ID_USER_RESPONSAVEL}}</td>
+									<td>{{aluno.ID_USER_PADRINHO}}</td>
+								</tr>
+							{% endfor %}
+						
+					{% else %}
+						<tr>
+							<td colspan="15" align="center">{{ erro }}</td>
+						</tr>
+					{% endif %}
+				</tbody>
+			</table>
+		</div>
+	</form>
+</main>
+{% include 'footer.html' %}
