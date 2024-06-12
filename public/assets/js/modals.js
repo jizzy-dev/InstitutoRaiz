@@ -5,12 +5,12 @@ const closeModal = document.getElementById('close-button');
 if (openModal) {
     openModal.addEventListener('click', () => {
         modal.showModal();
-    })
+    });
 }
 if (closeModal) {
     closeModal.addEventListener('click', () => {
         modal.close();
-    })
+    });
 }
 
 if (modal) {
@@ -18,38 +18,68 @@ if (modal) {
         modal.showModal();
     });
 }
+
 const sidebar = document.getElementById('sidebar');
-const sidebarBackdrop = document.querySelector('.sidebar::backdrop');
 const openSidebar = document.querySelector('.open-sidebar-profile-button');
 const closeSidebar = document.querySelector('.close-sidebar-button');
 
 if (openSidebar) {
     openSidebar.addEventListener('click', () => {
         sidebar.showModal();
-    })
+    });
 }
 if (closeSidebar) {
     closeSidebar.addEventListener('click', () => {
         sidebar.close();
-    })
+    });
 }
+
 if (sidebar) {
+    // Flags para controlar o estado do mouse
+    let mouseInsideSidebar = false;
+    let sidebarClosing = false;
+
+    // Fechar o sidebar ao clicar fora dele
     sidebar.addEventListener('click', (event) => {
         if (event.target == sidebar) {
             sidebar.setAttribute('closing', "");
             sidebar.addEventListener('animationend', () => {
                 sidebar.removeAttribute('closing');
                 sidebar.close();
-            }, { once: true })
+                sidebarClosing = false;
+            }, { once: true });
+            sidebarClosing = true;
         }
-    })
-    sidebar.addEventListener('mouseover', (event) => {
-        if (event.target == sidebar) {
+    });
+
+    // Detectar quando o mouse entra e sai do sidebar
+    sidebar.addEventListener('mouseenter', () => {
+        mouseInsideSidebar = true;
+    });
+    sidebar.addEventListener('mouseleave', () => {
+        mouseInsideSidebar = false;
+        // Fechar o sidebar apenas se ele estiver visível e não estiver no processo de fechamento
+        if (sidebar.open && !sidebarClosing) {
             sidebar.setAttribute('closing', "");
             sidebar.addEventListener('animationend', () => {
                 sidebar.removeAttribute('closing');
                 sidebar.close();
-            }, { once: true })
+            }, { once: true });
         }
-    })
+    });
+
+    // Fechar o sidebar quando o mouse estiver fora dele e ele estiver aberto
+    document.addEventListener('mousemove', (event) => {
+        const sidebarRect = sidebar.getBoundingClientRect();
+        const mouseX = event.clientX;
+
+        // Verifica se o mouse está fora da área do sidebar (à esquerda do sidebar)
+        if (mouseX > sidebarRect.left && sidebar.open && !mouseInsideSidebar && !sidebarClosing) {
+            sidebar.setAttribute('closing', "");
+            sidebar.addEventListener('animationend', () => {
+                sidebar.removeAttribute('closing');
+                sidebar.close();
+            }, { once: true });
+        }
+    });
 }

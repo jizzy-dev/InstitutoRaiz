@@ -2,9 +2,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const table = document.querySelector('.tb-consulta');
     if (!table) return;
 
-    const ths = table.querySelectorAll('.row-column-titles td');
+    const ths = table.querySelectorAll('.row-column-titles td:not(.td-button)');
     const tbodyRows = table.querySelectorAll('tbody tr');
-    const minColumnWidth = 150; // Largura mínima em pixels
+    const minColumnWidth = 300; // Largura mínima em pixels
     const maxColumnWidth = 700; // Largura máxima em pixels
 
     ths.forEach((th, index) => {

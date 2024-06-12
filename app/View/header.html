@@ -35,10 +35,10 @@ ID_USER: {{session.user.ID_USER}}
 					<img src="{{session.imagem.imgCaminho}}" width="78px" alt="imagem de perfil" class="profile-image open-sidebar-profile-img">
 				</button>
 				<dialog class="sidebar" id="sidebar">
-					<menu class="menu-sidebar flex flex-column flex-start align-center gap-1">
+					<menu class="menu-sidebar flex flex-column flex-start align-center">
 						<div class="sidebar-item-group profile-group flex flex-column center gap-1">
 							<li>
-								<img src="{{session.imagem.imgCaminho}}" alt="imagem de perfil" class="profile-image" role="image">
+								<img src="{{session.imagem.imgCaminho}}" width="150px" alt="imagem de perfil" class="profile-image" role="image">
 							</li>
 							<li>
 								<a href="?pag=usuario&metodo=editar&id={{session.user.ID_USER}}" class="button">Editar Usuário</a>
@@ -51,10 +51,17 @@ ID_USER: {{session.user.ID_USER}}
 							</li>
 						</div>
 						<div class="sidebar-item-group pages-group">
+						<li>
+							<a href="?pag=home" class="sidebar-item-link flex align-center">
+								<img src="/InstitutoRaiz/public/assets/images/vectors/icons/home-vector.svg" 
+								width="42px" class="sidebar-item-link-img" alt="">
+								Página Inicial
+							</a>
+						</li>
 							{% if session.user.perfil_acesso != 'U'%}
 								<li>
 									<a href="?pag=sistema" class="sidebar-item-link flex align-center">
-										<img src="/InstitutoRaiz/public/assets/images/vectors/icons/admin-vector.svg" 
+										<img src="/InstitutoRaiz/public/assets/images/vectors/icons/gear-vector.svg" 
 										width="42px" class="sidebar-item-link-img" alt="">
 										Sistema
 									</a>

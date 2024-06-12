@@ -34,6 +34,7 @@ main.main-home {
 .sc1-content-right {
   float: right;
   width: 45dvw;
+  padding-bottom: 3em;
   /* transform: translateY(-150px); */
 }
 .sc1-banner {
@@ -41,6 +42,7 @@ main.main-home {
   width: 100%;
   aspect-ratio: 1/1;
   object-fit: cover;
+  filter: brightness(70%);
 }
 .sc1-text-content-title {
   color: var(--cor-8);
@@ -80,36 +82,40 @@ main.main-home {
 }
 .sc2-text-content-p {
   color: var(--cor-11);
-  max-width: 50ch;
+  max-width: 37ch;
   text-overflow: ellipsis;
-  height: 100%;
   margin-inline: 2em;
+  font-size: calc(var(--font-clamp-2) - 0.3rem);
+  text-align: justify;
 }
-.sc2-image-carousel {
+.sc2-image-content{
+  transform: scale(.8);
+}
+.image-carousel {
   position: relative;
   max-width: 100%;
   overflow: hidden;
   /* border-radius: 10px; */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-.sc2-carousel-items {
+.carousel-items {
   transition: transform 0.5s ease;
 }
-.sc2-carousel-item {
+.carousel-item {
   min-width: 100%;
   transition: opacity 0.5s ease;
   opacity: 0;
   display: none;
 }
-.sc2-carousel-item.active {
+.carousel-item.active {
   display: block;
   opacity: 1;
 }
-.sc2-image-carousel img {
+.image-carousel img {
   width: 100%;
   display: block;
 }
-.sc2-progress-bar {
+.progress-bar {
   position: absolute;
   bottom: 10%;
   left: 50%;
@@ -160,7 +166,8 @@ main.main-home {
   color: var(--cor-10);
   max-width: 50ch;
   text-overflow: ellipsis;
-  height: 100%;
+  text-align: justify;
+  text-indent: 3rem;
 }
 #sc4 {
   position: relative;
@@ -188,9 +195,11 @@ main.main-home {
 }
 .sc4-text-content-p {
   color: var(--cor-7);
-  max-width: 50ch;
+  max-width: 40ch;
   text-overflow: ellipsis;
-  height: 100%;
+  font-size: var(--font-clamp-2);
+  text-align: justify;
+  text-indent: 3rem;
 }
 #sc5 {
   position: relative;

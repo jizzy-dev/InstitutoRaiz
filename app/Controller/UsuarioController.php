@@ -223,7 +223,18 @@ class UsuarioController
                 echo "<script>alert('Erro ao editar usuário: " . $e->getMessage() . "')</script>";
             }
         } else {
-            echo TemplateRenderer::render('atribuir_perfil_acesso.html', $parametros);
+            if ($id !== null) {
+                try {
+                    $user = Usuario::selecionarPorId($id);
+                    $parametros = ['usuario' => $user, 'titulo' => 'Atribuir Acesso'];
+                    echo TemplateRenderer::render('atribuir_perfil_acesso.html', $parametros);
+                } catch (Exception $e) {
+                    echo "<script>alert('Erro ao editar usuário: " . $e->getMessage() . "')</script>";
+                }
+            } else {
+                header('Location: ?pag=usuario&metodo=consultar');
+                exit;
+            }
         }
     }
 

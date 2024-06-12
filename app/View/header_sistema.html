@@ -12,7 +12,7 @@
 <header class="header-sistema flex flex-column justify-center align-center">
 	<div class="header-content flex">
 		<div class="logo">
-			<a href="#">
+			<a href="?pag=sistema">
 				<img src="/InstitutoRaiz/public/assets/images/png/logo.png" alt="Logo do Instituto Raiz do Futuro" class="header-logo logo">
 			</a>
 		</div>
@@ -37,11 +37,11 @@
 				<button class="open-sidebar-profile-button flex center">
 					<img src="{{session.imagem.imgCaminho}}" width="78px" alt="imagem de perfil" class="profile-image open-sidebar-profile-img">
 				</button>
-				<dialog class="sidebar" id="sidebar">
+				<dialog class="sidebar sidebar-sistema" id="sidebar">
 					<menu class="menu-sidebar flex flex-column flex-start align-center gap-1">
 						<div class="sidebar-item-group profile-group flex flex-column center gap-1">
 							<li>
-								<img src="{{session.imagem.imgCaminho}}" alt="imagem de perfil" class="profile-image" role="image">
+								<img src="{{session.imagem.imgCaminho}}" width="150px" alt="imagem de perfil" class="profile-image" role="image">
 							</li>
 							<li>
 								<a href="?pag=usuario&metodo=editar&id={{session.user.ID_USER}}" class="button">Editar Usuário</a>
