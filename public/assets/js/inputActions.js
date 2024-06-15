@@ -21,3 +21,13 @@ function selectTurmaInputMP() {
         window.location.href = '?pag=frequencia&metodo=marcarPresenca&turma=' + idTurma;
     }
 }
+
+function redirect(pag, metodo, id) {
+    const idUsuario = document.getElementById('id_usuario').value
+    id = idUsuario
+    if (!id) {
+        window.location.href = '?pag=' + pag + '&metodo=' + metodo
+    } else {
+        window.location.href = '?pag=' + pag + '&metodo=' + metodo + '&id=' + id
+    }
+}

@@ -1,38 +1,71 @@
 {% include 'header_sistema.html' %}
-<main class="main-consultar">
-    <div class="table-wrapper flex flex-column center">
-        <form method="POST" action="?pag=usuario&metodo=atribuirAcesso">
-            <table class="tables tb-matricula">
-                <thead>
-                    <tr class="tr-titulo">
-                        <th>{{titulo}}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><label for="id_usuario">Usuário:</label></td>
-                        <td>
-                            <select id="id_usuario" name="id_usuario" class="textbox" required>
-                                <option value="{{usuario.ID_USER}}">{{usuario.ID_USER}}</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label for="perfil_acesso">Perfil de Acesso:</label></td>
-                        <td>
-                            <select id="perfil_acesso" name="perfil_acesso" class="textbox" required>
-                                <option value="A">Administrador</option>
-                                <option value="M">Moderador</option>
-                                <option value="D">Docente</option>
-                                <option value="U">Usuário Padrão</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr class="tr-titulo-section tr-submit">
-                        <th><button type="submit" class="button btn-form-submit">Atribuir Acesso</button></th>
-                    </tr>
-                </tbody>
-            </table>
-        </form>
-    </div>
+<main class="main-atribuir-acesso">
+  <div class="table-wrapper flex flex-column center">
+    <form
+      method="POST"
+      action="?pag=usuario&metodo=atribuirAcesso"
+      id="formPrincipal"
+    >
+      <table class="tables tb-matricula">
+        <thead>
+          <tr class="tr-titulo">
+            <th>{{titulo}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+                <label for="id_usuario">ID do Usuário:</label>
+                <select
+                  id="id_usuario"
+                  name="id_usuario"
+                  class="textbox"
+                  onchange="redirect('usuario','atribuirAcesso');"
+                  required
+                >
+                  {% for usuario in usuarios %}
+                  <option value="{{usuario.ID_USER}}" {% if usuario.ID_USER == id %} selected {% endif %}>
+                    {{usuario.ID_USER}}
+                  </option>
+                  {% endfor %}
+                </select>
+            </td>
+            <td>
+              <label for="nome_usuario">Nome do Usuário</label>
+              <input
+                type="text"
+                class="textbox"
+                name="nome_usuario"
+                id="nome_usuario"
+                value="{{usuario.nome}}"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td><label for="perfil_acesso">Perfil de Acesso:</label></td>
+            <td>
+              <select
+                id="perfil_acesso"
+                name="perfil_acesso"
+                class="textbox"
+                required
+              >
+                <option value="A">Administrador</option>
+                <option value="M">Moderador</option>
+                <option value="D">Docente</option>
+                <option value="U">Usuário Padrão</option>
+              </select>
+            </td>
+          </tr>
+          <tr class="tr-titulo-section tr-submit">
+            <th>
+              <button type="submit" class="button btn-form-submit">
+                Atribuir Acesso
+              </button>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
 </main>

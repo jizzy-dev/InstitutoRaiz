@@ -13,18 +13,18 @@
                 </tr>
                 <tr>
                     <td>ID</td>
-                    <td><input type="text" name="id_padrinho" value="{{ usuario.ID_USER }}" class="textbox cad-textbox" disabled></td>
+                    <td><input type="text" name="id_padrinho" value="{{ usuario.ID_USER }}" class="textbox cad-textbox" readonly></td>
                 </tr>
                 <tr>
                     <td>Nome</td>
-                    <td><input type="text" name="nome_padrinho" value="{{ usuario.nome }}" class="textbox cad-textbox"></td>
+                    <td><input type="text" name="nome_padrinho" value="{{ usuario.nome }}" class="textbox cad-textbox" readonly></td>
                 </tr>
                 <tr class="tr-titulo-section">
                     <th colspan="2" class="tb-matricula-th">Atribuir com Aluno:</th>
                 </tr>
                 <tr>
                     <td>ID</td>
-                    <td><input type="text" id="id_aluno" name="id_aluno" value="3" class="textbox cad-textbox"></td>
+                    <td><input type="number" id="id_aluno" name="id_aluno" value="3" oninput="buscarNomeAluno({{alunoObject}})" class="textbox cad-textbox"></td>
                 </tr>
                 <tr>
                     <td>Nome</td>

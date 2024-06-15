@@ -1,159 +1,310 @@
-{% include "header_sistema.html" %}
+{% include "header_sistema.html" %} {% if session.user.perfil_acesso == 'A' %}
+{% set permissao = true %} {% else %} {% set permissao = false %} {% endif %}
 <main class="main-editar-usuario">
-<p>ID_USER: {{usuario.ID_USER}} </p>
-<p>ID_IMAGEM: {{usuario.ID_IMAGEM}} </p>
-	<form action="?pag=usuario&metodo=editar&id={{ usuario.ID_USER }}" method="POST" class="form-cad flex flex-column center">
-		<input type="hidden" name="id_usuario" value="{{ usuario.ID_USER }}">
-		<table cellspacing="0" class="tables tb-matricula">
-			<thead>
-				<tr class="tr-titulo">
-					<th colspan="2" class="tb-matricula-th">Editar Usuario</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr class="tr-titulo-section">
-					<th colspan="2" class="tb-matricula-th">Foto de Perfil</th>
-				</tr>
-				<tr>
-					<td>Inserir imagem</td>
-					<td class="center">
-					<img src="{{imagem.imgCaminho}}" width="150px" alt="Imagem do usuário" id="imgView" class="profile-image">
-					</td>
-					<td>
-						<fieldset class="fieldset-file flex center border-none width-100pc">
-							<label for="imgInput" class="button btn-input-image flex align-center">
-								<span class="weight-bold">Escolher Arquivo</span>
-								<?xml
+  {#
+  <p>ID_USER: {{usuario.ID_USER}}</p>
+  <p>ID_IMAGEM: {{usuario.ID_IMAGEM}}</p>
+  #}
+  <form
+    action="?pag=usuario&metodo=editar&id={{ usuario.ID_USER }}"
+    method="POST"
+    class="form-cad flex flex-column center"
+  >
+    <input type="hidden" name="id_usuario" value="{{ usuario.ID_USER }}" />
+    <table cellspacing="0" class="tables tb-matricula">
+      <thead>
+        <tr class="tr-titulo">
+          <th colspan="2" class="tb-matricula-th">Editar Usuario</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="tr-titulo-section">
+          <th colspan="2" class="tb-matricula-th">Foto de Perfil</th>
+        </tr>
+        <tr>
+          <td class="flex center">Inserir imagem</td>
+          <td class="center">
+            <img
+              src="{{imagem.imgCaminho}}"
+              width="150px"
+              alt="Imagem do usuário"
+              id="imgView"
+              class="profile-image"
+            />
+          </td>
+          <td>
+            <fieldset class="fieldset-file flex center border-none width-100pc">
+              <label
+                for="imgInput"
+                class="button btn-input-image flex align-center"
+                id="imgInputWrapper"
+              >
+                <span class="weight-bold">Escolher Arquivo</span>
+                <?xml
 								version="1.0" encoding="utf-8"?>
-								<svg width="22px" height="22px" viewBox="0 0 24 24" fill="#ffffff"
-									xmlns="http://www.w3.org/2000/svg">
-									<path fill-rule="evenodd" clip-rule="evenodd"
-										d="M1 5C1 3.34315 2.34315 2 4 2H8.55848C9.84977 2 10.9962 2.82629 11.4045 4.05132L11.7208 5H20C21.1046 5 22 5.89543 22 7V9.00961C23.1475 9.12163 23.9808 10.196 23.7695 11.3578L22.1332 20.3578C21.9603 21.3087 21.132 22 20.1654 22H3C1.89543 22 1 21.1046 1 20V5ZM20 9V7H11.7208C10.8599 7 10.0956 6.44914 9.82339 5.63246L9.50716 4.68377C9.37105 4.27543 8.98891 4 8.55848 4H4C3.44772 4 3 4.44772 3 5V12.2709L3.35429 10.588C3.54913 9.66249 4.36562 9 5.31139 9H20ZM3.36634 20C3.41777 19.9109 3.4562 19.8122 3.47855 19.706L5.31139 11L21 11H21.8018L20.1654 20L3.36634 20Z"
-										fill="#1C1C1C" />
-								</svg>
-							</label>
-							<input type="file" name="imgInput" id="imgInput" class="display-none" accept="image/*">
-						</fieldset>
-					</td>
-					<td>
-						<input type="checkbox" name="noImage" id="noImage">
-						Sem Foto
-					</td>
-				</tr>
-				<tr class="tr-titulo-section">
-					<th colspan="2" class="tb-matricula-th">Informações do Usuario</th>
-				</tr>
-				<tr>
-					<td>Nome</td>
-					<td>
-						<input type="text" name="nome_responsavel" value="{{ usuario.nome }}"
-							class="textbox cad-textbox" {% if session.user.perfil_acesso !='A' %} readonly{% endif %}
-							required>
-					</td>
-				</tr>
-				<tr>
-					<td>Email</td>
-					<td>
-						<input type="email" name="email_responsavel" value="{{ usuario.email }}"
-							class="textbox cad-textbox" {% if session.user.perfil_acesso !='A' %} readonly{% endif %}
-							required>
-					</td>
-				</tr>
-				<tr>
-					<td>Senha</td>
-					<td>
-						<input type="password" name="senha_responsavel" class="textbox cad-textbox" required>
-					</td>
-				</tr>
-				<tr class="tr-titulo-section">
-					<th colspan="2" class="tb-matricula-th">Dados Pessoais</th>
-				</tr>
-				<tr>
-					<td>Data de Nascimento</td>
-					<td>
-						<input type="date" name="data_nasc_responsavel" value="{{ usuario.data_nasc }}"
-							class="textbox cad-textbox" required>
-					</td>
-				</tr>
-				<tr>
-					<td>CPF</td>
-					<td>
-						<input type="text" name="cpf_responsavel" value="{{ usuario.cpf }}" class="textbox cad-textbox"
-							required>
-					</td>
-				</tr>
-				<tr>
-					<td>RG</td>
-					<td>
-						<input type="text" name="rg_responsavel" value="{{ usuario.rg }}" class="textbox cad-textbox"
-							required>
-					</td>
-				</tr>
-				<tr>
-					<td>Contato</td>
-					<td>
-						<input type="text" name="contato_responsavel" value="{{ usuario.contato }}"
-							class="textbox cad-textbox" required>
-					</td>
-				</tr>
-				<tr class="tr-titulo-section">
-					<th colspan="2" class="tb-matricula-th">Dados de Endereço</th>
-				</tr>
-				<tr>
-					<td>CEP</td>
-					<td>
-						<input type="text" name="cep" value="{{ usuario.cep }}" class="textbox cad-textbox" required>
-					</td>
-				</tr>
-				<tr>
-					<td>Logradouro</td>
-					<td>
-						<input type="text" name="logradouro" value="{{ usuario.logradouro }}"
-							class="textbox cad-textbox" required>
-					</td>
-				</tr>
-				<tr>
-					<td>Bairro</td>
-					<td>
-						<input type="text" name="bairro" value="{{ usuario.bairro }}" class="textbox cad-textbox"
-							required>
-					</td>
-				</tr>
-				<tr>
-					<td>Número</td>
-					<td>
-						<input type="text" name="numero_endereco" value="{{ usuario.numero_endereco }}"
-							class="textbox cad-textbox" required>
-					</td>
-				</tr>
-				<tr>
-					<td>Complemento</td>
-					<td>
-						<input type="text" name="complemento" value="{{ usuario.complemento }}"
-							class="textbox cad-textbox">
-					</td>
-				</tr>
-				<tr>
-					<td>Cidade</td>
-					<td>
-						<input type="text" name="cidade" value="{{ usuario.cidade }}" class="textbox cad-textbox"
-							required>
-					</td>
-				</tr>
-				<tr>
-					<td>Estado (UF)</td>
-					<td>
-						<input type="text" name="estado" value="{{ usuario.estado }}" class="textbox cad-textbox"
-							required>
-					</td>
-				</tr>
-				<tr class="tr-submit">
-					<th colspan="2" class="tb-matricula-th td-submit">
-						<input type="submit" value="Atualizar" class="button btn-form-submit">
-					</th>
-				</tr>
-			</tbody>
-		</table>
-	</form>
+                <svg
+                  width="22px"
+                  height="22px"
+                  viewBox="0 0 24 24"
+                  fill="#ffffff"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M1 5C1 3.34315 2.34315 2 4 2H8.55848C9.84977 2 10.9962 2.82629 11.4045 4.05132L11.7208 5H20C21.1046 5 22 5.89543 22 7V9.00961C23.1475 9.12163 23.9808 10.196 23.7695 11.3578L22.1332 20.3578C21.9603 21.3087 21.132 22 20.1654 22H3C1.89543 22 1 21.1046 1 20V5ZM20 9V7H11.7208C10.8599 7 10.0956 6.44914 9.82339 5.63246L9.50716 4.68377C9.37105 4.27543 8.98891 4 8.55848 4H4C3.44772 4 3 4.44772 3 5V12.2709L3.35429 10.588C3.54913 9.66249 4.36562 9 5.31139 9H20ZM3.36634 20C3.41777 19.9109 3.4562 19.8122 3.47855 19.706L5.31139 11L21 11H21.8018L20.1654 20L3.36634 20Z"
+                    fill="#1C1C1C"
+                  />
+                </svg>
+              </label>
+              <input
+                type="file"
+                name="imgInput"
+                id="imgInput"
+                class="display-none"
+                accept="image/*"
+              />
+            </fieldset>
+          </td>
+          <td class="flex center gap-1">
+            <div class="checkbox-wrapper">
+              <input
+                type="checkbox"
+                name="noImage"
+                class="checkbox"
+                id="noImage"
+              />
+            </div>
+            <span>Sem Foto</span>
+          </td>
+        </tr>
+        <tr class="tr-titulo-section">
+          <th colspan="2" class="tb-matricula-th">Informações do Usuario</th>
+        </tr>
+        <tr>
+          <td>Nome</td>
+          <td>
+            <input type="text" name="nome_responsavel" value="{{ usuario.nome
+            }}" class="textbox cad-textbox" placeholder="Seu Nome"
+            autocomplete="off" placeholder="Seu Nome" pattern="^[\p{L}\s]+$" {%
+            if permissao == false %} readonly{% endif %} required>
+          </td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td>
+            <input type="email" name="email_responsavel" value="{{ usuario.email
+            }}" class="textbox cad-textbox" 
+            readonly required>
+          </td>
+        </tr>
+        {% if usuario.ID_USER == session.user.ID_USER %}
+        <tr>
+          <td>Senha</td>
+          <td>
+            <input
+              type="password"
+              name="senha_responsavel"
+              class="textbox cad-textbox inputSenha"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Confirmar Senha</td>
+          <td>
+            <input
+              type="password"
+              name="confirmar_senha"
+              class="textbox cad-textbox inputConfirmarSenha"
+              required
+            />
+          </td>
+        </tr>
+        {% endif %}
+        <tr class="tr-titulo-section">
+          <th colspan="2" class="tb-matricula-th">Dados Pessoais</th>
+        </tr>
+        <tr>
+          <td>Data de Nascimento</td>
+          <td>
+            <input type="date" name="data_nasc_responsavel" value="{{
+            usuario.data_nasc }}" class="textbox cad-textbox" {% if permissao ==
+            false %} readonly{% endif %} required>
+          </td>
+        </tr>
+        <tr>
+          <td>CPF</td>
+          <td>
+            <input
+              type="text"
+              name="cpf_responsavel"
+              value="{{ usuario.cpf }}"
+              class="textbox cad-textbox inputCPF"
+              placeholder="Ex: 000.000.000-00"
+              pattern="^\d{3}\.?\d{3}\.?\d{3}-?\d{2}$"
+              {% if permissao ==
+              false %} readonly{% endif %}
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>RG</td>
+          <td>
+            <input type="text" name="rg_responsavel" value="{{ usuario.rg }}"
+            class="textbox cad-textbox inputRG" autocomplete="off"
+            maxlength="12" placeholder="Ex: 00.000.000-0"
+            pattern="^\d{2}\.?\d{3}\.?\d{3}-?\d{1}$" {% if permissao == false %}
+            readonly{% endif %} required>
+          </td>
+        </tr>
+        <tr>
+          <td>Contato</td>
+          <td>
+            <input
+              type="text"
+              name="contato inputContato"
+              value="{{ usuario.contato }}"
+              class="textbox cad-textbox"
+              required
+            />
+          </td>
+        </tr>
+        <tr class="tr-titulo-section">
+          <th colspan="2" class="tb-matricula-th">Dados de Endereço</th>
+        </tr>
+        <tr>
+          <td>CEP</td>
+          <td>
+            <input type="text" name="cep" value="{{ usuario.cep }}"
+            class="textbox cad-textbox inputCEP" maxlength="9"
+            pattern="^\d{5}-?\d{3}$" {% if permissao == false %} readonly{% endif
+            %} required>
+          </td>
+        </tr>
+        <tr>
+          <td>Logradouro</td>
+          <td>
+            <input type="text" name="logradouro" value="{{ usuario.logradouro
+            }}" class="textbox cad-textbox" {% if permissao == false %}
+            readonly{% endif %} required>
+          </td>
+        </tr>
+        <tr>
+          <td>Bairro</td>
+          <td>
+            <input type="text" name="bairro" value="{{ usuario.bairro }}"
+            class="textbox cad-textbox" pattern="^[\p{L}\s]+$"
+            pattern="^[\p{L}\s]+$" {% if permissao == false %} readonly{% endif
+            %} required>
+          </td>
+        </tr>
+        <tr>
+          <td>Número</td>
+          <td>
+            <input type="text" name="numero_endereco" value="{{
+            usuario.numero_endereco }}" class="textbox cad-textbox"
+            maxlength="3" pattern="^\d{1,3}$" {% if permissao == false %} readonly{%
+            endif %} required>
+          </td>
+        </tr>
+        <tr>
+          <td>Complemento</td>
+          <td>
+            <input type="text" name="complemento" value="{{ usuario.complemento
+            }}" {% if permissao == false %} readonly{% endif %} class="textbox
+            cad-textbox">
+          </td>
+        </tr>
+        <tr>
+          <td>Cidade</td>
+          <td>
+            <input type="text" name="cidade" value="{{ usuario.cidade }}"
+            class="textbox cad-textbox" pattern="^[\p{L}\s]+$" {% if permissao
+            == false %} readonly{% endif %} required>
+          </td>
+        </tr>
+        <tr>
+          <td>Estado (UF)</td>
+          <td>
+            {% if permissao == false %}
+            <select name="estado" class="textbox cad-textbox" required>
+              <option value="" disabled selected>Selecione o estado</option>
+              <option value="AC" {% if usuario.estado == "AC" %} selected {% endif %}>Acre</option>
+              <option value="AL" {% if usuario.estado == "AL" %} selected {% endif %} >Alagoas</option>
+              <option value="AP" {% if usuario.estado == "AP" %} selected {% endif %} >Amapá</option>
+              <option value="AM" {% if usuario.estado == "AM" %} selected {% endif %} >Amazonas</option>
+              <option value="BA" {% if usuario.estado == "BA" %} selected {% endif %} >Bahia</option>
+              <option value="CE" {% if usuario.estado == "CE" %} selected {% endif %} >Ceará</option>
+              <option value="DF" {% if usuario.estado == "DF" %} selected {% endif %} >Distrito Federal</option>
+              <option value="ES" {% if usuario.estado == "ES" %} selected {% endif %} >Espírito Santo</option>
+              <option value="GO" {% if usuario.estado == "GO" %} selected {% endif %} >Goiás</option>
+              <option value="MA" {% if usuario.estado == "MA" %} selected {% endif %} >Maranhão</option>
+              <option value="MT" {% if usuario.estado == "MT" %} selected {% endif %} >Mato Grosso</option>
+              <option value="MS" {% if usuario.estado == "MS" %} selected {% endif %} >Mato Grosso do Sul</option>
+              <option value="MG" {% if usuario.estado == "MG" %} selected {% endif %} >Minas Gerais</option>
+              <option value="PA" {% if usuario.estado == "PA" %} selected {% endif %} >Pará</option>
+              <option value="PB" {% if usuario.estado == "PB" %} selected {% endif %} >Paraíba</option>
+              <option value="PR" {% if usuario.estado == "PR" %} selected {% endif %} >Paraná</option>
+              <option value="PE" {% if usuario.estado == "PE" %} selected {% endif %} >Pernambuco</option>
+              <option value="PI" {% if usuario.estado == "PI" %} selected {% endif %} >Piauí</option>
+              <option value="RJ" {% if usuario.estado == "RJ" %} selected {% endif %} >Rio de Janeiro</option>
+              <option value="RN" {% if usuario.estado == "RN" %} selected {% endif %} >Rio Grande do Norte</option>
+              <option value="RS" {% if usuario.estado == "RS" %} selected {% endif %} >Rio Grande do Sul</option>
+              <option value="RO" {% if usuario.estado == "RO" %} selected {% endif %} >Rondônia</option>
+              <option value="RR" {% if usuario.estado == "RR" %} selected {% endif %} >Roraima</option>
+              <option value="SC" {% if usuario.estado == "SC" %} selected {% endif %} >Santa Catarina</option>
+              <option value="SP" {% if usuario.estado == "SP" %} selected {% endif %} >São Paulo</option>
+              <option value="SE" {% if usuario.estado == "SE" %} selected {% endif %} >Sergipe</option>
+              <option value="TO" {% if usuario.estado == "TO" %} selected {% endif %} >Tocantins</option>
+            </select>
+          {% else %}
+            <select name="estado" class="textbox cad-textbox" required>
+              <option value="{{usuario.estado}}"  selected >
+                {% if usuario.estado == "AC" %} Acre {% endif %}
+                {% if usuario.estado == "AL" %} Alagoas {% endif %}
+                {% if usuario.estado == "AP" %} Amapá {% endif %}
+                {% if usuario.estado == "AM" %} Amazonas {% endif %}
+                {% if usuario.estado == "BA" %} Bahia {% endif %}
+                {% if usuario.estado == "CE" %} Ceará {% endif %}
+                {% if usuario.estado == "DF" %} Distrito Federal{% endif %} 
+                {% if usuario.estado == "ES" %} Espírito Santo{% endif %} 
+                {% if usuario.estado == "GO" %} Goiás {% endif %}
+                {% if usuario.estado == "MA" %} Maranhão {% endif %}
+                {% if usuario.estado == "MT" %} Mato Grosso{% endif %} 
+                {% if usuario.estado == "MS" %} Mato Grosso do Sul{% endif %} 
+                {% if usuario.estado == "MG" %} Minas Gerais{% endif %} 
+                {% if usuario.estado == "PA" %} Pará {% endif %}
+                {% if usuario.estado == "PB" %} Paraíba {% endif %}
+                {% if usuario.estado == "PR" %} Paraná {% endif %}
+                {% if usuario.estado == "PE" %} Pernambuco {% endif %}
+                {% if usuario.estado == "PI" %} Piauí {% endif %}
+                {% if usuario.estado == "RJ" %} Rio de Janeiro{% endif %} 
+                {% if usuario.estado == "RN" %} Rio Grande do Norte{% endif %} 
+                {% if usuario.estado == "RS" %} Rio Grande do Sul{% endif %} 
+                {% if usuario.estado == "RO" %} Rondônia {% endif %}
+                {% if usuario.estado == "RR" %} Roraima {% endif %}
+                {% if usuario.estado == "SC" %} Santa Catarina{% endif %} 
+                {% if usuario.estado == "SP" %} São Paulo{% endif %} 
+                {% if usuario.estado == "SE" %} Sergipe {% endif %}
+                {% if usuario.estado == "TO" %} Tocantins {% endif %} 
+              </option>
+            </select>
+          {% endif %}
+          </td>
+        </tr>
+        <tr class="tr-submit">
+          <th colspan="2" class="tb-matricula-th td-submit">
+            <input
+              type="submit"
+              value="Atualizar"
+              class="button btn-form-submit"
+            />
+          </th>
+        </tr>
+      </tbody>
+    </table>
+  </form>
 </main>
 {% include 'footer.html' %}

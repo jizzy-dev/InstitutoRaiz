@@ -124,9 +124,9 @@ INSERT INTO `turma` (`ID_TURMA`, `nome_turma`, `periodo`) VALUES
 -- -----------------------------------------------------
 -- Insert `raizdb`.`usuario`
 -- -----------------------------------------------------
-INSERT INTO `usuario` (`ID_USER`, `nome`, `cpf`, `rg`, `contato`, `email`, `senha`, `data_nasc`, `cep`, `logradouro`, `bairro`, `numero_endereco`, `complemento`, `cidade`, `estado`, `isResponsavel`, `isPadrinho`, `isAdm`, `isMod`, `ID_IMAGEM`) VALUES
-(1, 'Ana', '12345678901', '98765412', '11999887777', 'teste@email.com', '', '2024-05-03', '077190', 'Rua Brad Pitt', 'Hollywood', '100', '', 'Franco da Rocha', 'São Paulo', 0, 0, 0, 0, 1),
-(6, 'João', '23123123', '123123', '321321321', 'email@email.com', '', '2024-05-11', '2131312', 'adasd', 'adsa', '213', 'ads', 'asd', 'asd', 0, 0, 0, 0, 1);
+INSERT INTO `usuario` (`ID_USER`, `nome`, `cpf`, `rg`, `contato`, `email`, `senha`, `data_nasc`, `cep`, `logradouro`, `bairro`, `numero_endereco`, `complemento`, `cidade`, `estado`, `isResponsavel`, `isPadrinho`, `perfil_acesso`, `ID_IMAGEM`) VALUES
+(1, 'Ana', '12345678901', '98765412', '11999887777', 'teste@email.com', 'adm', '2024-05-03', '077190', 'Rua Brad Pitt', 'Hollywood', '100', '', 'Franco da Rocha', 'São Paulo', 0, 0, 'A', 1),
+(2, 'João', '23123123', '123123', '321321321', 'email@email.com', 'adm', '2024-05-11', '2131312', 'adasd', 'adsa', '213', 'ads', 'asd', 'asd', 0, 0, 'U', 1);
 
 -- -----------------------------------------------------
 -- Insert `raizdb`.`aluno`

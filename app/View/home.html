@@ -1,18 +1,54 @@
 {% include 'header.html' %}
 <main class="main-home flex flex-column center">
+  <nav id="fixed-progress-bar" class="flex flex-column">
+    <div class="fixed-progress-item flex center" data-target="#sc1">
+      <svg
+        width="16px"
+        height="16px"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+        <g
+          id="SVGRepo_tracerCarrier"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+
+        <g id="SVGRepo_iconCarrier">
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M4.18753 11.3788C4.03002 11.759 4 11.9533 4 12V20.0018C4 20.5529 4.44652 21 5 21H8V15C8 13.8954 8.89543 13 10 13H14C15.1046 13 16 13.8954 16 15V21H19C19.5535 21 20 20.5529 20 20.0018V12C20 11.9533 19.97 11.759 19.8125 11.3788C19.6662 11.0256 19.4443 10.5926 19.1547 10.1025C18.5764 9.1238 17.765 7.97999 16.8568 6.89018C15.9465 5.79788 14.9639 4.78969 14.0502 4.06454C13.5935 3.70204 13.1736 3.42608 12.8055 3.2444C12.429 3.05862 12.1641 3 12 3C11.8359 3 11.571 3.05862 11.1945 3.2444C10.8264 3.42608 10.4065 3.70204 9.94978 4.06454C9.03609 4.78969 8.05348 5.79788 7.14322 6.89018C6.23505 7.97999 5.42361 9.1238 4.8453 10.1025C4.55568 10.5926 4.33385 11.0256 4.18753 11.3788ZM10.3094 1.45091C10.8353 1.19138 11.4141 1 12 1C12.5859 1 13.1647 1.19138 13.6906 1.45091C14.2248 1.71454 14.7659 2.07921 15.2935 2.49796C16.3486 3.33531 17.4285 4.45212 18.3932 5.60982C19.3601 6.77001 20.2361 8.0012 20.8766 9.08502C21.1963 9.62614 21.4667 10.1462 21.6602 10.6134C21.8425 11.0535 22 11.5467 22 12V20.0018C22 21.6599 20.6557 23 19 23H16C14.8954 23 14 22.1046 14 21V15H10V21C10 22.1046 9.10457 23 8 23H5C3.34434 23 2 21.6599 2 20.0018V12C2 11.5467 2.15748 11.0535 2.33982 10.6134C2.53334 10.1462 2.80369 9.62614 3.12345 9.08502C3.76389 8.0012 4.63995 6.77001 5.60678 5.60982C6.57152 4.45212 7.65141 3.33531 8.70647 2.49796C9.2341 2.07921 9.77521 1.71454 10.3094 1.45091Z"
+            fill="#1c1c1c"
+          />
+        </g>
+      </svg>
+    </div>
+    <div class="fixed-progress-item" data-target="#sc2"></div>
+    <div class="fixed-progress-item" data-target="#sc3"></div>
+    <div class="fixed-progress-item" data-target="#sc4"></div>
+    <div class="fixed-progress-item" data-target="#sc5"></div>
+    <div class="fixed-progress-item" data-target="#sc6"></div>
+  </nav>
   <section class="sections flex space-between" id="sc1">
-    <div class="sc1-content-left flex flex-column space-around align-center">
-      <div class="sc1-text-content flex flex-column">
-        <h2 class="sc1-text-content-title uppercase montserrat">
+    <div
+      class="sc-content-left flex flex-column space-around align-center"
+      id="sc1"
+    >
+      <div class="sc-text-content flex flex-column" id="sc1">
+        <h1 class="sc-text-content-title uppercase montserrat" id="sc1">
           Instituto<br />Raíz do Futuro
-        </h2>
-        <p class="sc1-text-content-p uppercase montserrat">
+        </h1>
+        <p class="sc-text-content-p uppercase montserrat" id="sc1">
           Um lugar que possibilita oportunidades,<br />
           Que desenvolve chances,<br />
           e que garante esperança à infância
         </p>
       </div>
-      <div class="sc1-interactive">
+      <div class="sc-interactive" id="sc1">
         <a
           href="?pag=matricula"
           class="button homepage-buttons btn-matricula italic weight-semi-bold flex center"
@@ -20,59 +56,91 @@
         >
       </div>
     </div>
-    <div class="sc1-content-right">
-      <img
-        src="/InstitutoRaiz/public/assets/images/png/Banner.png"
-        alt=""
-        class="sc1-banner"
-      />
+    <div class="sc-content-right" id="sc1">
+      <div class="carousel-container relative">
+        <div class="carousel-item cursor-grab">
+          <img
+            src="/InstitutoRaiz/public/assets/images/png/Banner_1.jpg"
+            width="500px"
+            alt=""
+            class="sc-banner"
+            id="sc1"
+          />
+        </div>
+        <div class="carousel-item cursor-grab">
+          <img
+            src="/InstitutoRaiz/public/assets/images/png/Banner_2.jpg"
+            width="500px"
+            alt=""
+            class="sc-banner"
+            id="sc1"
+          />
+        </div>
+        <div class="carousel-item cursor-grab">
+          <img
+            src="/InstitutoRaiz/public/assets/images/png/Banner_3.jpg"
+            width="500px"
+            alt=""
+            class="sc-banner"
+            id="sc1"
+          />
+        </div>
+        <div class="progress-bar flex space-between" id="sc1">
+          <div class="progress-item"></div>
+          <div class="progress-item"></div>
+          <div class="progress-item"></div>
+        </div>
+      </div>
     </div>
   </section>
   <section class="sections flex center" id="sc2">
-    <div class="sc2-content-layout flex flex-column space-around align-center">
-      <h2 class="sc2-title uppercase montserrat">Quem somos</h2>
-      <div class="sc2-content flex">
-        <div class="sc2-text-content">
-          <p class="sc2-text-content-p montserrat weight-bold">
-            Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa
-            mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien
-            fringilla, mattis ligula consectetur, ultrices mauris. Maecenas
-            vitae mattis tellus. Nullam quis imperdiet augue. Vestibulum auctor
-            ornare leo, non suscipit magna interdum eu. Curabitur pellentesque
-            nibh nibh, at maximus ante fermentum sit amet. Pellentesque commodo
-            lacus at sodales sodales. Quisque sagittis orci ut diam condimentum,
-            vel euismod erat placerat. In iaculis arcu eros, eget tempus orci
-            facilisis id. Praesent lorem orci, mattis non efficitur id,
-            ultricies vel nibh. Sed volutpat lacus vitae gravida viverra. Fusce
-            vel tempor elit. Proin tempus,.
+    <div class="progress-bar-wrapper"></div>
+    <div class="sc-content-layout flex flex-column center" id="sc2">
+      <h2 class="sc-title uppercase montserrat" id="sc2">Quem somos</h2>
+      <div class="sc-content flex" id="sc2">
+        <div class="sc-text-content flex flex-column center" id="sc2">
+          <p class="sc-text-content-p montserrat weight-semi-bold" id="sc2">
+            O Instituto Raizes do Futuro tem como objetivo assegurar que
+            crianças e adolescentes tenham acesso a alimentação e educação
+            diferenciada, somos movidos pela vontade de fazer com que esses
+            jovens que tiveram suas esperanças e expectativas de futuro
+            interrompidas, possam sonhar novamente.
+          </p>
+
+          <p class="sc-text-content-p montserrat weight-semi-bold" id="sc2">
+            Oferecemos reforço educacional e comodidade paras as crianças. As
+            atividades praticadas pelos alunos são diversas, visando o
+            desenvolvimento, eles são introduzidos a esportes, teatros,
+            músicas,rodas de conversas, e alimentação cordenada por
+            nutricionistas.
           </p>
         </div>
-        <div class="sc2-image-content">
-          <div class="sc2-image-carousel">
-            <div class="sc2-carousel-items flex">
-              <div class="sc2-carousel-item active">
+        <div class="sc-image-content" id="sc2">
+          <div class="carousel-container">
+            <div class="carousel-items flex">
+              <div class="carousel-item active">
                 <img
                   src="/InstitutoRaiz/public/assets/images/png/image-carrousel_1.png"
                   alt=""
                 />
               </div>
-              <div class="sc2-carousel-item">
+              <div class="carousel-item">
                 <img
                   src="/InstitutoRaiz/public/assets/images/png/image-carrousel_2.png"
                   alt=""
                 />
               </div>
-              <div class="sc2-carousel-item">
+              <div class="carousel-item">
                 <img
                   src="/InstitutoRaiz/public/assets/images/png/image-carrousel_3.png"
                   alt=""
                 />
               </div>
             </div>
-            <div class="sc2-progress-bar flex space-between">
-              <div class="progress-item" id="progress0"></div>
-              <div class="progress-item" id="progress1"></div>
-              <div class="progress-item" id="progress2"></div>
+            <div class="progress-bar flex space-between">
+              <div class="progress-item"></div>
+              <div class="progress-item"></div>
+              <div class="progress-item"></div>
             </div>
           </div>
         </div>
@@ -80,24 +148,38 @@
     </div>
   </section>
   <section class="sections flex center" id="sc3">
-    <div class="sc3-content flex flex-column center">
-      <h2 class="sc3-title uppercase montserrat">Como se voluntariar?</h2>
-      <div class="sc3-text-content">
-        <p class="sc3-text-content-p montserrat weight-bold">
-          Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi.
-          Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla,
-          mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis
-          tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non
-          suscipit magna interdum eu. Curabitur pellentesque nibh nibh, at
-          maximus ante fermentum sit amet. Pellentesque commodo lacus at sodales
-          sodales. Quisque sagittis orci ut diam condimentum, vel euismod erat
-          placerat. In iaculis arcu eros, eget tempus orci facilisis id.
-          Praesent lorem orci, mattis non efficitur id, ultricies vel nibh. Sed
-          volutpat lacus vitae gravida viverra. Fusce vel tempor elit. Proin
-          tempus,.
+    <div class="sc-content flex flex-column center" id="sc3">
+      <h2 class="sc-title uppercase montserrat" id="sc3">Semeando Futuros</h2>
+      <div class="sc-text-content" id="sc3">
+        <p class="sc-text-content-p montserrat weight-semi-bold" id="sc3">
+          O Instituto Raízes do Futuro é um exemplo inspirador de como um
+          projeto social pode transformar vidas e construir um futuro melhor.
+          Criado por uma moradora dedicada, o instituto atende mais de 70
+          crianças na rua São Carlos, oferecendo reforço escolar, alimentação e
+          atividades extracurriculares. Com a ajuda de voluntários e doações, o
+          instituto se tornou um pilar de apoio para a comunidade,
+          proporcionando educação e esperança às crianças.
+        </p>
+        <p class="sc-text-content-p montserrat weight-semi-bold" id="sc3">
+          A história do Instituto Raízes do Futuro, reconhecida por instituições
+          como a prefeitura de Franco da Rocha, destaca a importância de
+          iniciativas comunitárias. Este projeto não só oferece suporte
+          educacional e alimentar, mas também cria um ambiente seguro e
+          acolhedor para crianças de baixa renda. A dedicação dos voluntários e
+          o apoio de doadores como o ator Alexandre Borges mostram como a
+          solidariedade pode mudar vidas. Saiba mais sobre esta iniciativa
+          incrível aqui.
+        </p>
+        <p class="sc-text-content-p montserrat weight-semi-bold" id="sc3">
+          O Instituto Raízes do Futuro exemplifica como a união e o esforço de
+          muitos podem gerar um impacto duradouro na comunidade. Cada sorriso,
+          cada conquista acadêmica e cada refeição compartilhada são testemunhos
+          do poder transformador da solidariedade. Continuar apoiando e
+          expandindo projetos como este é fundamental para assegurar um futuro
+          cheio de oportunidades e esperança para nossas crianças.
         </p>
       </div>
-      <div class="sc3-interactive">
+      <div class="sc-interactive" id="sc3">
         <a
           href=""
           class="button homepage-buttons btn-sobre weight-semi-bold flex center"
@@ -107,24 +189,51 @@
     </div>
   </section>
   <section class="sections flex center" id="sc4">
-    <div class="sc4-content flex flex-column center">
-      <h2 class="sc4-title uppercase montserrat">O que é Apadrinhamento?</h2>
-      <div class="sc4-text-content">
-        <p class="sc4-text-content-p montserrat weight-bold">
-          Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi.
-          Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla,
-          mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis
-          tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non
-          suscipit magna interdum eu. Curabitur pellentesque nibh nibh, at
-          maximus ante fermentum sit amet. Pellentesque commodo lacus at sodales
-          sodales. Quisque sagittis orci ut diam condimentum, vel euismod erat
-          placerat. In iaculis arcu eros, eget tempus orci facilisis id.
-          Praesent lorem orci, mattis non efficitur id, ultricies vel nibh. Sed
-          volutpat lacus vitae gravida viverra. Fusce vel tempor elit. Proin
-          tempus,.
+    <div class="sc-content flex flex-column center" id="sc4">
+      <h2 class="sc-title uppercase montserrat" id="sc4">
+        Como se voluntariar?
+      </h2>
+      <div class="sc-text-content" id="sc4">
+        <p class="sc-text-content-p montserrat weight-semi-bold" id="sc4">
+          O Instituto conta com apoio de uma equipe de voluntários
+          especializados, na cozinha, com chefes, cozinheiros e nutricionistas.
+          Nas salas de aulas, contamos com psicopedagogos e psicólogos para o
+          auxílio e apoio dos alunos. Se você possuí alguma forma de ajudar no
+          futuro dessas crianças sendo voluntário do projeto, clique no botão
+          abaixo e venha fazer parte dessa equipe. Já para ajuda monetária ou
+          ideias inovadoras entre em contato conosco.
+        </p>
+        <p class="sc-text-content-p montserrat weight-semi-bold" id="sc4">
+          Nos ajudar nesse projeto é fazer parte de uma experiência
+          transformadora, seja um pontinho de esperança na vida de jovens, que
+          não tem onde a esperança encontrar. junte-se a essa jornada por um
+          novo amanhã.
         </p>
       </div>
-      <div class="sc4-interactive">
+      <div class="sc-interactive" id="sc4">
+        <a
+          href=""
+          class="button homepage-buttons btn-sobre weight-semi-bold flex center"
+          >Mais Sobre</a
+        >
+      </div>
+    </div>
+  </section>
+  <section class="sections flex center" id="sc5">
+    <div class="sc-content flex flex-column center" id="sc5">
+      <h2 class="sc-title uppercase montserrat" id="sc5">
+        O que é Apadrinhamento?
+      </h2>
+      <div class="sc-text-content" id="sc5">
+        <p class="sc-text-content-p montserrat weight-semi-bold" id="sc5">
+          Uma das formas de colaborar com o projeto, é o apadriamento. Você pode
+          escolher um aluno para apadrinhar, e no final do ano onde ocorre o
+          evento de apadriamento, o presenteie com objetos que o ajudarão a
+          começar o seu próximo ano letivo. Para apadrinhar uma criança e
+          contribuir com o projeto, clique no botão abaixo.
+        </p>
+      </div>
+      <div class="sc-interactive" id="sc5">
         <a
           href=""
           class="button homepage-buttons btn-apadrinhar weight-semi-bold flex center"
@@ -133,13 +242,11 @@
       </div>
     </div>
   </section>
-  <section class="sections flex center" id="sc5">
-    <div class="sc5-content flex flex-column center">
-      <h2 class="sc5-title uppercase montserrat">Entre em Contato</h2>
-      <div class="sc5-text-content">
-       
-      </div>
-      <div class="sc5-contact-info flex wrap">
+  <section class="sections flex center" id="sc6">
+    <div class="sc-content flex flex-column center" id="sc6">
+      <h2 class="sc-title uppercase montserrat" id="sc6">Entre em Contato</h2>
+      <div class="sc-text-content" id="sc6"></div>
+      <div class="sc-contact-info flex wrap" id="sc6">
         <div
           class="card card-contact-info flex flex-column align-center space-evenly"
           id="card-info-1"
@@ -162,8 +269,6 @@
             />
 
             <g id="SVGRepo_iconCarrier">
-              <title>pin_fill_sharp_circle [#634]</title>
-              <desc>Created with Sketch.</desc>
               <defs></defs>
               <g
                 id="Page-1"
@@ -189,7 +294,7 @@
           </svg>
 
           <h4>Localização</h4>
-          <a href="" class="no-style-link small"
+          <a href="" class="no-style-link"
             >Rua Taltaldetal, Parque Paulista, Franco da Rocha, SP</a
           >
         </div>
@@ -258,16 +363,21 @@
           </svg>
 
           <h4>Email</h4>
-          <a href="" class="no-style-link">email@email.com</a>
+          <a href="" class="no-style-link"
+            >institutoraizesdofuturo56@gmail.com</a
+          >
         </div>
       </div>
-      <div class="sc5-interactive flex flex-column center gap-1 width-100pc">
-        <input type="text" class="homepage-textbox" placeholder="Email" />
-        <input type="text" class="homepage-textbox" placeholder="Nome" />
+      <div
+        class="sc-interactive flex flex-column center gap-1 width-100pc"
+        id="sc6"
+      >
+        <input type="text" class="textbox homepage-textbox" placeholder="Email" />
+        <input type="text" class="textbox homepage-textbox" placeholder="Nome" />
         <textarea
           name=""
           id=""
-          class="homepage-textbox larger-textarea"
+          class="textbox homepage-textbox larger-textarea"
           placeholder="Mensagem"
         ></textarea>
         <a
@@ -276,7 +386,6 @@
           >Enviar</a
         >
       </div>
-      
     </div>
   </section>
 </main>

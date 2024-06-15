@@ -164,7 +164,7 @@ class MatriculaController
                     $parametros = ['ModalTipo' => 'Mensagem', 'mensagem' => 'Matrícula Aprovado com Sucesso'];
                     echo TemplateRenderer::render('consultar_matricula.html', $parametros);
                 } else {
-                    $parametros = ['ModalTipo' => 'Mensagem', 'mensagem' => "$situacao".'Matrícula Reprovada com Sucesso'];
+                    $parametros = ['ModalTipo' => 'Mensagem', 'mensagem' => 'Matrícula Reprovada com Sucesso'];
                     echo TemplateRenderer::render('consultar_matricula.html', $parametros);
                     Aluno::aprovarMatricula($dados);
                 }

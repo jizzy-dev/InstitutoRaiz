@@ -16,7 +16,6 @@ body {
   width: 100%;
   min-height: 100dvh;
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
   grid-template-areas: 
   'h'
   'm'
@@ -158,7 +157,7 @@ main:not(.main-home, .main-erro) {
   font-weight: bold !important;
 }
 .weight-semi-bold {
-  font-weight: 400 !important;
+  font-weight: 500 !important;
 }
 .weight-bolder {
   font-weight: bolder !important;
@@ -173,16 +172,16 @@ main:not(.main-home, .main-erro) {
   text-overflow: unset !important;
 }
 h1 {
-  font-size: var(--font-clamp-3);
+  font-size: var(--font-clamp-4);
 }
 h2 {
-  font-size: var(--font-clamp-2);
+  font-size: var(--font-clamp-3);
 }
 h3 {
-  font-size: var(--font-clamp-1);
+  font-size: var(--font-clamp-2);
 }
 h4 {
-  font-size: var(--font-clamp-0);
+  font-size: var(--font-clamp-1);
 }
 .small{
   font-size: var(--font-clamp-0)!important;
@@ -213,4 +212,7 @@ h6 {
 }
 .cursor-pointer {
   cursor: pointer !important;
+}
+.cursor-grab {
+  cursor: grab !important;
 }
