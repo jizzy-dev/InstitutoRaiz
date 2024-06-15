@@ -1,21 +1,96 @@
-/* inputs */
+#fixed-progress-bar {
+  position: sticky; /* Torna fixa a posição das barras de progresso */
+  right: 95%; /* Ajuste a posição horizontal conforme necessário */
+  top: 50%; /* Centraliza verticalmente */
+  transform: translateY(-50%); /* Ajusta a posição verticalmente */
+  display: flex;
+  flex-direction: column; /* Alinha os progress-items verticalmente */
+  gap: 10px; /* Espaçamento entre os progress-items */
+  z-index: 7;
+}
 
+.fixed-progress-item {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: width 0.3s, height 0.3s, border-radius 0.5s, background-color 0.6s;
+}
+
+.fixed-progress-item[data-target="#sc1"] > * {
+  transform: scale(0.9);
+}
+
+.fixed-progress-item.active {
+  width: 20px !important;
+  height: 60px !important;
+  border-radius: 9px !important;
+}
+
+.fixed-progress-item[data-target="#sc1"] {
+  transform: scale(1.4);
+}
+
+#fixed-progress-bar:has(.fixed-progress-item.active[data-target="#sc1"]) > * {
+  display: none;
+  opacity: 0 !important;
+  transition: 0.3s;
+}
+
+#fixed-progress-bar:has(.fixed-progress-item.active[data-target="#sc5"]) > * {
+  background-color: #1c1c1c;
+  transition: 0.6s;
+}
+#fixed-progress-bar:has(.fixed-progress-item.active[data-target="#sc5"])
+  svg
+  path {
+  fill: #fff;
+}
+
+.progress-title {
+  position: absolute;
+  left: calc(100% + 10px); /* Coloca o título à direita do progressItem */
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 5px 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.progress-title.fade-in {
+  opacity: 1;
+}
+
+/* inputs */
+/* label */
+
+label {
+  color: #fff;
+}
+
+.main-atribuir-acesso label {
+  color: #000;
+}
 /* textbox */
 .textbox {
-  background-color: #fafafa;
   border: none;
-
-  -webkit-box-shadow: #8c8c8c 1px 1px 0px 2px;
-  -moz-box-shadow: #8c8c8c 1px 1px 0px 2px;
-  box-shadow: #8c8c8c 1px 1px 0px 2px;
-
-  border-radius: var(--radius-0);
-  width: 200px;
-  height: 30px;
-  padding: 2px 10px 2px 10px;
+  border-radius: 0.5rem;
+  box-shadow: var(--box-shadow-2);
+  font-size: var(--font-clamp-1);
+  padding: 0.6rem 1rem;
+  max-width: 40ch;
+  max-height: 20ch;
+  width: 100%;
 }
 .textbox:hover {
-  background-color: #f0f0f0;
+  background-color: #f2f2f2;
 }
 .textbox:is(:focus, :focus-visible, :hover) {
   outline: none;
@@ -24,29 +99,23 @@
   -moz-box-shadow: #338bf8 1px 1px 0px 2px;
   box-shadow: #338bf8 1px 1px 0px 2px;
 }
-
-td:has(input + .error-span){
+.homepage-textbox {
+  box-shadow: var(--box-shadow-1) !important;
+  padding: 0.8rem !important;
+}
+td:has(.error-span) {
   display: flex;
   flex-direction: column;
   align-items: start !important;
-  gap: .5rem;
-  color:#f83340;
+  gap: 0.5rem;
+  color: #f83340;
 }
-.error-span{
+.error-span {
   font-size: var(--font-clamp-0) !important;
   text-wrap: wrap;
   max-width: 50ch;
 }
-.homepage-textbox {
-  border: none;
-  border-radius: 0.5rem;
-  box-shadow: var(--box-shadow-1);
-  font-size: var(--font-clamp-1);
-  padding: 0.8rem;
-  max-width: 40ch;
-  max-height: 20ch;
-  width: 100%;
-}
+
 .turma-select {
   max-width: 12ch;
 }
@@ -55,13 +124,12 @@ td:has(input + .error-span){
   min-height: 10ch;
 }
 
-
 .senha-eye-icon {
   top: 100%;
   left: 98%;
   width: 28px;
   aspect-ratio: 1/1;
-  transform: translateX(-100%) translateY(-100%);
+  transform: translateX(-100%) translateY(-115%);
   background-size: contain;
 }
 .senha-eye-icon.senha-icon-open {
@@ -69,6 +137,70 @@ td:has(input + .error-span){
 }
 .senha-eye-icon.senha-icon-close {
   background-image: url("/InstitutoRaiz/public/assets/images/vectors/icons/pass-eye-close-vector.svg");
+}
+
+/* checkbox */
+.checkbox-wrapper .checkbox {
+  appearance: none;
+  background-color: #dfe1e4;
+  border-radius: 72px;
+  border-style: none;
+  flex-shrink: 0;
+  height: 20px;
+  margin: 0;
+  position: relative;
+  width: 40px;
+}
+
+.checkbox-wrapper .checkbox::before {
+  bottom: -6px;
+  content: "";
+  left: -6px;
+  position: absolute;
+  right: -6px;
+  top: -6px;
+}
+
+.checkbox-wrapper .checkbox,
+.checkbox-wrapper .checkbox::after {
+  transition: all 100ms ease-out;
+}
+
+.checkbox-wrapper .checkbox::after {
+  background-color: #fff;
+  border-radius: 50%;
+  content: "";
+  height: 15px;
+  left: 3px;
+  position: absolute;
+  top: 12%;
+  width: 15px;
+}
+
+.checkbox-wrapper input[type="checkbox"] {
+  cursor: default;
+}
+
+.checkbox-wrapper .checkbox:hover {
+  background-color: #c9cbcd;
+  transition-duration: 0s;
+}
+
+.checkbox-wrapper .checkbox:checked {
+  background-color: var(--cor-3);
+}
+
+.checkbox-wrapper .checkbox:checked::after {
+  background-color: #fff;
+  left: 22px;
+}
+
+.checkbox-wrapper :focus:not(.focus-visible) {
+  outline: 0;
+}
+
+.checkbox-wrapper .checkbox:checked:hover {
+  background-color: var(--cor-15);
 }
 
 /* anchors */
@@ -133,6 +265,7 @@ td:has(input + .error-span){
   box-shadow: var(--box-shadow-2);
   margin: 3px 0;
 }
+
 /*btn-redirect*/
 .btn-redirect {
   background: url("/InstitutoRaiz/public/assets/images/vectors/icons/redirect-icon.svg")
@@ -171,6 +304,37 @@ td:has(input + .error-span){
   background: url("/InstitutoRaiz/public/assets/images/vectors/icons/arrow-subdirectory.svg")
     center/contain no-repeat;
   box-shadow: unset;
+}
+
+/*btn-modal*/
+.btn-modal {
+  background-color: var(--cor-14);
+  color: #fff;
+  font-size: var(--font-clamp-0);
+  padding: 0.7rem 1rem;
+  gap: 5px;
+  border-radius: 1rem;
+}
+.btn-modal:hover {
+  background-color: var(--cor-15);
+  color: #fff;
+}
+/*btn-yes-modal*/
+.btn-yes-modal {
+  background-color: var(--cor-14);
+}
+
+/*btn-no-modal*/
+.btn-no-modal {
+  background-color: var(--cor-20);
+}
+
+/*btn-sidebar-editar*/
+.btn-sidebar-editar {
+  background-color: var(--cor-22);
+}
+.btn-sidebar-editar:hover {
+  background-color: var(--cor-4);
 }
 
 /*btn-input-image*/
@@ -308,7 +472,7 @@ td:has(input + .error-span){
 
 /* .sidebar buttons */
 .open-sidebar-profile-button {
-  width: 78px;
+  width: 100px;
   border: none;
   cursor: pointer;
   background-color: unset;
@@ -490,6 +654,10 @@ td:not(.td-button) {
   background-color: var(--cor-20) !important;
 }
 
+.modal-text {
+  font-weight: 500;
+}
+
 /* sidebar */
 .sidebar {
   position: fixed;
@@ -500,14 +668,14 @@ td:not(.td-button) {
   border: none;
   width: 35dvw;
   overflow: unset;
-  background-color: #a7cd30;
-  box-shadow: 10px 10px 0px 100dvw rgba(0,0,0,0.52);
+  background-color: var(--cor-17);
+  box-shadow: 10px 10px 0px 100dvw rgba(0, 0, 0, 0.52);
 }
-.sidebar-sistema{
+.sidebar-sistema {
   background-color: #6877d7;
 }
 .sidebar::backdrop {
- display: none;
+  display: none;
 }
 .menu-sidebar {
   background-color: inherit;
@@ -517,11 +685,17 @@ td:not(.td-button) {
 }
 .sidebar-item-group {
   width: 100%;
+}
+.profile-group {
+  border-bottom: 3px solid rgba(0 0 0 / 53%);
+  padding-bottom: 1em;
+}
+.sidebar-item-group li:not(.profile-group li) {
   border-bottom: 3px solid rgba(0 0 0 / 53%);
 }
 menu.menu-sidebar .sidebar-item-link {
   padding: 1em;
-  gap: 1em
+  gap: 1em;
 }
 menu.menu-sidebar .sidebar-item-link:hover {
   background-color: rgba(0, 0, 0, 0.2);
@@ -554,6 +728,8 @@ menu.menu-sidebar .sidebar-item-link:hover {
   aspect-ratio: 3/2;
   border-radius: var(--radius-2);
   text-decoration: none;
+  text-align: center;
+  overflow-wrap: anywhere;
   transition: 0.2s;
 }
 .card > * {
@@ -599,8 +775,7 @@ main.main-matricula .content-text p {
   font-weight: 600;
 }
 main.main-matricula {
-  background-color: #fff6e2;
-  color: var(--cor-11);
+  color: var(--cor-6);
 }
 .content-text-list li {
   display: flex;

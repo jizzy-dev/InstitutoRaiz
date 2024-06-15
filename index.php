@@ -39,9 +39,10 @@ use Twig\Loader\FilesystemLoader;
 $loader = new FilesystemLoader('app/Template');
 $twig = new Environment($loader);
 
-
+ob_start();
 $core = new Core();
-$saida = $core->run($_GET);
+$core->run($_GET);
+$saida = ob_get_clean();
 
 global $parametros, $template;
 $titulo = isset($parametros['titulo']) ? $parametros['titulo'] : 'Instituto Raíz do Futuro';

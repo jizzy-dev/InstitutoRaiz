@@ -3,6 +3,11 @@ class UsuarioController
 {
     public function index($id = null)
     {
+        header('Location: ?pag=sistema&metodo=redirectPag&titulo=Gerenciar%20Usu%C3%A1rios&redirecionar=usuario');
+        exit;
+    }
+    public function consultarRegistro($id = null)
+    {
         VerificarSessao::verificarLogin();
         VerificarSessao::verificarPerfil('A');
         global $parametros;
@@ -58,7 +63,7 @@ class UsuarioController
                     ];
                 }
 
-                $dadosUser = [
+                $dadosUser = Validador::limparDados([
                     'nome' => htmlspecialchars($_POST['nome_responsavel']),
                     'cpf' => htmlspecialchars($_POST['cpf_responsavel']),
                     'rg' => htmlspecialchars($_POST['rg_responsavel']),
@@ -77,17 +82,16 @@ class UsuarioController
                     'isPadrinho' => isset($_POST['isPadrinho']) ? 1 : 0,
                     'perfil_acesso' => isset($_POST['perfil_acesso']) ? $_POST['perfil_acesso'] : 'U',
                     'ID_IMAGEM' => $id_imagem
-                ];
+                ]);
 
                 Usuario::Create($dadosUser);
                 // Redirecionar o usuário para uma página de confirmação
-                $resultado = 'Cadastro feito com Sucesso!';
-                $parametros['resultado'] = $resultado;
+                $parametros = ['ModalTipo' => 'Mensagem', 'mensagem' => 'Cadastro Realizado com Sucesso!'];
 
-                echo TemplateRenderer::render('cadastro_sucesso.html', $parametros);
+                echo TemplateRenderer::render('login.html', $parametros);
             } catch (Exception $e) {
-                // Se ocorrer um erro, exibir uma mensagem de erro
-                // $this->handleError('Erro ao cadastrar usuário: ' . $e->getMessage());
+
+                $parametros = ['ModalTipo' => 'Erro', 'erro' => 'Erro ao se Cadastrar! ' . $e->getMessage()];
                 echo TemplateRenderer::render('cadastrar_usuario.html', $parametros);
             }
         } else {
@@ -150,7 +154,7 @@ class UsuarioController
                     $id_imagem = Imagem::uploadUpdate($_FILES['imgInput'], $id_imagem);
                 }
 
-                $dados = [
+                $dados = Validador::limparDados([
                     'id' => htmlspecialchars($id),
                     'nome' => htmlspecialchars($_POST['nome_responsavel']),
                     'cpf' => htmlspecialchars($_POST['cpf_responsavel']),
@@ -169,10 +173,15 @@ class UsuarioController
                     'isResponsavel' => isset($_POST['isResponsavel']) ? 1 : 0,
                     'isPadrinho' => isset($_POST['isPadrinho']) ? 1 : 0,
                     'ID_IMAGEM' => $id_imagem
-                ];
+                ]);
 
                 Usuario::atualizarPorId($dados);
-                echo "<script>alert('Usuário atualizado com sucesso!'); window.location.href = '?pag=usuario&metodo=index&id=" . $id . "';</script>";
+                 $parametros = ['ModalTipo' => 'Mensagem', 'mensagem' => 'Usuário Editado com Sucesso!'];
+                 if($user->ID_USER === $_SESSION['user']->ID_USER){
+                    echo TemplateRenderer::render('login.html', $parametros);
+                 }else{
+                    echo TemplateRenderer::render('sistema.html', $parametros);
+                 };
             } catch (Exception $e) {
                 echo "<script>alert('Erro ao editar usuário: " . $e->getMessage() . "')</script>";
             }
@@ -199,11 +208,8 @@ class UsuarioController
 
         global $parametros;
 
-        $id = isset($_POST['id_usuario']) ? $_POST['id_usuario'] : ($_GET['id'] ? $_GET['id'] : 1);
+        $id = isset($_GET['id']) ? $_GET['id'] : null;
         $perfil_acesso = isset($_POST['perfil_acesso']) ? $_POST['perfil_acesso'] : null;
-
-        $user = Usuario::selecionarPorId($id);
-        $parametros['usuario'] = $user;
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
@@ -223,13 +229,22 @@ class UsuarioController
                 echo "<script>alert('Erro ao editar usuário: " . $e->getMessage() . "')</script>";
             }
         } else {
+
+
             if ($id !== null) {
                 try {
                     $user = Usuario::selecionarPorId($id);
-                    $parametros = ['usuario' => $user, 'titulo' => 'Atribuir Acesso'];
+                    $usuarios = Usuario::selecionaTodos();
+                    $parametros = [
+                        'usuario' => $user,
+                        'usuarios' => $usuarios,
+                        'titulo' => 'Atribuir Acesso',
+                        'id' => $id
+                    ];
                     echo TemplateRenderer::render('atribuir_perfil_acesso.html', $parametros);
                 } catch (Exception $e) {
-                    echo "<script>alert('Erro ao editar usuário: " . $e->getMessage() . "')</script>";
+                    $parametros['usuarios'] = $usuarios;
+                    echo TemplateRenderer::render('atribuir_perfil_acesso.html', $parametros);
                 }
             } else {
                 header('Location: ?pag=usuario&metodo=consultar');

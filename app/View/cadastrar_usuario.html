@@ -1,135 +1,304 @@
 {% include 'header.html' %}
 <main class="main-cad">
-
-	<form action="?pag=usuario&metodo=cadastrar" method="POST" class="form-cad flex flex-column center" enctype="multipart/form-data">
-		<table cellspacing="0" class="tables tb-matricula">
-			<thead>
-				<tr class="tr-titulo">
-					<th colspan="2" class="tb-matricula-th">Cadastro de Usuário</th>
-				</tr>
-			</thead>
-			<tbody>
-				<!-- Foto de Perfil -->
-				<tr class="tr-titulo-section">
-					<th colspan="2" class="tb-matricula-th">Foto de Perfil</th>
-				</tr>
-				<tr>
-					<td>Inserir imagem</td>
-					<td class="center">
-						<img src="https://localhost/InstitutoRaiz/public/assets/images/vectors/icons/user-placeholder-vector.svg" width="150px" alt="Imagem do usuário" id="imgView" class="profile-image">
-					</td>
-					<td>
-						<fieldset class="fieldset-file flex center border-none width-100pc">
-							<label for="imgInput" class="button btn-input-image flex align-center">
-								<span class="weight-bold">Escolher Arquivo</span>
-								<?xml version="1.0" encoding="utf-8"?>
-								<svg width="22px" height="22px" viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
-									<path fill-rule="evenodd" clip-rule="evenodd" d="M1 5C1 3.34315 2.34315 2 4 2H8.55848C9.84977 2 10.9962 2.82629 11.4045 4.05132L11.7208 5H20C21.1046 5 22 5.89543 22 7V9.00961C23.1475 9.12163 23.9808 10.196 23.7695 11.3578L22.1332 20.3578C21.9603 21.3087 21.132 22 20.1654 22H3C1.89543 22 1 21.1046 1 20V5ZM20 9V7H11.7208C10.8599 7 10.0956 6.44914 9.82339 5.63246L9.50716 4.68377C9.37105 4.27543 8.98891 4 8.55848 4H4C3.44772 4 3 4.44772 3 5V12.2709L3.35429 10.588C3.54913 9.66249 4.36562 9 5.31139 9H20ZM3.36634 20C3.41777 19.9109 3.4562 19.8122 3.47855 19.706L5.31139 11L21 11H21.8018L20.1654 20L3.36634 20Z" fill="#1C1C1C"/>
-								</svg>
-							</label>
-							<input type="file" name="imgInput" id="imgInput" class="display-none" accept="image/*"></fieldset>
-						</td>
-					</td>
-					<td>
-						<input type="checkbox" name="noImage" id="noImage">
-							Sem Foto</td>
-					</tr>
-					<!-- Informações do Usuário -->
-					<tr class="tr-titulo-section">
-						<th colspan="2" class="tb-matricula-th">Informações do Usuário</th>
-					</tr>
-					<tr>
-						<td>Nome do Usuário</td>
-						<td>
-							<input type="text" name="nome_responsavel" class="textbox cad-textbox" placeholder="Seu Nome" required></td>
-						</tr>
-						<tr>
-							<td>Email do Usuário</td>
-							<td>
-								<input type="email" name="email_responsavel" class="textbox cad-textbox" placeholder="exemplo@email.com" required></td>
-							</tr>
-							<tr>
-								<td>Senha</td>
-								<td>
-									<input type="password" name="senha_responsavel" class="textbox cad-textbox" required></td>
-								</tr>
-								<tr>
-									<td>Confirmar Senha</td>
-									<td>
-										<input type="password" name="confirmar_senha" class="textbox cad-textbox" required></td>
-									</tr>
-									<tr class="tr-titulo-section">
-										<th colspan="2" class="tb-matricula-th">Dados Pessoais</th>
-									</tr>
-									<tr>
-										<td>Data de Nascimento do Usuário</td>
-										<td>
-											<input type="date" name="data_nasc_responsavel" class="textbox cad-textbox" required></td>
-										</tr>
-										<tr>
-											<td>CPF do Usuário</td>
-											<td>
-												<input type="text" name="cpf_responsavel" class="textbox cad-textbox" placeholder="Ex: 000.000.000-00" required></td>
-											</tr>
-											<tr>
-												<td>RG do Usuário</td>
-												<td>
-													<input type="text" name="rg_responsavel" class="textbox cad-textbox" placeholder="Ex: 00.000.000-0" required></td>
-												</tr>
-												<tr>
-													<td>Contato do Usuário</td>
-													<td>
-														<input type="text" name="contato_responsavel" class="textbox cad-textbox" placeholder="Ex: (00) 00000-0000" required></td>
-													</tr>
-													<tr class="tr-titulo-section">
-														<th colspan="2" class="tb-matricula-th">Dados de Endereço</th>
-													</tr>
-													<tr>
-														<td>CEP</td>
-														<td>
-															<input type="text" name="cep" class="textbox cad-textbox" required></td>
-														</tr>
-														<tr>
-															<td>Logradouro</td>
-															<td>
-																<input type="text" name="logradouro" class="textbox cad-textbox" required></td>
-															</tr>
-															<tr>
-																<td>Bairro</td>
-																<td>
-																	<input type="text" name="bairro" class="textbox cad-textbox" required></td>
-																</tr>
-																<tr>
-																	<td>Número</td>
-																	<td>
-																		<input type="text" name="numero_endereco" class="textbox cad-textbox" required></td>
-																	</tr>
-																	<tr>
-																		<td>Complemento</td>
-																		<td>
-																			<input type="text" name="complemento" class="textbox cad-textbox" required></td>
-																		</tr>
-																		<tr>
-																			<td>Cidade</td>
-																			<td>
-																				<input type="text" name="cidade" class="textbox cad-textbox" required></td>
-																			</tr>
-																			<tr>
-																				<td>Estado (UF)</td>
-																				<td>
-																					<input type="text" name="estado" class="textbox cad-textbox" required></td>
-																				</tr>
-																				<!-- Botão de Submit -->
-																				<tr class="tr-titulo-section tr-submit">
-																					<th colspan="2" class="tb-matricula-th text-center">
-																						<button type="submit" class="button btn-form-submit">
-																							Cadastrar Usuário
-																						</button>
-																					</th>
-																				</tr>
-																			</tbody>
-																		</table>
-																	</form>
-																</main>
-																{% include 'footer.html' %}
-												
+  <form
+    action="?pag=usuario&metodo=cadastrar"
+    method="POST"
+    class="form-cad flex flex-column center"
+    enctype="multipart/form-data"
+  >
+    <table cellspacing="0" class="tables tb-matricula">
+      <thead>
+        <tr class="tr-titulo">
+          <th colspan="2" class="tb-matricula-th">Cadastro de Usuário</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Foto de Perfil -->
+        <tr class="tr-titulo-section">
+          <th colspan="2" class="tb-matricula-th">Foto de Perfil</th>
+        </tr>
+        <tr>
+          <td>Inserir imagem</td>
+          <td class="center">
+            <img
+              src="https://localhost/InstitutoRaiz/public/assets/images/vectors/icons/user-placeholder-vector.svg"
+              width="150px"
+              alt="Imagem do usuário"
+              id="imgView"
+              class="profile-image"
+            />
+          </td>
+          <td>
+            <fieldset class="fieldset-file flex center border-none width-100pc">
+              <label
+                for="imgInput"
+                class="button btn-input-image flex align-center"
+                id="imgInputWrapper"
+              >
+                <span class="weight-bold">Escolher Arquivo</span>
+                <?xml version="1.0" encoding="utf-8"?>
+                <svg
+                  width="22px"
+                  height="22px"
+                  viewBox="0 0 24 24"
+                  fill="#ffffff"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M1 5C1 3.34315 2.34315 2 4 2H8.55848C9.84977 2 10.9962 2.82629 11.4045 4.05132L11.7208 5H20C21.1046 5 22 5.89543 22 7V9.00961C23.1475 9.12163 23.9808 10.196 23.7695 11.3578L22.1332 20.3578C21.9603 21.3087 21.132 22 20.1654 22H3C1.89543 22 1 21.1046 1 20V5ZM20 9V7H11.7208C10.8599 7 10.0956 6.44914 9.82339 5.63246L9.50716 4.68377C9.37105 4.27543 8.98891 4 8.55848 4H4C3.44772 4 3 4.44772 3 5V12.2709L3.35429 10.588C3.54913 9.66249 4.36562 9 5.31139 9H20ZM3.36634 20C3.41777 19.9109 3.4562 19.8122 3.47855 19.706L5.31139 11L21 11H21.8018L20.1654 20L3.36634 20Z"
+                    fill="#1C1C1C"
+                  />
+                </svg>
+              </label>
+              <input
+                type="file"
+                name="imgInput"
+                id="imgInput"
+                class="display-none"
+                accept="image/*"
+              />
+            </fieldset>
+          </td>
+          <td class="flex center gap-1">
+            <div class="checkbox-wrapper">
+              <input
+                type="checkbox"
+                name="noImage"
+                class="checkbox"
+                id="noImage"
+              />
+            </div>
+            <span>Sem Foto</span>
+          </td>
+        </tr>
+        <!-- Informações do Usuário -->
+        <tr class="tr-titulo-section">
+          <th colspan="2" class="tb-matricula-th">Informações do Usuário</th>
+        </tr>
+        <tr>
+          <td>Nome do Usuário</td>
+          <td>
+            <input
+              type="text"
+              name="nome_responsavel"
+              class="textbox cad-textbox"
+              placeholder="Seu Nome"
+              autocomplete="off"
+              placeholder="Seu Nome"
+              pattern="^[\p{L}\s]+$"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Email do Usuário</td>
+          <td>
+            <input
+              type="email"
+              name="email_responsavel"
+              class="textbox cad-textbox"
+              placeholder="exemplo@email.com"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Senha</td>
+          <td>
+            <input
+              type="password"
+              name="senha_responsavel"
+              class="textbox cad-textbox inputSenha"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Confirmar Senha</td>
+          <td>
+            <input
+              type="password"
+              name="confirmar_senha"
+              class="textbox cad-textbox inputConfirmarSenha"
+              required
+            />
+          </td>
+        </tr>
+        <tr class="tr-titulo-section">
+          <th colspan="2" class="tb-matricula-th">Dados Pessoais</th>
+        </tr>
+        <tr>
+          <td>Data de Nascimento do Usuário</td>
+          <td>
+            <input
+              type="date"
+              name="data_nasc_responsavel"
+              class="textbox cad-textbox"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>CPF do Usuário</td>
+          <td>
+            <input
+              type="text"
+              name="cpf_responsavel"
+              class="textbox cad-textbox inputCPF"
+              placeholder="Ex: 000.000.000-00"
+              pattern="^\d{3}\.?\d{3}\.?\d{3}-?\d{2}$"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>RG do Usuário</td>
+          <td>
+            <input
+              type="text"
+              name="rg_responsavel"
+              class="textbox cad-textbox inputRG"
+              autocomplete="off"
+              maxlength="12"
+              placeholder="Ex: 00.000.000-0"
+              pattern="^\d{2}\.?\d{3}\.?\d{3}-?\d{1}$"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Contato do Usuário</td>
+          <td>
+            <input
+              type="text"
+              name="contato_responsavel"
+              class="textbox cad-textbox inputContato"
+              placeholder="Ex: (00) 00000-0000"
+              required
+            />
+          </td>
+        </tr>
+        <tr class="tr-titulo-section">
+          <th colspan="2" class="tb-matricula-th">Dados de Endereço</th>
+        </tr>
+        <tr>
+          <td>CEP</td>
+          <td>
+            <input
+              type="text"
+              name="cep"
+              class="textbox cad-textbox inputCEP"
+              maxlength="9"
+              pattern="\d{5}-?\d{3}"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Logradouro</td>
+          <td>
+            <input
+              type="text"
+              name="logradouro"
+              class="textbox cad-textbox"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Bairro</td>
+          <td>
+            <input
+              type="text"
+              name="bairro"
+              class="textbox cad-textbox"
+              pattern="^[\p{L}\s]+$"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Número</td>
+          <td>
+            <input
+              type="text"
+              name="numero_endereco"
+              class="textbox cad-textbox"
+              maxlength="3"
+              pattern="^\d{1,3}$"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Complemento</td>
+          <td>
+            <input
+              type="text"
+              name="complemento"
+              class="textbox cad-textbox"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Cidade</td>
+          <td>
+            <input
+              type="text"
+              name="cidade"
+              class="textbox cad-textbox"
+              pattern="^[\p{L}\s]+$"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Estado (UF)</td>
+          <td>
+            <select name="estado" class="textbox cad-textbox" required>
+              <option value="" disabled selected>Selecione o estado</option>
+              <option value="AC">Acre</option>
+              <option value="AL">Alagoas</option>
+              <option value="AP">Amapá</option>
+              <option value="AM">Amazonas</option>
+              <option value="BA">Bahia</option>
+              <option value="CE">Ceará</option>
+              <option value="DF">Distrito Federal</option>
+              <option value="ES">Espírito Santo</option>
+              <option value="GO">Goiás</option>
+              <option value="MA">Maranhão</option>
+              <option value="MT">Mato Grosso</option>
+              <option value="MS">Mato Grosso do Sul</option>
+              <option value="MG">Minas Gerais</option>
+              <option value="PA">Pará</option>
+              <option value="PB">Paraíba</option>
+              <option value="PR">Paraná</option>
+              <option value="PE">Pernambuco</option>
+              <option value="PI">Piauí</option>
+              <option value="RJ">Rio de Janeiro</option>
+              <option value="RN">Rio Grande do Norte</option>
+              <option value="RS">Rio Grande do Sul</option>
+              <option value="RO">Rondônia</option>
+              <option value="RR">Roraima</option>
+              <option value="SC">Santa Catarina</option>
+              <option value="SP">São Paulo</option>
+              <option value="SE">Sergipe</option>
+              <option value="TO">Tocantins</option>
+            </select>
+          </td>
+        </tr>
+        <!-- Botão de Submit -->
+        <tr class="tr-titulo-section tr-submit">
+          <th colspan="2" class="tb-matricula-th text-center">
+            <button type="submit" class="button btn-form-submit">
+              Cadastrar Usuário
+            </button>
+          </th>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+</main>
+{% include 'footer.html' %}

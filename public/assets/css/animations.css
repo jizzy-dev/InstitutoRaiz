@@ -23,6 +23,22 @@
     transform: translateX(0%);
   }
 }
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+@keyframes slide-out-left {
+  100% {
+    transform: translateX(-50%);
+  }
+  0% {
+    transform: translateX(0%);
+  }
+}
 @keyframes slide-out-right {
   100% {
     transform: translateX(50%);
@@ -43,16 +59,49 @@
     box-shadow: var(--box-shadow-1);
   }
 }
-@keyframes grow-bottom{
-  0%{
+@keyframes grow-bottom {
+  0% {
     height: 100px;
   }
-  100%{
+  100% {
     height: 200px;
   }
 }
 
 /* applying */
+
+.fade-in {
+  animation: fade-in 0.3s forwards;
+}
+.fade-out {
+  animation: fade-out 0.3s forwards;
+}
+
+.slide-in-right {
+  animation: slide-in-right 0.5s forwards;
+}
+
+.slide-out-right {
+  animation: slide-in-right 0.5s forwards;
+}
+.slide-in-left {
+  animation: slide-in-left 0.5s forwards;
+}
+
+.slide-out-left {
+  animation: slide-in-left 0.5s forwards;
+}
+.progress-bar-in-right {
+  animation: 
+  slide-in-right 0.5s forwards,
+  fade-in 0.3s forwards;
+}
+
+.progress-bar-out-left {
+  animation: 
+  slide-out-left 0.5s forwards,
+  fade-out 0.3s forwards;
+}
 
 .sidebar::backdrop {
   opacity: 0;
@@ -72,6 +121,6 @@
   animation: fade-out 300ms forwards;
 }
 
-.content-text details[open]{
+.content-text details[open] {
   animation: fade-in 300ms forwards;
 }

@@ -7,10 +7,7 @@ function setTodayAsDefaultDate() {
     dateInput.value = `${yyyy}-${mm}-${dd}`;
 }
 
-// Define a data padrão se a página for carregada com "Dia" selecionado
-if (document.getElementById('filtroRadioHoje').checked) {
-    setTodayAsDefaultDate();
-}
+
 
 function parseDateInputValue(dateInputValue) {
     const parts = dateInputValue.split('-');
@@ -23,6 +20,11 @@ function parseDateInputValue(dateInputValue) {
 function setDataTable(objData) {
     const filtroRadio = document.querySelector('input[name="filtroRadio"]:checked').value;
     const MesColumn = document.querySelector('tbody');
+
+    // Define a data padrão se a página for carregada com "Dia" selecionado
+    if (document.getElementById('filtroRadioHoje').checked) {
+        setTodayAsDefaultDate();
+    }
 
     const alunos = objData.alunos;
     const frequencias = objData.frequencias;
@@ -40,10 +42,18 @@ function setDataTable(objData) {
             console.log('Data Selecionada:', selectedDate); // Log da data selecionada
 
             MesColumn.innerHTML =
-                `<tr class="tb-frequencia tr-titulo">
-                    <td>ID</td>
-                    <td>Aluno</td>
-                    <td>Dia ${dia}</td>
+                `<tr class="row-column-titles row-columns tr-consultar-id">
+                    <td class="td-ID">
+                        ID
+                        <div class="resize-handle"></div>
+                    </td>
+                    <td>
+                    Aluno
+                        <div class="resize-handle"></div>
+                    </td>
+                    <td>
+                    Dia ${dia}
+                    </td>
                 </tr>`;
 
             for (const idAluno in alunos) {
@@ -74,9 +84,15 @@ function setDataTable(objData) {
             break;
         case 'm':
             let rowContent =
-                `<tr class="tb-frequencia tr-titulo">
-                <td>ID</td>
-                <td>Aluno</td>`;
+                `<tr class="row-column-titles row-columns tr-consultar-id">
+                <td class="td-ID">
+                    ID
+                    <div class="resize-handle"></div>
+                </td>
+                <td>
+                    Aluno
+                    <div class="resize-handle"></div>
+                </td>`;
             for (let countDia = 1; countDia <= countMes; countDia++) {
                 rowContent += `<td>${countDia}</td>`;
             }

@@ -16,7 +16,6 @@ body {
   width: 100%;
   min-height: 100dvh;
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
   grid-template-areas: 
   'h'
   'm'
