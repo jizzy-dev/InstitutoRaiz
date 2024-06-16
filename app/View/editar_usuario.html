@@ -1,5 +1,14 @@
-{% include "header_sistema.html" %} {% if session.user.perfil_acesso == 'A' %}
-{% set permissao = true %} {% else %} {% set permissao = false %} {% endif %}
+{% include "header_sistema.html" %} 
+{% if session.user.perfil_acesso == 'A' %}
+  {% set permissao = true %} 
+{% else %} 
+  {% set permissao = false %} 
+{% endif %}
+{% if usuario.ID_USER == session.user.ID_USER %}
+  {% set LoginAtual = true %} 
+{% else %} 
+  {% set LoginAtual = false %} 
+{% endif %}
 <main class="main-editar-usuario">
   {#
   <p>ID_USER: {{usuario.ID_USER}}</p>
@@ -18,6 +27,7 @@
         </tr>
       </thead>
       <tbody>
+        {% if LoginAtual == true %}
         <tr class="tr-titulo-section">
           <th colspan="2" class="tb-matricula-th">Foto de Perfil</th>
         </tr>
@@ -78,6 +88,7 @@
             <span>Sem Foto</span>
           </td>
         </tr>
+        {% endif %}
         <tr class="tr-titulo-section">
           <th colspan="2" class="tb-matricula-th">Informações do Usuario</th>
         </tr>
@@ -100,26 +111,7 @@
         </tr>
         {% if usuario.ID_USER == session.user.ID_USER %}
         <tr>
-          <td>Senha</td>
-          <td>
-            <input
-              type="password"
-              name="senha_responsavel"
-              class="textbox cad-textbox inputSenha"
-              required
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>Confirmar Senha</td>
-          <td>
-            <input
-              type="password"
-              name="confirmar_senha"
-              class="textbox cad-textbox inputConfirmarSenha"
-              required
-            />
-          </td>
+          <td><a href="" class="no-style-link underline">Alterar Senha</a></td>          
         </tr>
         {% endif %}
         <tr class="tr-titulo-section">
@@ -164,9 +156,9 @@
           <td>
             <input
               type="text"
-              name="contato inputContato"
+              name="contato"
               value="{{ usuario.contato }}"
-              class="textbox cad-textbox"
+              class="textbox cad-textbox inputContato"
               required
             />
           </td>

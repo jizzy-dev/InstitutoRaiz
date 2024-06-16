@@ -46,6 +46,22 @@ function adicionarMascara() {
         return aplicarMascara(valor, [5, 3], ['-']);
     }
 
+    // Função para adicionar eventos de máscara a um input específico
+    function adicionarEventoMascaraInput(input, funcaoFormatar) {
+        input.addEventListener('input', () => {
+            input.value = funcaoFormatar(input.value);
+        });
+
+        input.addEventListener('keypress', (e) => {
+            if (!/^\d$/.test(e.key)) { // Permitir apenas números
+                e.preventDefault();
+            }
+        });
+
+        // Formata o valor inicial se já existir
+        input.value = funcaoFormatar(input.value);
+    }
+
     // Adicionar eventos para os inputs de CPF
     cpfInputs.forEach(input => {
         adicionarEventoMascaraInput(input, formatarCPF);
@@ -69,19 +85,6 @@ function adicionarMascara() {
     // Adicionar eventos para os inputs de CEP
     cepInputs.forEach(input => {
         adicionarEventoMascaraInput(input, formatarCEP);
-    });
-}
-
-// Função para adicionar eventos de máscara a um input específico
-function adicionarEventoMascaraInput(input, funcaoFormatar) {
-    input.addEventListener('input', () => {
-        input.value = funcaoFormatar(input.value);
-    });
-
-    input.addEventListener('keypress', (e) => {
-        if (!/^\d$/.test(e.key)) { // Permitir apenas números
-            e.preventDefault();
-        }
     });
 }
 

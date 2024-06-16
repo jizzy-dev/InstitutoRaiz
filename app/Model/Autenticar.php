@@ -1,6 +1,8 @@
 <?php
-class Autenticar{
-    public static function login($dados){
+class Autenticar
+{
+    public static function login($dados)
+    {
         $con = Connection::getConn();
 
         $sql = "SELECT * FROM usuario WHERE email = :email LIMIT 1";
@@ -16,5 +18,10 @@ class Autenticar{
             throw new Exception("E-mail ou senha incorretos.");
         }
     }
-    
+    public static function loginAtualSelecionado($id)
+    {
+        if ($id == $_SESSION['user']->ID_USER) {
+            return true;
+        }
+    }
 }
