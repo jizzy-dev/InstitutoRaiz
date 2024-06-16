@@ -1,0 +1,24 @@
+{% if usuario.ID_USER == session.user.ID_USER %}
+        <tr>
+          <td>Senha</td>
+          <td>
+            <input
+              type="password"
+              name="senha_responsavel"
+              class="textbox cad-textbox inputSenha"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Confirmar Senha</td>
+          <td>
+            <input
+              type="password"
+              name="confirmar_senha"
+              class="textbox cad-textbox inputConfirmarSenha"
+              required
+            />
+          </td>
+        </tr>
+        {% endif %}

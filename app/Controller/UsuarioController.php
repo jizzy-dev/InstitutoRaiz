@@ -176,28 +176,37 @@ class UsuarioController
                 ]);
 
                 Usuario::atualizarPorId($dados);
-                 $parametros = ['ModalTipo' => 'Mensagem', 'mensagem' => 'Usuário Editado com Sucesso!'];
-                 if($user->ID_USER === $_SESSION['user']->ID_USER){
+                $parametros = ['ModalTipo' => 'Mensagem', 'mensagem' => 'Usuário Editado com Sucesso!'];
+                if ($user->ID_USER === $_SESSION['user']->ID_USER) {
                     echo TemplateRenderer::render('login.html', $parametros);
-                 }else{
+                } else {
                     echo TemplateRenderer::render('sistema.html', $parametros);
-                 };
+                };
             } catch (Exception $e) {
                 echo "<script>alert('Erro ao editar usuário: " . $e->getMessage() . "')</script>";
             }
         } else {
+
+            echo "IdSelecionado: $id <br> IdLogado: " . $_SESSION['user']->ID_USER;
             if ($id !== null) {
+
                 try {
                     $user = Usuario::selecionarPorId($id);
                     $imagem = Imagem::selecionarPorId($user->ID_IMAGEM);
                     $parametros = ['usuario' => $user, 'imagem' => $imagem, 'titulo' => 'Editar Usuário'];
-                    echo TemplateRenderer::render('editar_usuario.html', $parametros);
+                    if (Autenticar::loginAtualSelecionado($id) && Autorizar::verificarAutorizacao('A')) {
+                        echo TemplateRenderer::render('editar_usuario.html', $parametros);
+                    } else {
+                        VerificarSessao::verificarPerfil('A');
+                        echo TemplateRenderer::render('editar_usuario.html', $parametros);
+                    }
                 } catch (Exception $e) {
                     echo "<script>alert('Erro ao editar usuário: " . $e->getMessage() . "')</script>";
                 }
             } else {
-                header('Location: ?pag=usuario&metodo=consultar');
-                exit;
+                $user = Usuario::selecionarPorId($id);
+                $parametros = ['usuario' => $user, 'titulo' => 'Editar Usuário', 'ModalTipo' => 'Erro', 'erro' => 'Usario Não Logado', 'login_redirect' => true];
+                echo TemplateRenderer::render('login.html', $parametros);
             }
         }
     }
