@@ -1,21 +1,10 @@
 <?php
 class PadrinhoController
 {
-    public function index($id = null)
+    public function index()
     {
-        global $parametros;
-        try {
-            $user =  Usuario::selecionarPorId($id);
-
-            $parametros = ['usuarios' => $user, 'titulo' => 'Padrinho'];
-
-            echo TemplateRenderer::render('padrinho.html', $parametros);
-
-            // echo '<pre>';
-            // var_dump($parametros);
-        } catch (Exception $e) {
-            echo TemplateRenderer::render('padrinho.html', ['erro' => $e->getMessage(), 'usuarios' => [], 'titulo' => 'Erro']);
-        }
+        $parametros = ['titulo' => 'Apadrinhar'];
+        echo TemplateRenderer::render('apadrinhar.html', $parametros);
     }
     public function Cadastrar()
     {
@@ -57,6 +46,21 @@ class PadrinhoController
         } else {
             // Se não for uma requisição POST, redirecionar para a página de cadastro
             echo TemplateRenderer::render('cadastrar_padrinho.html', $parametros);
+        }
+    }
+    public function selecionarPorId($id){
+        global $parametros;
+        try {
+            $user =  Usuario::selecionarPorId($id);
+
+            $parametros = ['usuarios' => $user, 'titulo' => 'Padrinho'];
+
+            echo TemplateRenderer::render('padrinho.html', $parametros);
+
+            // echo '<pre>';
+            // var_dump($parametros);
+        } catch (Exception $e) {
+            echo TemplateRenderer::render('padrinho.html', ['erro' => $e->getMessage(), 'usuarios' => [], 'titulo' => 'Erro']);
         }
     }
     public function Consultar($nome = null)
