@@ -61,11 +61,11 @@ main.main-home {
   padding-bottom: 3em;
 }
 #sc1.sc-content-right *{
-  max-height: calc(100dvh + 10dvh);
+  max-height: 100dvh ;
 }
 #sc1.sc-banner {
   height: calc(100% + 150px);
-  transform: translateY(calc(var(--header-height) - 50dvh));
+  transform: translateY(calc(var(--header-height) - 30%));
   width: 100%;
   aspect-ratio: 1/1;
   object-fit: cover;
@@ -170,6 +170,10 @@ main.main-home {
   max-width: 50ch;
   text-align: justify;
 }
+#sc3.home-link{
+  color: #ffd675;
+}
+
 #sc4.sections {
   background-color: var(--cor-9);
   z-index: 3;
@@ -191,12 +195,15 @@ main.main-home {
   background-color: var(--cor-7);
   z-index: 4;
 }
+#sc5.sc-content{
+  gap: 5em;
+}
 #sc5::before {
   background: url("/InstitutoRaiz/public/assets/images/vectors/shapes/PageTransitionShape_sc4.svg")
     no-repeat center bottom;
 }
 #sc5.sc-text-content-p{
-  max-width: 30ch;
+  transform: scale(1.3);
 }
 #sc6.sections {
   background-color: var(--cor-8);

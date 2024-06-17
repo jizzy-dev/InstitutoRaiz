@@ -1,121 +1,250 @@
 {% include 'header.html' %}
-<main class="main-cad">
-    <div class="flex">
-        <p>AVISO: Ao cadastrar-se, é feita uma solicitação para apadrinhar, estando sujeito a uma aprovação após uma análise.</p>
-    </div>
-    <form action="?pag=usuario&metodo=cadastrar" method="POST" class="form-cad flex flex-column center">
-        <table cellspacing="0" class="tables tb-matricula">
-            <thead>
-                <tr class="tr-titulo">
-                    <th colspan="2" class="tb-matricula-th">Apadrinhamento</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Informações -->
-                <tr class="tr-titulo-section">
-                    <th colspan="2" class="tb-matricula-th">Informações</th>
-                </tr>
-                <tr>
-                    <td>Nome</td>
-                    <td>
-                        <input type="text" name="nome_padrinho" class="textbox cad-textbox" placeholder="Seu Nome" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td>
-                        <input type="email" name="email_padrinho" class="textbox cad-textbox"
-                            placeholder="exemplo@email.com" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Senha</td>
-                    <td>
-                        <input type="password" name="senha_padrinho" class="textbox cad-textbox" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Data de Nascimento</td>
-                    <td>
-                        <input type="date" name="data_nasc_padrinho" class="textbox cad-textbox" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>CPF</td>
-                    <td>
-                        <input type="text" name="cpf_padrinho" class="textbox cad-textbox"
-                            placeholder="Ex: 000.000.000-00" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>RG</td>
-                    <td>
-                        <input type="text" name="rg_padrinho" class="textbox cad-textbox"
-                            placeholder="Ex: 00.000.000-0" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Contato</td>
-                    <td>
-                        <input type="text" name="contato_padrinho" class="textbox cad-textbox"
-                            placeholder="Ex: (00) 00000-0000" required>
-                    </td>
-                </tr>
-                <tr class="tr-titulo-section">
-                    <th colspan="2" class="tb-matricula-th">Dados de Endereço</th>
-                </tr>
-                <tr>
-                    <td>CEP</td>
-                    <td>
-                        <input type="text" name="cep" class="textbox cad-textbox" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Logradouro</td>
-                    <td>
-                        <input type="text" name="logradouro" class="textbox cad-textbox" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Bairro</td>
-                    <td>
-                        <input type="text" name="bairro" class="textbox cad-textbox" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Número</td>
-                    <td>
-                        <input type="text" name="numero_endereco" class="textbox cad-textbox" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Complemento</td>
-                    <td>
-                        <input type="text" name="complemento" class="textbox cad-textbox" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Cidade</td>
-                    <td>
-                        <input type="text" name="cidade" class="textbox cad-textbox" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Estado (UF)</td>
-                    <td>
-                        <input type="text" name="estado" class="textbox cad-textbox" required>
-                    </td>
-                </tr>
-                <!-- Botão de Submit -->
-                <tr class="tr-titulo-section tr-submit">
-                    <th colspan="2" class="tb-matricula-th text-center">
-                        <button type="submit" class="button btn-form-submit">
-                            Solicitar
-                        </button>
-                    </th>
-                </tr>
-            </tbody>
-        </table>
-    </form>
+<main class="main-cad flex flex-column gap-1">
+  <div class="flex center">
+    <span class="warning-message weight-semi-bold"
+      ><b>AVISO:</b> Ao cadastrar-se, é feita uma solicitação para apadrinhar,
+      estando sujeito a uma aprovação após uma análise.</span
+    >
+  </div>
+  <form
+    action="?pag=usuario&metodo=cadastrar"
+    method="POST"
+    class="form-cad flex flex-column center"
+  >
+    <table cellspacing="0" class="tables tb-matricula">
+      <thead>
+        <tr class="tr-titulo">
+          <th colspan="2" class="tb-matricula-th">Apadrinhamento</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Informações -->
+        <tr class="tr-titulo-section">
+          <th colspan="2" class="tb-matricula-th">Informações</th>
+        </tr>
+        <tr>
+          <td>Nome</td>
+          <td>
+            <input
+              type="text"
+              name="nome_padrinho"
+              class="textbox cad-textbox"
+              placeholder="Seu Nome"
+              autocomplete="off"
+              placeholder="Seu Nome"
+              pattern="^[\p{L}\s]+$"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td>
+            <input
+              type="email"
+              name="email_padrinho"
+              class="textbox cad-textbox"
+              placeholder="exemplo@email.com"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Senha</td>
+          <td>
+            <input
+              type="password"
+              name="senha_padrinho"
+              class="textbox cad-textbox inputSenha"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+        <td>Confirmar Senha</td>
+        <td>
+          <input
+            type="password"
+            name="confirmar_senha"
+            class="textbox cad-textbox inputConfirmarSenha"
+            required
+          />
+        </td>
+      </tr>
+        <tr>
+          <td>Data de Nascimento</td>
+          <td>
+            <input
+              type="date"
+              name="data_nasc_padrinho"
+              class="textbox cad-textbox"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>CPF</td>
+          <td>
+            <input
+              type="text"
+              name="cpf_padrinho"
+              class="textbox cad-textbox inputCPF"
+              placeholder="Ex: 000.000.000-00"
+              autocomplete="off"
+              maxlength="14"
+              pattern="^\d{3}\.?\d{3}\.?\d{3}-?\d{2}$"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>RG</td>
+          <td>
+            <input
+              type="text"
+              name="rg_padrinho"
+              class="textbox cad-textbox inputRG"
+              placeholder="Ex: 00.000.000-0"
+              autocomplete="off"
+              maxlength="12"
+              placeholder="Ex: 00.000.000-0"
+              pattern="^\d{2}\.?\d{3}\.?\d{3}-?\d{1}$"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Contato</td>
+          <td>
+            <input
+              type="text"
+              name="contato_padrinho"
+              class="textbox cad-textbox inputContato"
+              placeholder="Ex: (00) 00000-0000"
+              required
+            />
+          </td>
+        </tr>
+        <tr class="tr-titulo-section">
+          <th colspan="2" class="tb-matricula-th">Dados de Endereço</th>
+        </tr>
+        <tr>
+          <td>CEP</td>
+          <td>
+            <input
+              type="text"
+              name="cep"
+              class="textbox cad-textbox inputCEP"
+              maxlength="9"
+              pattern="\d{5}-?\d{3}"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Logradouro</td>
+          <td>
+            <input
+              type="text"
+              name="logradouro"
+              class="textbox cad-textbox"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Bairro</td>
+          <td>
+            <input
+              type="text"
+              name="bairro"
+              class="textbox cad-textbox"
+              pattern="^[\p{L}\s]+$"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Número</td>
+          <td>
+            <input
+              type="text"
+              name="numero_endereco"
+              class="textbox cad-textbox"
+              maxlength="3"
+              pattern="^\d{1,3}$"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Complemento</td>
+          <td>
+            <input
+              type="text"
+              name="complemento"
+              class="textbox cad-textbox"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Cidade</td>
+          <td>
+            <input
+              type="text"
+              name="cidade"
+              class="textbox cad-textbox"
+              pattern="^[\p{L}\s]+$"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Estado (UF)</td>
+          <td>
+            <select name="estado" class="textbox cad-textbox" required>
+              <option value="" disabled selected>Selecione o estado</option>
+              <option value="AC">Acre</option>
+              <option value="AL">Alagoas</option>
+              <option value="AP">Amapá</option>
+              <option value="AM">Amazonas</option>
+              <option value="BA">Bahia</option>
+              <option value="CE">Ceará</option>
+              <option value="DF">Distrito Federal</option>
+              <option value="ES">Espírito Santo</option>
+              <option value="GO">Goiás</option>
+              <option value="MA">Maranhão</option>
+              <option value="MT">Mato Grosso</option>
+              <option value="MS">Mato Grosso do Sul</option>
+              <option value="MG">Minas Gerais</option>
+              <option value="PA">Pará</option>
+              <option value="PB">Paraíba</option>
+              <option value="PR">Paraná</option>
+              <option value="PE">Pernambuco</option>
+              <option value="PI">Piauí</option>
+              <option value="RJ">Rio de Janeiro</option>
+              <option value="RN">Rio Grande do Norte</option>
+              <option value="RS">Rio Grande do Sul</option>
+              <option value="RO">Rondônia</option>
+              <option value="RR">Roraima</option>
+              <option value="SC">Santa Catarina</option>
+              <option value="SP">São Paulo</option>
+              <option value="SE">Sergipe</option>
+              <option value="TO">Tocantins</option>
+            </select>
+          </td>
+        </tr>
+        <!-- Botão de Submit -->
+        <tr class="tr-titulo-section tr-submit">
+          <th colspan="2" class="tb-matricula-th text-center">
+            <button type="submit" class="button btn-form-submit">
+              Solicitar
+            </button>
+          </th>
+        </tr>
+      </tbody>
+    </table>
+  </form>
 </main>
 {% include 'footer.html' %}

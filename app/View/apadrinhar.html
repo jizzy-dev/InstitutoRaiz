@@ -1,0 +1,83 @@
+{% include 'header.html' %}
+
+<main class="main-matricula">
+  <div class="container flex flex-column align-center gap-1">
+    <div class="content flex flex-column center gap-2">
+      <div class="content-text flex flex-column text-justify gap-2">
+        <section class="flex flex-column gap-1">
+          <h1 class="text-center">Apadrinhamento</h1>
+          <p>
+            O Instituto Raízes do Futuro oferece a oportunidade de apadrinhar
+            uma criança. Ao participar do apadrinhamento, você pode apoiar uma
+            criança durante o ano letivo, fornecendo materiais escolares e
+            outros itens essenciais. No final do ano, você terá a oportunidade
+            de conhecer a criança apadrinhada e presenteá-la, contribuindo para
+            um futuro melhor.
+          </p>
+        </section>
+        <section class="flex flex-column gap-1">
+          <details class="flex flex-column gap-1" open>
+            <summary class="cursor-pointer">
+              <h2>Como funciona?</h2>
+              <p>
+                <span class="sp-saiba-mais weight-bold no-style-link"
+                  >Saiba Mais...</span
+                >
+              </p>
+              <p>
+                <span
+                  class="sp-saiba-menos weight-bold no-style-link display-none"
+                  >Saiba Menos ▲</span
+                >
+              </p>
+            </summary>
+            <ol class="content-text-list flex flex-column gap-1">
+              <li>
+                <b>Preenchimento do Formulário:</b>
+                <p>
+                  Ao preencher o formulário de cadastro com as informações
+                  necessárias sobre o padrinho, sua solicitação será enviada ao
+                  nosso sistema para análise.
+                </p>
+              </li>
+              <li>
+                <b>Análise da Solicitação:</b>
+                <p>
+                  Após o envio, nossa equipe revisará a solicitação. Esse
+                  processo inclui a verificação das informações fornecidas.
+                </p>
+              </li>
+              <li>
+                <b>Contato para Confirmação:</b>
+                <p>
+                  Entraremos em contato com quem fez a solicitação de
+                  apadrinhamento para discutir as próximas etapas. Durante esse
+                  contato, teremos a oportunidade de esclarecer dúvidas e
+                  conhecer melhor as expectativas do padrinho.
+                </p>
+              </li>
+              <li>
+                <b>Aguarde a Aprovação:</b>
+                <p>
+                  Após a confirmação e a verificação de todas as informações,
+                  você será cadastrado no sistema como padrinho. Um aluno será
+                  vinculado a você, e você terá a oportunidade de fazer a vida
+                  dele mais alegre e apoiá-lo em sua jornada.
+                </p>
+              </li>
+            </ol>
+          </details>
+        </section>
+      </div>
+      <div class="content-interactive">
+        <a
+          href="?pag=padrinho&metodo=cadastrar"
+          class="button homepage-buttons btn-form-submit"
+          >Preencher Formulário</a
+        >
+      </div>
+    </div>
+  </div>
+</main>
+
+{% include 'footer.html' %}

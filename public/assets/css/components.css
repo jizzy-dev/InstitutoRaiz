@@ -115,7 +115,15 @@ td:has(.error-span) {
   text-wrap: wrap;
   max-width: 50ch;
 }
-
+span.warning-message {
+  max-width: 600px;
+  min-height: 6ch;
+  border: 2px solid #ff0036;
+  background-color: #ffa5ae;
+  border-radius: var(--radius--1);
+  font-size: var(--font-clamp-0) !important;
+  padding: 1rem;
+}
 .turma-select {
   max-width: 12ch;
 }
@@ -209,6 +217,9 @@ td:has(.error-span) {
 }
 :is(a, svg):hover {
   text-shadow: var(--text-shadow-1);
+}
+.link{
+  font-size: inherit;
 }
 .no-style-link {
   text-decoration: none;
