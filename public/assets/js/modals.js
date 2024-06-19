@@ -21,10 +21,16 @@ if (modal) {
 
 const sidebar = document.getElementById('sidebar');
 const openSidebar = document.querySelector('.open-sidebar-profile-button');
+const openHamburguerSidebar = document.querySelector('.menu-hamburguer');
 const closeSidebar = document.querySelector('.close-sidebar-button');
 
 if (openSidebar) {
     openSidebar.addEventListener('click', () => {
+        sidebar.showModal();
+    });
+}
+if (openHamburguerSidebar) {
+    openHamburguerSidebar.addEventListener('click', () => {
         sidebar.showModal();
     });
 }
@@ -39,16 +45,21 @@ if (sidebar) {
     let mouseInsideSidebar = false;
     let sidebarClosing = false;
 
+    // Função para fechar o sidebar
+    function closeSidebarFunction() {
+        sidebar.setAttribute('closing', "");
+        sidebar.addEventListener('animationend', () => {
+            sidebar.removeAttribute('closing');
+            sidebar.close();
+            sidebarClosing = false; // Resetando a flag
+        }, { once: true });
+        sidebarClosing = true;
+    }
+
     // Fechar o sidebar ao clicar fora dele
     sidebar.addEventListener('click', (event) => {
         if (event.target == sidebar) {
-            sidebar.setAttribute('closing', "");
-            sidebar.addEventListener('animationend', () => {
-                sidebar.removeAttribute('closing');
-                sidebar.close();
-                sidebarClosing = false;
-            }, { once: true });
-            sidebarClosing = true;
+            closeSidebarFunction();
         }
     });
 
@@ -60,11 +71,7 @@ if (sidebar) {
         mouseInsideSidebar = false;
         // Fechar o sidebar apenas se ele estiver visível e não estiver no processo de fechamento
         if (sidebar.open && !sidebarClosing) {
-            sidebar.setAttribute('closing', "");
-            sidebar.addEventListener('animationend', () => {
-                sidebar.removeAttribute('closing');
-                sidebar.close();
-            }, { once: true });
+            closeSidebarFunction();
         }
     });
 
@@ -75,11 +82,14 @@ if (sidebar) {
 
         // Verifica se o mouse está fora da área do sidebar (à esquerda do sidebar)
         if (mouseX > sidebarRect.left && sidebar.open && !mouseInsideSidebar && !sidebarClosing) {
-            sidebar.setAttribute('closing', "");
-            sidebar.addEventListener('animationend', () => {
-                sidebar.removeAttribute('closing');
-                sidebar.close();
-            }, { once: true });
+            closeSidebarFunction();
+        }
+    });
+
+    // Fechar o sidebar ao tocar fora dele
+    document.addEventListener('touchstart', (event) => {
+        if (!sidebar.contains(event.target) && sidebar.open && !sidebarClosing) {
+            closeSidebarFunction();
         }
     });
 }

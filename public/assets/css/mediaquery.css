@@ -15,26 +15,36 @@
     max-height: unset !important;
     min-height: unset !important;
   }
-  .sc-content{
+  .sc-content {
     flex-direction: column;
   }
-  header .header-link {
-    display: none;
+  #sc2.sc-content {
+    padding-bottom: 9em !important;
   }
-  .open-sidebar-profile-button {
+  header .header-nav .header-link,
+  .header-interactive > * :not(.header-interactive .sidebar *) {
+    display: none !important;
+  }
+  .header-socia-media {
+    position: unset !important;
+  }
+  .menu-hamburguer {
     position: absolute;
-    right: -5em;
-    transform: translateX(100%);
-  }
-  .open-sidebar-profile-button img[src] {
-    width: 0px;
-    height: 0px;
+    right: 3em;
     padding: 5em;
     background: url("/InstitutoRaiz/public/assets/images/vectors/icons/menu-vector.svg")
       center/contain no-repeat;
     box-shadow: unset;
   }
-  #sc1.sc-content-right{
+  .open-sidebar-profile-button {
+    display: none !important;
+  }
+  .sidebar {
+    width: 60dvw;
+    left: calc(100% - 60dvw);
+    transition: 0.3s;
+  }
+  #sc1.sc-content-right {
     min-width: 100%;
   }
   #sc1.sc-content-right .carousel-container img {
@@ -42,9 +52,18 @@
     max-height: 500px !important;
     min-height: unset !important;
   }
- .header-content span{
-    content: 'A';
-    font-size: var(--font-clamp-1);
-    width: 100px;
- }
+  .header-content .logo::after {
+    content: "Instituto Raiz do Futuro";
+    color: var(--cor-7);
+    text-transform: uppercase;
+    font-size: var(--font-clamp-3);
+    font-weight: bold;
+    min-width: 13ch;
+  }
+  .sidebar-item-group {
+    padding: 4em 0;
+  }
+  svg * {
+    fill: #1c1c1c;
+  }
 }
