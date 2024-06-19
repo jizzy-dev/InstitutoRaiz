@@ -9,8 +9,7 @@
                     {% if not usuarios %}
                     {% else %}
                     <td class="td-button"></td>
-                    <td class="td-button"></td>
-                    <td>ID <div class="resize-handle"></div>
+                    <td class="td-ID">ID <div class="resize-handle"></div>
                     </td>
                     <td>Nome <div class="resize-handle"></div>
                     </td>
@@ -50,21 +49,21 @@
                         <form id="formAtribuirPadrinho_{{ usuarios.ID_USER }}" method="POST">
                             <input type="hidden" name="id_usuario" value="{{ usuarios.ID_USER }}">
                             <button type="button" onclick="atribuirPadrinhoInput('{{ usuarios.ID_USER }}')"
-                                class="button">Atribuir</button>
+                                class="button action-buttons btn-atribuir"></button>
                         </form>
                         <form id="formEditarUsuario_{{ usuarios.ID_USER }}" method="POST">
                             <input type="hidden" name="id_usuario" value="{{ usuarios.ID_USER }}">
                             <button type="button" onclick="editarUsuarioInput('{{ usuarios.ID_USER }}')"
-                                class="button">Editar</button>
+                                class="button action-buttons btn-editar"></button>
                         </form>
-                    </td>
-                    <td class="td-button">
+                        {% if session.user.perfil_acesso == 'A'%}
                         <form action="?pag=usuario&metodo=excluir" method="POST">
                             <input type="hidden" name="id_usuario" value="{{ usuarios.ID_USER }}">
                             <button type="submit"
                                 onclick="return confirm('Tem certeza que deseja excluir este usuário?')"
-                                class="button">Excluir</button>
+                                class="button action-buttons btn-excluir"></button>
                         </form>
+                        {% endif %}
                     </td>
                     <td>{{usuarios.ID_USER}}</td>
                     <td>{{usuarios.nome}}</td>

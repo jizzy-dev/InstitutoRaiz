@@ -10,11 +10,15 @@ class VerificarSessao
         }
     }
 
-    public static function verificarPerfil(String $perfilNecessario)
+    public static function verificarPerfil(array $perfisNecessarios)
     {
-        if (Autorizar::verificarAutorizacao($perfilNecessario)) {
+        if (Autorizar::verificarAutorizacao($perfisNecessarios)) {
             header("Location: ?pag=erro&metodo=acesso&allowed=false");
             exit();
         }
+    }
+    public static function verificarAcesso(array $perfisNecessarios){
+        VerificarSessao::verificarLogin();
+        VerificarSessao::verificarPerfil($perfisNecessarios);
     }
 }

@@ -1,4 +1,4 @@
-<main class="main-consultar flex center">
+<main class="main-consultar flex flex-column center gap-1">
 	<div class="table-wrapper flex flex-column center">
 		<table cellspacing="0" class="tables data-table tb-consulta flex flex-column">
 			<thead>
@@ -15,8 +15,9 @@
 						<select id="ID_TURMA" name="ID_TURMA" onchange="selectTurmaInputF()" class="textbox" required>
 							<option value="" {% if id_turma is null %} selected {% endif %}>Selecione a Turma</option>
 							{% for turma in turmas %}
-								<option value="{{turma.ID_TURMA}}" {% if id_turma==turma.ID_TURMA %} selected {% endif %}>
-									{{turma.nome_turma}}</option>
+								<option value="{{turma.ID_TURMA}}" {% if id_turma == turma.ID_TURMA %} selected {% endif %}>
+									{{turma.nome_turma}}
+								</option>
 							{% endfor %}
 						</select>
 					</td>
@@ -29,7 +30,7 @@
 						<div class="resize-handle"></div>
 					</td>
 					{% for dia in range(1, mesQtdDia) %}
-						<td>{{ dia }}</td>
+						<td class="td-dia flex center">{{ dia }}/{{ mesAtual }}</td>
 					{% endfor %}
 				</tr>
 			</thead>
@@ -39,13 +40,13 @@
 						<td>{{ aluno.ID_ALUNO }}</td>
 						<td>{{ aluno.nome }}</td>
 						{% for dia in range(1, mesQtdDia) %}
-							<td>
-								{% set presenca = '( N/A )' %}
-								{% for frequencia in frequencias %}
-									{% if frequencia.ID_ALUNO == aluno.ID_ALUNO and frequencia.data_aula|date('d') == dia %}
-										{% set presenca = frequencia.presenca %}
-									{% endif %}
-								{% endfor %}
+							{% set presenca = '( N/A )' %}
+							{% for frequencia in frequencias %}
+								{% if frequencia.ID_ALUNO == aluno.ID_ALUNO and frequencia.data_aula|date('d') == dia %}
+									{% set presenca = frequencia.presenca %}
+								{% endif %}
+							{% endfor %}
+							<td class="td-frequencia td-{% if presenca == 'P' %}presenca{% elseif presenca == 'F' %}falta{% endif %} flex center">
 								{{ presenca }}
 							</td>
 						{% endfor %}
@@ -54,4 +55,5 @@
 			</tbody>
 		</table>
 	</div>
+<a href="?pag=frequencia&metodo=marcarPresenca" class="button btn-form-submit">Marcar Presença</a>
 </main>

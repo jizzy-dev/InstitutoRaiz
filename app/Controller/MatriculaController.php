@@ -90,10 +90,12 @@ class MatriculaController
     }
     public function Consultar($nome = null)
     {
+        VerificarSessao::verificarAcesso(['A','M']);
+        
         global $parametros;
         try {
             $nomeAluno = isset($_POST['filtro']) ? $_POST['filtro'] : $nome;
-            $situcao = isset($_POST['situacao']) ? $_POST['situacao'] : (isset($_GET['situacao'])? $_GET['situacao'] : null);
+            $situcao = isset($_POST['situacao']) ? $_POST['situacao'] : (isset($_GET['situacao']) ? $_GET['situacao'] : null);
 
             $alunos = Aluno::filtrarNomeSitucao($nomeAluno, $situcao);
 
@@ -105,6 +107,8 @@ class MatriculaController
     }
     public function validarMatricula($id, $aprovar)
     {
+         VerificarSessao::verificarLogin();
+        
         global $parametros;
         $parametros['titulo'] = 'Aprovar Matrícula';
 
@@ -123,7 +127,7 @@ class MatriculaController
                     'YesNoAnchor' => true,
                     'pag' => 'matricula',
                     'mensagem' => 'Deseja Realmente Aprovar essa Matrícula?',
-                    'hrefLink' => '?pag=matricula&metodo=aprovarmatricula&id='."$id".'&acao=aprovar',
+                    'hrefLink' => '?pag=matricula&metodo=aprovarmatricula&id=' . "$id" . '&acao=aprovar',
                     'id' => $id
                 ];
                 echo TemplateRenderer::render('consultar_matricula.html', $parametros);
@@ -133,7 +137,7 @@ class MatriculaController
                     'YesNoAnchor' => true,
                     'pag' => 'matricula',
                     'mensagem' => 'Deseja Realmente Reprovar essa Matrícula?',
-                    'hrefLink'=>'?pag=matricula&metodo=aprovarmatricula&id='."$id".'&acao=reprovar',
+                    'hrefLink' => '?pag=matricula&metodo=aprovarmatricula&id=' . "$id" . '&acao=reprovar',
                     'id' => $id
                 ];
                 echo TemplateRenderer::render('consultar_matricula.html', $parametros);
@@ -142,6 +146,8 @@ class MatriculaController
     }
     public function aprovarMatricula($id)
     {
+        VerificarSessao::verificarLogin();
+        
         global $parametros;
         $parametros['titulo'] = 'Aprovar Matrícula';
 

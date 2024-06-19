@@ -31,3 +31,14 @@ function redirect(pag, metodo, id) {
         window.location.href = '?pag=' + pag + '&metodo=' + metodo + '&id=' + id
     }
 }
+function redirectAtribuirP(pag, metodo, idU) {
+    const idUsuario = document.getElementById('id_padrinho')
+    let idA = document.getElementById('id_aluno').value
+    if (!idU) {
+        idU = idUsuario
+        window.location.href = '?pag=' + pag + '&metodo=' + metodo
+    } else {
+        idA = 
+        window.location.href = '?pag=' + pag + '&metodo=' + metodo + '&id=' + idU + '&id_aluno=' + idA
+    }
+}

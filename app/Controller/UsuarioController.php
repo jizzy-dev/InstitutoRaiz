@@ -1,15 +1,16 @@
 <?php
 class UsuarioController
 {
+
     public function index($id = null)
     {
+        VerificarSessao::verificarAcesso(['A', 'M']);
         header('Location: ?pag=sistema&metodo=redirectPag&titulo=Gerenciar%20Usu%C3%A1rios&redirecionar=usuario');
         exit;
     }
     public function consultarRegistro($id = null)
     {
-        VerificarSessao::verificarLogin();
-        VerificarSessao::verificarPerfil('A');
+        VerificarSessao::verificarAcesso(['A', 'M']);
         global $parametros;
         try {
             $user =  Usuario::selecionarPorId($id);
@@ -26,6 +27,7 @@ class UsuarioController
     }
     public function Cadastrar()
     {
+        VerificarSessao::verificarAcesso(['A', 'M']);
         global $parametros;
         $parametros = ['titulo' => 'Cadastro de Usuário'];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -101,6 +103,7 @@ class UsuarioController
     }
     public function Consultar($nome = null)
     {
+        VerificarSessao::verificarAcesso(['A', 'M']);
         global $parametros;
         try {
             $nomeUsuario =  isset($_POST['filtro']) ?
@@ -127,6 +130,7 @@ class UsuarioController
     }
     public function Excluir($id = null)
     {
+        VerificarSessao::verificarAcesso(['A', 'M']);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $_POST['id_usuario'];
 
@@ -143,7 +147,7 @@ class UsuarioController
     {
         // VerificarSessao::verificarLogin();
         global $parametros;
-        $id = $_GET['id'];
+        $id = isset($_GET['id']) ? $_GET['id'] : null;
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
@@ -186,38 +190,34 @@ class UsuarioController
                 echo "<script>alert('Erro ao editar usuário: " . $e->getMessage() . "')</script>";
             }
         } else {
-
-            echo "IdSelecionado: $id <br> IdLogado: " . $_SESSION['user']->ID_USER;
             if ($id !== null) {
 
                 try {
                     $user = Usuario::selecionarPorId($id);
                     $imagem = Imagem::selecionarPorId($user->ID_IMAGEM);
                     $parametros = ['usuario' => $user, 'imagem' => $imagem, 'titulo' => 'Editar Usuário'];
-                    if (Autenticar::loginAtualSelecionado($id) && Autorizar::verificarAutorizacao('A')) {
+                    if (Autenticar::loginAtualSelecionado($id) && Autorizar::verificarAutorizacao(['A'])) {
                         echo TemplateRenderer::render('editar_usuario.html', $parametros);
                     } else {
-                        VerificarSessao::verificarPerfil('A');
+                        VerificarSessao::verificarAcesso(['A', 'M']);
                         echo TemplateRenderer::render('editar_usuario.html', $parametros);
                     }
                 } catch (Exception $e) {
                     echo "<script>alert('Erro ao editar usuário: " . $e->getMessage() . "')</script>";
                 }
             } else {
-                $user = Usuario::selecionarPorId($id);
-                $parametros = ['usuario' => $user, 'titulo' => 'Editar Usuário', 'ModalTipo' => 'Erro', 'erro' => 'Usario Não Logado', 'login_redirect' => true];
-                echo TemplateRenderer::render('login.html', $parametros);
+                
+                VerificarSessao::verificarAcesso(['A', 'M']);
+                echo TemplateRenderer::render('editar_usuario.html');
             }
         }
     }
-    public function atribuirAcesso()
+    public function atribuirAcesso($id = null)
     {
-        VerificarSessao::verificarLogin();
-        VerificarSessao::verificarPerfil('A');
+        VerificarSessao::verificarAcesso(['A']);
 
         global $parametros;
 
-        $id = isset($_GET['id']) ? $_GET['id'] : null;
         $perfil_acesso = isset($_POST['perfil_acesso']) ? $_POST['perfil_acesso'] : null;
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -261,7 +261,6 @@ class UsuarioController
             }
         }
     }
-
     private function handleError($errorMessage)
     {
         $erroController = new ErroController();

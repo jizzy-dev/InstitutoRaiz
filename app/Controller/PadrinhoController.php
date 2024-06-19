@@ -1,6 +1,12 @@
 <?php
 class PadrinhoController
 {
+    private array $perfisNecessarios;
+
+    public function __construct()
+    {
+        $this->perfisNecessarios = ['A', 'M']; // Perfis padrão
+    }
     public function index()
     {
         $parametros = ['titulo' => 'Apadrinhar'];
@@ -48,7 +54,9 @@ class PadrinhoController
             echo TemplateRenderer::render('cadastrar_padrinho.html', $parametros);
         }
     }
-    public function selecionarPorId($id){
+    public function selecionarPorId($id)
+    {
+        
         global $parametros;
         try {
             $user =  Usuario::selecionarPorId($id);
@@ -65,6 +73,8 @@ class PadrinhoController
     }
     public function Consultar($nome = null)
     {
+        VerificarSessao::verificarLogin();
+        $this->alterarPerfisNecessarios(['A','M']);
         global $parametros;
         try {
             $nomeUsuario =  isset($_POST['filtro']) ?
@@ -93,7 +103,7 @@ class PadrinhoController
     public function atribuirPadrinho($id = null)
     {
         global $parametros;
-
+        $id_aluno = isset($_GET['id_aluno']) ? $_GET['id_aluno'] : 1;
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $dadosPadrinho = [
                 'id_padrinho' => $_POST['id_padrinho'],
@@ -114,16 +124,23 @@ class PadrinhoController
                 header('Location: ?pag=padrinho&metodo=Consultar');
                 exit;
             } catch (Exception $e) {
-                echo "<script>alert('Erro ao vincular Padrinho: " . $e->getMessage() . "')</script>";
+                $parametros = [
+                    'ModalTipo' => 'Erro',
+                    'erro' => 'Erro ao vincular o padrinho: ' . $e->getMessage()
+                ];
+                echo TemplateRenderer::render('atribuir_padrinho.html', $parametros);
             }
         } else {
-            if ($id !== null) {
+            if ($id !== null && $id_aluno !== null) {
                 try {
                     $user = Usuario::selecionarPadrinhoPorId($id);
-                    $aluno = Aluno::selecionarPorId(3);
+                    $aluno = Aluno::selecionarPorId($id_aluno);
+                    $alunos = Aluno::selecionarPorSituacao('aprovado');
                     $parametros = [
                         'usuario' => $user,
+                        'idAlunoSelecionado' => $id_aluno,
                         'aluno' => $aluno,
+                        'alunos' => $alunos,
                         'titulo' => 'Atribuir Padrinho',
                         'alunoObject' => json_encode((object)[
                             'aluno' => $aluno
@@ -134,7 +151,11 @@ class PadrinhoController
                     // echo '</pre>';
                     echo TemplateRenderer::render('atribuir_padrinho.html', $parametros);
                 } catch (Exception $e) {
-                    echo "<script>alert('Erro ao carregar dados: " . $e->getMessage() . "')</script>";
+                    $parametros = [
+                        'ModalTipo' => 'Erro',
+                        'erro' => 'Erro ao carregar os dados: ' . $e->getMessage()
+                    ];
+                    echo TemplateRenderer::render('atribuir_padrinho.html', $parametros);
                 }
             }
         }
@@ -159,7 +180,11 @@ class PadrinhoController
             echo 'ID do aluno não fornecido';
         }
     }
-
+    private function alterarPerfisNecessarios(array $novosPerfis)
+    {
+        $this->perfisNecessarios = $novosPerfis;
+        VerificarSessao::verificarPerfil($this->perfisNecessarios);
+    }
     private function handleError($errorMessage)
     {
         $erroController = new ErroController();
