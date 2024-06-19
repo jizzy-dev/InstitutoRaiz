@@ -80,6 +80,7 @@ label {
 }
 /* textbox */
 .textbox {
+  background-color: #fff;
   border: none;
   border-radius: 0.5rem;
   box-shadow: var(--box-shadow-2);
@@ -305,9 +306,9 @@ span.warning-message {
   background: url("/InstitutoRaiz/public/assets/images/vectors/icons/edit-vector.svg")
     center/contain no-repeat;
 }
-/*btn-relationship*/
-.btn-relationship {
-  background: url("/InstitutoRaiz/public/assets/images/vectors/icons/down-arrow-vector.svg")
+/*btn-atribuir*/
+.btn-atribuir {
+  background: url("/InstitutoRaiz/public/assets/images/vectors/icons/finger-vector.svg")
     center/contain no-repeat;
 }
 /*btn-link-relationship*/
@@ -525,6 +526,9 @@ span.warning-message {
   -moz-box-shadow: var(--box-shadow-1);
   box-shadow: var(--box-shadow-1);
 }
+.tb-matricula thead tr:first-of-type{
+  background-color: #fff;
+}
 .tb-matricula thead tr:first-of-type > th:first-of-type {
   border-top-left-radius: var(--radius-1);
   border-top-right-radius: var(--radius-1);
@@ -577,10 +581,10 @@ td:not(.td-button) {
   justify-content: start !important;
 }
 .tables tbody tr:not(.tr-submit, .data-table tr) {
-  border-bottom: 0.2em solid #1f2926;
+  border-bottom: 2px solid #1c1c1c;
 }
 .data-table tbody td {
-  border-bottom: 0.2rem solid #1f2926;
+  border-bottom: 2px solid #1c1c1c;
 }
 .row-column-titles td {
   background-color: var(--cor-5);
@@ -607,6 +611,21 @@ td:not(.td-button) {
   max-width: 100px !important;
   justify-content: space-evenly;
   position: sticky;
+}
+.td-dia, .td-frequencia{
+  min-width: 4em !important;
+}
+.td-frequencia{
+  background-color: var(--cor-24);
+  border-inline: 1px solid #1c1c1c;
+}
+.td-presenca{
+  color: #fff;
+  background-color: var(--cor-23);
+}
+.td-falta{
+  color: #fff;
+  background-color: var(--cor-20);
 }
 
 .fieldset-filtro-frequencia {
@@ -674,7 +693,7 @@ td:not(.td-button) {
   position: fixed;
   top: 0;
   left: calc(100% - 35dvw);
-  height: 100dvh;
+  height: 100%;
   z-index: 2;
   border: none;
   width: 35dvw;

@@ -1,12 +1,50 @@
-@media ( min-width : 1920px) {
-
-    #sc2.sc-content-layout{
-        transform: scale(1.2);
-    }
-    #sc3.sc-content{
-        transform: scale(1.2);
-    }
-    #sc4.sc-content{
-        transform: scale(1.2);
-    }
+@media (min-width: 1920px) {
+  #sc2.sc-content-layout {
+    transform: scale(1.2);
+  }
+  #sc3.sc-content {
+    transform: scale(1.2);
+  }
+  #sc4.sc-content {
+    transform: scale(1.2);
+  }
+}
+@media (max-width: 1000px) {
+  #sc1.sections {
+    flex-direction: column;
+    max-height: unset !important;
+    min-height: unset !important;
+  }
+  .sc-content{
+    flex-direction: column;
+  }
+  header .header-link {
+    display: none;
+  }
+  .open-sidebar-profile-button {
+    position: absolute;
+    right: -5em;
+    transform: translateX(100%);
+  }
+  .open-sidebar-profile-button img[src] {
+    width: 0px;
+    height: 0px;
+    padding: 5em;
+    background: url("/InstitutoRaiz/public/assets/images/vectors/icons/menu-vector.svg")
+      center/contain no-repeat;
+    box-shadow: unset;
+  }
+  #sc1.sc-content-right{
+    min-width: 100%;
+  }
+  #sc1.sc-content-right .carousel-container img {
+    width: 100dvw;
+    max-height: 500px !important;
+    min-height: unset !important;
+  }
+ .header-content span{
+    content: 'A';
+    font-size: var(--font-clamp-1);
+    width: 100px;
+ }
 }

@@ -1,42 +1,88 @@
 {% include 'header_sistema.html' %}
 <main class="main-sistema flex flex-column center gap-3">
   <div class="welcome flex height-100pc">
-  <h1>Seja Bem-vindo {{session.user.nome}} </h1>  
+    <h1>Seja Bem-vindo {{session.user.nome}}</h1>
   </div>
   <menu class="flex flex-column center">
     <h2>Navegação</h2>
     <div class="cards-container">
       <div class="card-wrapper flex space-evenly wrap gap-2">
-        <a href="?pag=sistema&metodo=redirectPag&titulo=Gerenciar%20Matrículas&redirecionar=matricula" class="card flex flex-column space-evenly align-center" id="card-1">
-        <div class="card-image"><img src="/InstitutoRaiz/public/assets/images/vectors/icons/form-vector.svg" alt=""></div>
+        <a
+          href="?pag=sistema&metodo=redirectPag&titulo=Gerenciar%20Matrículas&redirecionar=matricula"
+          class="card flex flex-column space-evenly align-center"
+          id="card-1"
+        >
+          <div class="card-image">
+            <img
+              src="/InstitutoRaiz/public/assets/images/vectors/icons/form-vector.svg"
+              alt=""
+            />
+          </div>
           <div class="card-content">
             <b>Matrículas</b>
           </div>
         </a>
-        <a href="?pag=sistema&metodo=redirectPag&titulo=Gerenciar%20Usuários&redirecionar=usuario" class="card flex flex-column space-evenly align-center" id="card-1">
-        <div class="card-image"><img src="/InstitutoRaiz/public/assets/images/vectors/icons/users-vector.svg" alt=""></div>
+        <a
+          href="?pag=sistema&metodo=redirectPag&titulo=Gerenciar%20Usuários&redirecionar=usuario"
+          class="card flex flex-column space-evenly align-center"
+          id="card-1"
+        >
+          <div class="card-image">
+            <img
+              src="/InstitutoRaiz/public/assets/images/vectors/icons/users-vector.svg"
+              alt=""
+            />
+          </div>
           <div class="card-content">
             <b>Usuários</b>
           </div>
         </a>
-        <a href="?pag=sistema&metodo=redirectPag&titulo=Gerenciar%20Alunos&redirecionar=aluno" class="card flex flex-column space-evenly align-center" id="card-1">
-        <div class="card-image"><img src="/InstitutoRaiz/public/assets/images/vectors/icons/student-vector.svg" alt=""></div>
+        <a
+          href="?pag=sistema&metodo=redirectPag&titulo=Gerenciar%20Alunos&redirecionar=aluno"
+          class="card flex flex-column space-evenly align-center"
+          id="card-1"
+        >
+          <div class="card-image">
+            <img
+              src="/InstitutoRaiz/public/assets/images/vectors/icons/student-vector.svg"
+              alt=""
+            />
+          </div>
           <div class="card-content">
             <b>Alunos</b>
           </div>
         </a>
-        <a href="?pag=sistema&metodo=redirectPag&titulo=Gerenciar%20Padrinhos&redirecionar=padrinho" class="card flex flex-column space-evenly align-center" id="card-1">
-        <div class="card-image"><img src="/InstitutoRaiz/public/assets/images/vectors/icons/user-heart-vector.svg" alt=""></div>
+        <a
+          href="?pag=sistema&metodo=redirectPag&titulo=Gerenciar%20Padrinhos&redirecionar=padrinho"
+          class="card flex flex-column space-evenly align-center"
+          id="card-1"
+        >
+          <div class="card-image">
+            <img
+              src="/InstitutoRaiz/public/assets/images/vectors/icons/user-heart-vector.svg"
+              alt=""
+            />
+          </div>
           <div class="card-content">
             <b>Padrinhos</b>
           </div>
         </a>
-        <a href="?pag=sistema&metodo=redirectPag&titulo=Gerenciar%20Frequências&redirecionar=frequencia" class="card flex flex-column space-evenly align-center" id="card-1">
-        <div class="card-image"><img src="/InstitutoRaiz/public/assets/images/vectors/icons/calendar-days-vector.svg" alt=""></div>
+        <a
+          href="?pag=sistema&metodo=redirectPag&titulo=Gerenciar%20Frequências&redirecionar=frequencia"
+          class="card flex flex-column space-evenly align-center"
+          id="card-1"
+        >
+          <div class="card-image">
+            <img
+              src="/InstitutoRaiz/public/assets/images/vectors/icons/calendar-days-vector.svg"
+              alt=""
+            />
+          </div>
           <div class="card-content">
             <b>Frequencia</b>
           </div>
         </a>
+      </div>
     </div>
   </menu>
 </main>

@@ -1,28 +1,56 @@
 {% include 'header_sistema.html' %}
 <main class="main-sistema flex flex-column center">
-  <h1> {{titulo}} </h1>  
-<menu class="flex flex-column center gap-3">
+  <h1>{{titulo}}</h1>
+  <menu class="flex flex-column center gap-3">
     <div class="cards-container">
       <div class="card-wrapper flex space-evenly wrap gap-2">
-        <a href="?pag=usuario&metodo=cadastrar" class="card flex flex-column space-evenly align-center" id="card-1">
-        <div class="card-image"><img src="/InstitutoRaiz/public/assets/images/vectors/icons/user-plus-vector.svg" alt=""></div>
+        <a
+          href="?pag=usuario&metodo=cadastrar"
+          class="card flex flex-column space-evenly align-center"
+          id="card-1"
+        >
+          <div class="card-image">
+            <img
+              src="/InstitutoRaiz/public/assets/images/vectors/icons/user-plus-vector.svg"
+              alt=""
+            />
+          </div>
           <div class="card-content">
             <b>Cadastrar Usuário</b>
           </div>
         </a>
-        <a href="?pag=usuario&metodo=consultar" class="card flex flex-column space-evenly align-center" id="card-1">
-        <div class="card-image"><img src="/InstitutoRaiz/public/assets/images/vectors/icons/search-vector.svg" alt=""></div>
+        <a
+          href="?pag=usuario&metodo=consultar"
+          class="card flex flex-column space-evenly align-center"
+          id="card-1"
+        >
+          <div class="card-image">
+            <img
+              src="/InstitutoRaiz/public/assets/images/vectors/icons/search-vector.svg"
+              alt=""
+            />
+          </div>
           <div class="card-content">
             <b class="">Consultar Usuário</b>
           </div>
         </a>
-        <a href="?pag=sistema&metodo=redirectPag&titulo=Editar%20Usuário&redirecionar=editar_usuario" class="card flex flex-column space-evenly align-center" id="card-1">
-        <div class="card-image"><img src="/InstitutoRaiz/public/assets/images/vectors/icons/user-pen-vector.svg" alt=""></div>
+        <a
+          href="?pag=sistema&metodo=redirectPag&titulo=Editar%20Usuário&redirecionar=editar_usuario"
+          class="card flex flex-column space-evenly align-center"
+          id="card-1"
+        >
+          <div class="card-image">
+            <img
+              src="/InstitutoRaiz/public/assets/images/vectors/icons/user-pen-vector.svg"
+              alt=""
+            />
+          </div>
           <div class="card-content">
             <b class="">Editar Usuário</b>
           </div>
         </a>
       </div>
+    </div>
   </menu>
 </main>
 {% include 'footer.html' %}

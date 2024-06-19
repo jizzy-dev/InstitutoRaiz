@@ -1,6 +1,10 @@
 <?php
 
 class TurmaController {
+    public function __construct() {
+        VerificarSessao::verificarLogin();
+        VerificarSessao::verificarPerfil(['A','M','D']);
+    }
     public function index() {
         global $parametros;
 

@@ -1,4 +1,8 @@
-{% include "header_sistema.html" %} 
+{% if session.user.perfil_acesso != 'U' %}
+  {% include "header_sistema.html" %} 
+{% else %} 
+  {% include "header.html" %} 
+{% endif %}
 {% if session.user.perfil_acesso == 'A' %}
   {% set permissao = true %} 
 {% else %} 

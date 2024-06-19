@@ -1,3 +1,4 @@
+{% include 'header_sistema.html' %}
 <main class="main-consultar">
 	<form action="?pag=padrinho&metodo=consultar" method="POST" class="flex flex-column center">
 		<div class="table-wrapper">
@@ -15,9 +16,7 @@
 					</tr>
 					<tr class="row-column-titles tr-consultar">
 						<td class="td-button"></td>
-						<td class="td-button"></td>
-						<td class="td-button"></td>
-						<td>ID
+						<td class="td-ID">ID
 							<div class="resize-handle"></div>
 						</td>
 						<td>Nome
@@ -67,18 +66,16 @@
 										<input type="hidden" name="id_padrinho" value="{{ usuario.ID_USER }}">
 										<a href="?pag=padrinho&metodo=selecionarPorId&id={{ usuario.ID_USER}}" class="button action-buttons btn-redirect flex center"></a>
 									</form>
-								</td>
-								<td class="td-button">
 									<form id="formEditarUsuario_{{ usuario.ID_USER }}" method="POST">
 										<input type="hidden" name="id_padrinho" value="{{ usuario.ID_USER }}">
 										<button type="button" onclick="editarUsuario('{{ usuario.ID_USER }}')" class="button action-buttons btn-editar"></button>
 									</form>
-								</td>
-								<td class="td-button">
+									{% if session.user.perfil_acesso == 'A'%}
 									<form action="?pag=padrinho&metodo=excluir" method="POST">
 										<input type="hidden" name="id_padrinho" value="{{ usuario.ID_USER }}">
 										<button type="submit" onclick="return confirm('Tem certeza que deseja excluir este usuário?')" class="button action-buttons btn-excluir"></button>
 									</form>
+									{% endif %}
 								</td>
 								<td>{{usuario.ID_USER}}</td>
 								<td>{{usuario.nome}}</td>

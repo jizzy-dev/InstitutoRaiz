@@ -1,10 +1,11 @@
 <?php
 class Autorizar
 {
-    public static function verificarAutorizacao(String $perfilNecessario)
+    public static function verificarAutorizacao(array $perfisNecessario)
     {
-        if ($_SESSION['user']->perfil_acesso !== $perfilNecessario) {
+        if (!in_array($_SESSION['user']->perfil_acesso, $perfisNecessario)) {
             return true;
         }
+        return false;
     }
 }

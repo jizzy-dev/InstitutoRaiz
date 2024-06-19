@@ -12,6 +12,7 @@ ID_USER: {{session.user.ID_USER}}
 			<a href="?pag=home">
 				<img src="/InstitutoRaiz/public/assets/images/png/logo.png" width="123px" alt="Logo do Instituto Raiz do Futuro" class="header-logo logo">
 			</a>
+			<span></span>
 		</div>
 		<nav class="header-nav flex space-between align-center">
 			<ul class="header-links flex flex-row">
@@ -19,10 +20,10 @@ ID_USER: {{session.user.ID_USER}}
 					<a href="#sc2" class="header-link">Quem Somos</a>
 				</li>
 				<li>
-					<a href="#sc3" class="header-link">Voluntários</a>
+					<a href="http://localhost/InstitutoRaiz/?pag=home#sc4" class="header-link">Voluntários</a>
 				</li>
 				<li>
-					<a href="#sc4" class="header-link">Apadrinhar</a>
+					<a href="http://localhost/InstitutoRaiz/?pag=home#sc5" class="header-link">Apadrinhar</a>
 				</li>
 				<li>
 					<a href="?pag=matricula" class="header-link">Matrícula</a>
@@ -49,6 +50,17 @@ ID_USER: {{session.user.ID_USER}}
 							<li>
 								<h5>{{session.user.email}}</h5>
 							</li>
+							<li>
+								{% if session.user.perfil_acesso == 'A' %}
+								<span class="flex center">
+								  <b>Administrador</b>
+								</span>
+								{% elseif session.user.perfil_acesso == 'M' %}
+								<b>Moderador</b>
+								{% elseif session.user.perfil_acesso == 'D' %}
+								<b>Docente</b>
+								{% endif %}
+							  </li>
 						</div>
 						<div class="sidebar-item-group pages-group">
 						<li>

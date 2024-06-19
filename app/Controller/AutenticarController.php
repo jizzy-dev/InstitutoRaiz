@@ -3,17 +3,8 @@ class AutenticarController
 {
     public function index()
     {
-        $this->logarComCPF();
+        $this->Logar();
     }
-
-public function logarComCPF(bool $isCPFLogin = null){
-    if ($isCPFLogin == true && $isCPFLogin) {
-        $dados['cpf'] = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    }else{
-        $dados['email'] = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    }
-    $this->Logar();
-}
 
     public function Logar()
     {
@@ -22,12 +13,10 @@ public function logarComCPF(bool $isCPFLogin = null){
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-
             $dados = [
+                'email' => filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL),
                 'senha' => $_POST['senha'] ?? ''
             ];
-            
-            
 
             try {
                 $user =  Autenticar::login($dados);

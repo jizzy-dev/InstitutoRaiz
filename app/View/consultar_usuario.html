@@ -1,26 +1,10 @@
+{% include 'header_sistema.html' %}
 <main class="main-consultar">
   <form
     action="?pag=usuario&metodo=consultar"
     method="POST"
     class="flex flex-column center"
   >
-    <div class="controles flex space-between">
-      <label for="filtro">Filtro:</label>
-      <input
-        type="text"
-        name="filtro"
-        onkeyup="buscar()"
-        id="filtro"
-        class="textbox"
-        placeholder="Nome"
-      />
-      <input
-        type="submit"
-        onclick="buscar()"
-        value="Buscar"
-        class="button weight-bold"
-      />
-    </div>
     <div class="table-wrapper flex flex-column center">
       <table
         cellspacing="0"
@@ -29,6 +13,27 @@
         <thead>
           <tr class="tr-titulo row-column-titles tr-consultar">
             <th colspan="17">Usuario</th>
+          </tr>
+          <tr class="row-column-titles row-interactive center">
+            <td><label for="filtro">Filtro:</label></td>
+            <td>
+              <input
+                type="text"
+                name="filtro"
+                onkeyup="buscar()"
+                id="filtro"
+                class="textbox"
+                placeholder="Nome"
+              />
+            </td>
+            <td>
+              <input
+                type="submit"
+                onclick="buscar()"
+                value="Buscar"
+                class="button weight-bold"
+              />
+            </td>
           </tr>
           <tr class="row-column-titles tr-consultar">
             <td class="td-button"></td>
@@ -119,6 +124,7 @@
                   class="button action-buttons btn-editar"
                 ></button>
               </form>
+              {% if session.user.perfil_acesso == 'A'%}
               <form action="?pag=usuario&metodo=excluir" method="POST">
                 <input
                   type="hidden"
@@ -131,6 +137,7 @@
                   class="button action-buttons btn-excluir"
                 ></button>
               </form>
+              {% endif %}
             </td>
 
             <td class="td-ID">{{usuario.ID_USER}}</td>

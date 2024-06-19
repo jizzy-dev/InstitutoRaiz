@@ -3,6 +3,7 @@ class AlunoController
 {
     public function index($id = null)
     {
+        VerificarSessao::verificarAcesso(['A', 'M']);
         global $parametros;
 
         try {
@@ -26,6 +27,7 @@ class AlunoController
 
     public function Cadastrar()
     {
+        VerificarSessao::verificarAcesso(['A', 'M']);
         global $parametros;
         $parametros = ['titulo' => 'Cadastro de Aluno'];
 
@@ -58,6 +60,7 @@ class AlunoController
 
     public function Consultar($nome = null)
     {
+        VerificarSessao::verificarAcesso(['A', 'M']);
         global $parametros;
         try {
             $nomeAluno = isset($_POST['filtro']) ? $_POST['filtro'] : $nome;
@@ -73,6 +76,7 @@ class AlunoController
 
     public function Excluir($id = null)
     {
+        VerificarSessao::verificarAcesso(['A']);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $_POST['id_aluno'];
             try {
@@ -87,6 +91,7 @@ class AlunoController
 
     public function Editar($id = null)
     {
+        VerificarSessao::verificarAcesso(['A', 'M']);
         global $parametros;
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
